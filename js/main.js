@@ -28,8 +28,12 @@ class ImageToPromptApp {
 
     // Language System Initialization
     initLanguageSystem() {
+        console.log('Initializing LanguageSystem...');
         if (window.LanguageSystem) {
+            console.log('LanguageSystem found, initializing...');
             window.LanguageSystem.initLanguageSystem();
+        } else {
+            console.error('LanguageSystem not found!');
         }
     }
 
@@ -81,16 +85,22 @@ class ImageToPromptApp {
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
 
+        console.log('Setting up file upload...', { uploadArea, fileInput });
+
         if (uploadArea && fileInput) {
             uploadArea.addEventListener('click', () => {
+                console.log('Upload area clicked');
                 fileInput.click();
             });
 
             fileInput.addEventListener('change', (e) => {
+                console.log('File input changed:', e.target.files);
                 if (e.target.files.length > 0) {
                     this.handleFileSelect(e.target.files[0]);
                 }
             });
+        } else {
+            console.error('Upload area or file input not found!');
         }
     }
 
@@ -165,16 +175,42 @@ class ImageToPromptApp {
             languageBtn.addEventListener('click', () => {
                 languageDropdown.classList.toggle('hidden');
             });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
-                    languageDropdown.classList.add('hidden');
-                }
-            });
         }
 
         // Language click handling is now done in setupLanguageClickHandlers()
+        
+        // Sync desktop and mobile selectors
+        this.setupSelectorSync();
+    }
+    
+    // Setup Selector Synchronization
+    setupSelectorSync() {
+        const promptLanguage = document.getElementById('promptLanguage');
+        const promptLanguageMobile = document.getElementById('promptLanguageMobile');
+        const structuredPrompt = document.getElementById('structuredPrompt');
+        const structuredPromptMobile = document.getElementById('structuredPromptMobile');
+        
+        // Sync Prompt Language selectors
+        if (promptLanguage && promptLanguageMobile) {
+            promptLanguage.addEventListener('change', () => {
+                promptLanguageMobile.value = promptLanguage.value;
+            });
+            
+            promptLanguageMobile.addEventListener('change', () => {
+                promptLanguage.value = promptLanguageMobile.value;
+            });
+        }
+        
+        // Sync Structured Prompt selectors
+        if (structuredPrompt && structuredPromptMobile) {
+            structuredPrompt.addEventListener('change', () => {
+                structuredPromptMobile.value = structuredPrompt.value;
+            });
+            
+            structuredPromptMobile.addEventListener('change', () => {
+                structuredPrompt.value = structuredPromptMobile.value;
+            });
+        }
     }
 
     // Setup Language Click Handlers
@@ -184,19 +220,35 @@ class ImageToPromptApp {
         
         // 绑定新的事件监听器
         this.handleLanguageClick = (e) => {
+            console.log('Language click event triggered:', e.target);
             if (e.target.classList.contains('language-option')) {
+                console.log('Language option clicked');
                 e.preventDefault();
                 e.stopPropagation();
                 
                 const lang = e.target.getAttribute('data-lang');
+                console.log('Selected language:', lang);
                 
                 if (lang && window.LanguageSystem) {
+                    console.log('Calling setCurrentLanguage...');
                     window.LanguageSystem.setCurrentLanguage(lang);
                     // Close dropdown if it exists
                     const languageDropdown = document.getElementById('languageDropdown');
                     if (languageDropdown) {
                         languageDropdown.classList.add('hidden');
                     }
+                } else {
+                    console.error('Language or LanguageSystem not available');
+                }
+            } else {
+                // Close dropdown when clicking outside
+                const languageBtn = document.getElementById('languageBtn');
+                const languageDropdown = document.getElementById('languageDropdown');
+                
+                if (languageBtn && languageDropdown && 
+                    !languageBtn.contains(e.target) && 
+                    !languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.add('hidden');
                 }
             }
         };
@@ -267,10 +319,10 @@ class ImageToPromptApp {
             return;
         }
 
-        // Validate file size (4MB)
-        const maxSize = 4 * 1024 * 1024; // 4MB in bytes
+        // Validate file size (2MB)
+        const maxSize = 2 * 1024 * 1024; // 2MB in bytes
         if (file.size > maxSize) {
-            this.showError(window.LanguageSystem?.getTranslation('error-file-size') || 'File size too large. Please upload an image smaller than 4MB.');
+            this.showError(window.LanguageSystem?.getTranslation('error-file-size') || 'File size too large. Please upload an image smaller than 2MB.');
             return;
         }
 
@@ -385,7 +437,7 @@ class ImageToPromptApp {
     updateGenerateButton(hasImage) {
         const generateBtn = document.getElementById('generateBtn');
         if (generateBtn) {
-            if (hasImage && !this.isGenerating) {
+            if (hasImage) {
                 generateBtn.disabled = false;
                 generateBtn.classList.remove('disabled:cursor-not-allowed');
             } else {
@@ -397,40 +449,56 @@ class ImageToPromptApp {
 
     // Generate Prompt
     async generatePrompt() {
-        if (!this.currentImage || this.isGenerating) {
+        if (!this.currentImage) {
+            return;
+        }
+        
+        if (this.isGenerating) {
             return;
         }
 
         this.isGenerating = true;
+        this.ensureButtonStructure(); // 确保按钮结构完整
         this.updateGenerateButton(false);
         this.showLoading(); // 显示进度条
         
         const generateBtn = document.getElementById('generateBtn');
         const promptLanguage = document.getElementById('promptLanguage')?.value || 'en';
+        const structuredPrompt = document.getElementById('structuredPrompt')?.value || 'no';
         
         // Button text will be updated by showLoading method
 
         try {
-            const prompt = await this.callAPI(this.currentImage, promptLanguage);
+            const prompt = await this.callAPI(this.currentImage, promptLanguage, structuredPrompt);
             this.completeProgress(); // 完成进度条
             this.displayPrompt(prompt);
-        } catch (error) {
-            console.error('Error generating prompt:', error);
-            this.showError(error.message || window.LanguageSystem?.getTranslation('error-api') || 'API error. Please try again later.');
-        } finally {
+            
+            // API成功完成后，立即恢复按钮可点击状态
             this.isGenerating = false;
             this.updateGenerateButton(true);
             this.hideLoading(); // 隐藏进度条
+        } catch (error) {
+            console.error('Error generating prompt:', error);
+            this.showError(error.message || window.LanguageSystem?.getTranslation('error-api') || 'API error. Please try again later.');
             
-            if (generateBtn) {
-                generateBtn.innerHTML = `<span>${window.LanguageSystem?.getTranslation('generate-prompt') || 'Generate Prompt'}</span>`;
-            }
+            // 即使出错也要恢复按钮状态
+            this.isGenerating = false;
+            this.updateGenerateButton(true);
+            this.hideLoading(); // 隐藏进度条
         }
     }
 
     // Call API
-    async callAPI(imageBase64, language) {
+    async callAPI(imageBase64, language, structuredPrompt = 'no') {
         const promptLanguage = this.getPromptLanguage(language);
+        
+        // 根据structuredPrompt选择不同的指令
+        let instruction;
+        if (structuredPrompt === 'yes') {
+            instruction = `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage}AI文生图提示词，需要用结构化内容输出。分析需要包括：主体描述（人物、物体、动物的细节，如外观、动作、表情）、场景与环境（所处的背景、地点、时代）、构图与视角（镜头角度、景别、人物比例）、视觉风格（艺术风格，如插画、油画、赛博朋克、极简主义，可能参考的艺术家或工作室）、画面质量（光影效果、色彩色调、材质质感、渲染引擎、画质8k）。请直接用${promptLanguage}输出最终提示词，请保证回复语言的单一性，便于我理解。`;
+        } else {
+            instruction = `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage}AI文生图提示词。分析需要包括：主体描述（人物、物体、动物的细节，如外观、动作、表情）、场景与环境（所处的背景、地点、时代）、构图与视角（镜头角度、景别、人物比例）、视觉风格（艺术风格，如插画、油画、赛博朋克、极简主义，可能参考的艺术家或工作室）、画面质量（光影效果、色彩色调、材质质感、渲染引擎、画质8k）。请直接用${promptLanguage}输出最终提示词，请保证回复语言的单一性，便于我理解。`;
+        }
         
         const requestBody = {
             model: "THUDM/GLM-4.1V-9B-Thinking",
@@ -440,7 +508,7 @@ class ImageToPromptApp {
                     content: [
                         {
                             type: "text",
-                            text: `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage}提示词，适用于Stable Diffusion或Midjourney。分析需要包括：主体描述（人物、物体、动物的细节，如外观、动作、表情）、场景与环境（所处的背景、地点、时代）、构图与视角（镜头角度、景别、人物比例）、视觉风格（艺术风格，如插画、油画、赛博朋克、极简主义，可能参考的艺术家或工作室）、画面质量（光影效果、色彩色调、材质质感、渲染引擎如Octane render、画质8k, ultra detailed）。请直接用${promptLanguage}输出最终提示词，不要包含任何其他解释或中文。`
+                            text: instruction
                         },
                         {
                             type: "image_url",
@@ -495,13 +563,44 @@ class ImageToPromptApp {
         return languageMap[languageCode] || '英语';
     }
 
+    // Simple Markdown Parser
+    parseMarkdown(text) {
+        if (!text) return '';
+        
+        // Convert line breaks to <br> tags
+        let html = text.replace(/\n/g, '<br>');
+        
+        // Convert **text** to <strong>text</strong> (bold)
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-orange-300">$1</strong>');
+        
+        // Convert *text* to <em>text</em> (italic)
+        html = html.replace(/\*(.*?)\*/g, '<em class="italic text-gray-300">$1</em>');
+        
+        // Convert ## Heading to <h2> (subheadings)
+        html = html.replace(/^## (.*$)/gm, '<h2 class="text-lg font-semibold text-orange-400 mt-4 mb-2">$1</h2>');
+        
+        // Convert # Heading to <h1> (main headings)
+        html = html.replace(/^# (.*$)/gm, '<h1 class="text-xl font-bold text-orange-400 mt-6 mb-3">$1</h1>');
+        
+        // Convert - list items to <li>
+        html = html.replace(/^- (.*$)/gm, '<li class="ml-4 text-gray-300">• $1</li>');
+        
+        // Wrap consecutive <li> elements in <ul>
+        html = html.replace(/(<li class="ml-4 text-gray-300">.*<\/li>)(\s*<li class="ml-4 text-gray-300">.*<\/li>)*/g, (match) => {
+            return '<ul class="list-none space-y-1 my-2">' + match + '</ul>';
+        });
+        
+        return html;
+    }
+
     // Display Generated Prompt
     displayPrompt(prompt) {
         const promptDisplay = document.getElementById('promptDisplay');
         const copyBtn = document.getElementById('copyBtn');
         
         if (promptDisplay) {
-            promptDisplay.innerHTML = `<p class="text-white leading-relaxed">${prompt}</p>`;
+            const markdownHtml = this.parseMarkdown(prompt);
+            promptDisplay.innerHTML = `<div class="text-white leading-relaxed prose prose-invert max-w-none">${markdownHtml}</div>`;
         }
         
         if (copyBtn) {
@@ -608,92 +707,124 @@ class ImageToPromptApp {
         }
     }
 
-    // Show Loading with Button Progress Bar
+    // Show Loading with Progress Bar Above Button
     showLoading() {
-        const overlay = document.getElementById('loadingOverlay');
-        const buttonProgress = document.getElementById('buttonProgress');
-        const buttonProgressBar = document.getElementById('buttonProgressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
         const buttonText = document.getElementById('buttonText');
+        const generateBtn = document.getElementById('generateBtn');
         
-        if (overlay) {
-            overlay.classList.remove('hidden');
+        // Show progress bar above button
+        if (progressContainer) {
+            progressContainer.classList.remove('hidden');
         }
         
-        // Show button progress bar
-        if (buttonProgress && buttonProgressBar) {
-            buttonProgress.style.opacity = '1';
-            buttonProgressBar.style.width = '0%';
+        // Reset progress bar
+        if (progressBar) {
+            progressBar.style.width = '0%';
         }
         
-        // Update button text
+        // Update button text and make it gray
         if (buttonText) {
             buttonText.textContent = window.LanguageSystem?.getTranslation('generating-prompt') || 'Image prompt generation in progress...';
         }
         
+        // Change button to gray color
+        if (generateBtn) {
+            generateBtn.classList.remove('btn-primary');
+            generateBtn.classList.add('bg-gray-500', 'hover:bg-gray-600');
+        }
+        
         // Start progress animation
-        this.startButtonProgressAnimation();
+        this.startProgressAnimation();
     }
 
     // Hide Loading
     hideLoading() {
-        const overlay = document.getElementById('loadingOverlay');
-        const buttonProgress = document.getElementById('buttonProgress');
+        const progressContainer = document.getElementById('progressContainer');
         const buttonText = document.getElementById('buttonText');
+        const generateBtn = document.getElementById('generateBtn');
         
-        if (overlay) {
-            overlay.classList.add('hidden');
+        // Hide progress bar
+        if (progressContainer) {
+            progressContainer.classList.add('hidden');
         }
         
-        // Hide button progress bar
-        if (buttonProgress) {
-            buttonProgress.style.opacity = '0';
-        }
-        
-        // Reset button text
+        // Reset button text and color
         if (buttonText) {
             buttonText.textContent = window.LanguageSystem?.getTranslation('generate-prompt') || 'Generate Prompt';
         }
         
+        // Restore button color
+        if (generateBtn) {
+            generateBtn.classList.add('btn-primary');
+            generateBtn.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+        }
+        
         // Stop progress animation
-        this.stopButtonProgressAnimation();
+        this.stopProgressAnimation();
+    }
+    
+    // Ensure Button Structure is Complete
+    ensureButtonStructure() {
+        const generateBtn = document.getElementById('generateBtn');
+        if (generateBtn) {
+            // Check if button has the correct structure
+            const progressContainer = generateBtn.querySelector('#progressContainer');
+            const buttonText = generateBtn.querySelector('#buttonText');
+            
+            if (!progressContainer || !buttonText) {
+                // Restore complete button structure
+                generateBtn.innerHTML = `
+                    <!-- Progress Bar Inside Button -->
+                    <div id="progressContainer" class="w-full mb-2 hidden">
+                        <div class="w-full bg-gray-600 rounded-full h-1">
+                            <div id="progressBar" class="bg-gradient-to-r from-orange-500 to-orange-400 h-1 rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <span id="buttonText" data-translate="generate-prompt">Generate Prompt</span>
+                `;
+            }
+        }
     }
 
-    // Start Button Progress Animation
-    startButtonProgressAnimation() {
+    // Start Progress Animation
+    startProgressAnimation() {
         this.progressInterval = setInterval(() => {
-            const buttonProgressBar = document.getElementById('buttonProgressBar');
+            const progressBar = document.getElementById('progressBar');
             
-            if (buttonProgressBar) {
-                const currentWidth = parseFloat(buttonProgressBar.style.width) || 0;
+            if (progressBar) {
+                const currentWidth = parseFloat(progressBar.style.width) || 0;
                 let newWidth = currentWidth;
-                let increment = 2; // 每次增加2%，更快的速度
+                let increment = 0.8; // 更慢的速度
                 
-                // 更真实的进度逻辑
-                if (currentWidth < 30) {
-                    // 前30%：快速启动
-                    increment = 3;
-                } else if (currentWidth < 70) {
-                    // 30%-70%：正常速度
-                    increment = 2.5;
-                } else if (currentWidth < 90) {
-                    // 70%-90%：稍微慢一点
-                    increment = 1.5;
-                } else if (currentWidth < 95) {
-                    // 90%-95%：慢一点
+                // 更慢的进度逻辑
+                if (currentWidth < 20) {
+                    // 前20%：缓慢启动
                     increment = 1;
+                } else if (currentWidth < 50) {
+                    // 20%-50%：正常速度
+                    increment = 0.8;
+                } else if (currentWidth < 80) {
+                    // 50%-80%：稍微慢一点
+                    increment = 0.6;
+                } else if (currentWidth < 95) {
+                    // 80%-95%：更慢
+                    increment = 0.4;
                 } else {
                     // 95%以上：停止自动增长，等待API完成
                     return;
                 }
                 
                 newWidth = Math.min(currentWidth + increment, 95);
-                buttonProgressBar.style.width = newWidth + '%';
+                progressBar.style.width = newWidth + '%';
             }
-        }, 200); // 基础间隔200ms，更快的更新频率
+        }, 600); // 更慢的更新频率
     }
 
-    // Stop Button Progress Animation
-    stopButtonProgressAnimation() {
+    // Stop Progress Animation
+    stopProgressAnimation() {
         if (this.progressInterval) {
             clearInterval(this.progressInterval);
             this.progressInterval = null;
@@ -702,14 +833,14 @@ class ImageToPromptApp {
 
     // Complete Progress (called when API finishes)
     completeProgress() {
-        const buttonProgressBar = document.getElementById('buttonProgressBar');
+        const progressBar = document.getElementById('progressBar');
         
-        if (buttonProgressBar) {
-            buttonProgressBar.style.width = '100%';
+        if (progressBar) {
+            progressBar.style.width = '100%';
         }
         
         // Stop the animation
-        this.stopButtonProgressAnimation();
+        this.stopProgressAnimation();
     }
 
     // Show Success Message

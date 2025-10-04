@@ -142,19 +142,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .loading-spinner {
-            border: 3px solid #4a4a4a;
-            border-top: 3px solid var(--accent-orange);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
 
         .copy-success {
             animation: copySuccess 0.5s ease-in-out;
@@ -295,17 +282,17 @@
                     <!-- Language Dropdown -->
                     <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
                         <div class="py-1">
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="en" onclick="changeLanguage('en')">🇺🇸 English</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="es" onclick="changeLanguage('es')">🇪🇸 Español</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="de" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="pt" onclick="changeLanguage('pt')">🇵🇹 Português</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-cn" onclick="changeLanguage('zh-cn')">🇨🇳 简体中文</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-tw" onclick="changeLanguage('zh-tw')">🇹🇼 繁體中文</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ar" onclick="changeLanguage('ar')">🇸🇦 العربية</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ru" onclick="changeLanguage('ru')">🇷🇺 Русский</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ja" onclick="changeLanguage('ja')">🇯🇵 日本語</button>
-                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ko" onclick="changeLanguage('ko')">🇰🇷 한국어</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="en">🇺🇸 English</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="es">🇪🇸 Español</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="de">🇩🇪 Deutsch</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="fr">🇫🇷 Français</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="pt">🇵🇹 Português</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-cn">🇨🇳 简体中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-tw">🇹🇼 繁體中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ar">🇸🇦 العربية</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ru">🇷🇺 Русский</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ja">🇯🇵 日本語</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ko">🇰🇷 한국어</button>
                         </div>
                     </div>
                 </div>
@@ -377,7 +364,7 @@
                                 </svg>
                             </div>
                             <p class="text-gray-300" data-translate="upload-text">Upload a photo or drag and drop</p>
-                            <p class="text-sm text-gray-400" data-translate="upload-formats">PNG, JPG, or WEBP up to 4MB</p>
+                            <p class="text-sm text-gray-400" data-translate="upload-formats">PNG, JPG, or WEBP up to 2MB</p>
                         </div>
                         <input type="file" id="fileInput" class="hidden" accept="image/png,image/jpeg,image/webp">
                     </div>
@@ -409,33 +396,81 @@
             </div>
 
             <!-- Language Selection -->
-            <div class="max-w-lg mx-auto mb-12">
-                <div class="flex items-center space-x-4">
-                    <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="prompt-language">Prompt Language</label>
-                    <select id="promptLanguage" class="flex-1 px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-lg">
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="de">Deutsch</option>
-                    <option value="fr">Français</option>
-                    <option value="pt">Português</option>
-                    <option value="zh-cn">简体中文</option>
-                    <option value="zh-tw">繁體中文</option>
-                    <option value="ar">العربية</option>
-                    <option value="ru">Русский</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                </select>
+            <div class="max-w-4xl mx-auto mb-12">
+                <!-- Desktop: Side by side layout -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="flex items-center space-x-4 flex-1">
+                        <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="prompt-language">Prompt Language</label>
+                        <select id="promptLanguage" class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-base">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="de">Deutsch</option>
+                            <option value="fr">Français</option>
+                            <option value="pt">Português</option>
+                            <option value="zh-cn">简体中文</option>
+                            <option value="zh-tw">繁體中文</option>
+                            <option value="ar">العربية</option>
+                            <option value="ru">Русский</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4 flex-1">
+                        <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="structured-prompt">Structured Prompt</label>
+                        <select id="structuredPrompt" class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-base">
+                            <option value="no" data-translate="structured-prompt-no">No</option>
+                            <option value="yes" data-translate="structured-prompt-yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Mobile: Stacked layout with larger spacing -->
+                <div class="md:hidden space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="prompt-language">Prompt Language</label>
+                        <select id="promptLanguageMobile" class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-base">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="de">Deutsch</option>
+                            <option value="fr">Français</option>
+                            <option value="pt">Português</option>
+                            <option value="zh-cn">简体中文</option>
+                            <option value="zh-tw">繁體中文</option>
+                            <option value="ar">العربية</option>
+                            <option value="ru">Русский</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="structured-prompt">Structured Prompt</label>
+                        <select id="structuredPromptMobile" class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-base">
+                            <option value="no" data-translate="structured-prompt-no">No</option>
+                            <option value="yes" data-translate="structured-prompt-yes">Yes</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <!-- Generate Button -->
             <div class="text-center button-spacing">
-                <button id="generateBtn" class="btn-primary px-12 py-5 rounded-lg font-semibold text-white text-xl disabled:cursor-not-allowed relative overflow-hidden" disabled>
-                    <span id="buttonText" data-translate="generate-prompt">Generate Prompt</span>
-                    <div id="buttonProgress" class="absolute inset-0 bg-gray-700 opacity-0 transition-opacity duration-300">
-                        <div id="buttonProgressBar" class="h-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-300 ease-out" style="width: 0%"></div>
+                <button id="generateBtn" class="btn-primary px-12 py-5 rounded-lg font-semibold text-white text-xl disabled:cursor-not-allowed transition-colors duration-300 relative overflow-hidden" disabled>
+                    <!-- Progress Bar Inside Button -->
+                    <div id="progressContainer" class="w-full mb-2 hidden">
+                        <div class="w-full bg-gray-600 rounded-full h-1">
+                            <div id="progressBar" class="bg-gradient-to-r from-orange-500 to-orange-400 h-1 rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+                        </div>
                     </div>
+                    
+                    <span id="buttonText" data-translate="generate-prompt">Generate Prompt</span>
                 </button>
+                
+                <!-- Note below button -->
+                <p class="text-xs text-gray-400 mt-3 max-w-md mx-auto leading-relaxed" data-translate="generate-note">
+                    *The prompts generated by imagetoprompt are top-quality and really detailed. So, it'll take a little while to do the analysis. Appreciate your understanding!
+                </p>
             </div>
 
             <!-- Prompt Display -->
@@ -634,17 +669,17 @@
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-languages">Languages</h3>
                     <div class="grid grid-cols-2 gap-2 text-sm">
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="en" onclick="changeLanguage('en')">🇺🇸 English</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="es" onclick="changeLanguage('es')">🇪🇸 Español</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="de" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="pt" onclick="changeLanguage('pt')">🇵🇹 Português</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-cn" onclick="changeLanguage('zh-cn')">🇨🇳 简体中文</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-tw" onclick="changeLanguage('zh-tw')">🇹🇼 繁體中文</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ar" onclick="changeLanguage('ar')">🇸🇦 العربية</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ru" onclick="changeLanguage('ru')">🇷🇺 Русский</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ja" onclick="changeLanguage('ja')">🇯🇵 日本語</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ko" onclick="changeLanguage('ko')">🇰🇷 한국어</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="en">🇺🇸 English</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="es">🇪🇸 Español</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="de">🇩🇪 Deutsch</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="fr">🇫🇷 Français</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="pt">🇵🇹 Português</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-cn">🇨🇳 简体中文</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-tw">🇹🇼 繁體中文</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ar">🇸🇦 العربية</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ru">🇷🇺 Русский</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ja">🇯🇵 日本語</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ko">🇰🇷 한국어</button>
                     </div>
                 </div>
             </div>
@@ -655,13 +690,6 @@
         </div>
     </footer>
 
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-800 rounded-lg p-8 text-center">
-            <div class="loading-spinner mx-auto mb-4"></div>
-            <p class="text-white" data-translate="loading-text">Processing your image...</p>
-        </div>
-    </div>
 
     <!-- Success Toast -->
     <div id="successToast" class="fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 hidden">
@@ -677,18 +705,5 @@
     <script src="js/languages.js"></script>
     <script src="js/main.js"></script>
     
-    <!-- Language Change Function -->
-    <script>
-        function changeLanguage(lang) {
-            if (window.LanguageSystem) {
-                window.LanguageSystem.setCurrentLanguage(lang);
-                // Close dropdown
-                const dropdown = document.getElementById('languageDropdown');
-                if (dropdown) {
-                    dropdown.classList.add('hidden');
-                }
-            }
-        }
-    </script>
 </body>
 </html>
