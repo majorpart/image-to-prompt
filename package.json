@@ -1,0 +1,38 @@
+{
+  "name": "image-to-prompt-generator",
+  "version": "1.0.0",
+  "description": "Free AI Image to Prompt Generator - Convert images to detailed prompts for Stable Diffusion and Midjourney",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required for static site'",
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "ai",
+    "image-to-prompt",
+    "stable-diffusion",
+    "midjourney",
+    "ai-art",
+    "prompt-generator",
+    "image-analysis",
+    "machine-learning"
+  ],
+  "author": "Image to Prompt Generator Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/image-to-prompt-generator.git"
+  },
+  "homepage": "https://your-username.github.io/image-to-prompt-generator",
+  "bugs": {
+    "url": "https://github.com/your-username/image-to-prompt-generator/issues"
+  }
+}

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Prompt Generator - Free AI Image Prompt Creator</title>
+    <meta name="description" content="Convert images to detailed AI prompts for Stable Diffusion and Midjourney. Free image to prompt generator with professional quality results.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
+    <style>
+        /* Custom styles for dark theme and animations */
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-orange: #ff6b35;
+            --accent-hover: #e55a2b;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Slabo 27px', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography improvements for Slabo 27px */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .font-bold {
+            font-weight: 400;
+        }
+        
+        .font-semibold {
+            font-weight: 400;
+        }
+        
+        .font-medium {
+            font-weight: 400;
+        }
+        
+        /* Button and form typography */
+        button, input, select, textarea {
+            font-family: inherit;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Navigation typography */
+        .nav-link {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .upload-area {
+            border: 2px dashed #4a4a4a;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-orange);
+            background-color: rgba(255, 107, 53, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--accent-orange);
+            background-color: rgba(255, 107, 53, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-orange), #f7931e);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--accent-hover), #d8810f);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: #4a4a4a;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-card {
+            background: var(--secondary-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading-spinner {
+            border: 3px solid #4a4a4a;
+            border-top: 3px solid var(--accent-orange);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .copy-success {
+            animation: copySuccess 0.5s ease-in-out;
+        }
+
+        @keyframes copySuccess {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #4ade80; }
+            100% { transform: scale(1); }
+        }
+
+        /* RTL support for Arabic */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .flex {
+            flex-direction: row-reverse;
+        }
+
+        /* Enhanced spacing and layout */
+        .section-padding {
+            padding: 6rem 2rem;
+        }
+        
+        .container-max-width {
+            max-width: 1200px;
+        }
+        
+        .hero-section {
+            padding: 8rem 2rem 3rem;
+        }
+        
+        .feature-section {
+            padding: 3rem 2rem 3rem;
+        }
+        
+        .inspiration-section {
+            padding: 6rem 2rem;
+        }
+        
+        .tutorials-section {
+            padding: 6rem 2rem;
+        }
+        
+        .evaluation-section {
+            padding: 6rem 2rem;
+        }
+        
+        .faq-section {
+            padding: 6rem 2rem;
+        }
+        
+        .footer-section {
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .card-spacing {
+            margin-bottom: 2rem;
+        }
+        
+        .grid-gap-large {
+            gap: 3rem;
+        }
+        
+        .text-spacing {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .button-spacing {
+            margin: 2rem 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+                font-weight: 400;
+                letter-spacing: 0.01em;
+            }
+            
+            .section-padding {
+                padding: 4rem 1rem;
+            }
+            
+            .hero-section {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .feature-section {
+                padding: 2rem 1rem 4rem;
+            }
+            
+            .inspiration-section,
+            .tutorials-section,
+            .evaluation-section,
+            .faq-section {
+                padding: 4rem 1rem;
+            }
+            
+            .grid-gap-large {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3">
+                    <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="assistance" data-translate="nav-assistance">Assistance</a>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="relative">
+                    <button id="languageBtn" class="flex items-center space-x-2 text-white hover:text-orange-400 transition-colors">
+                        <span class="text-sm">🇺🇸 EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Language Dropdown -->
+                    <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+                        <div class="py-1">
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="en" onclick="changeLanguage('en')">🇺🇸 English</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="es" onclick="changeLanguage('es')">🇪🇸 Español</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="de" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="pt" onclick="changeLanguage('pt')">🇵🇹 Português</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-cn" onclick="changeLanguage('zh-cn')">🇨🇳 简体中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-tw" onclick="changeLanguage('zh-tw')">🇹🇼 繁體中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ar" onclick="changeLanguage('ar')">🇸🇦 العربية</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ru" onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ja" onclick="changeLanguage('ja')">🇯🇵 日本語</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ko" onclick="changeLanguage('ko')">🇰🇷 한국어</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-orange-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="assistance" data-translate="nav-assistance">Assistance</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 hero-section bg-gradient-to-b from-gray-900 to-gray-800 relative" style="background-image: url('assets/images/image-to-prompt.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <!-- 背景遮罩层 -->
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="container-max-width mx-auto text-center fade-in relative z-10">
+            <h1 class="hero-title text-5xl md:text-7xl font-bold mb-8">
+                <span class="text-white" data-translate="hero-title-part1">From </span>
+                <span class="gradient-text" data-translate="hero-title-part2">Image to Prompt</span>
+                <span class="text-white" data-translate="hero-title-part3"> to Best </span>
+                <span class="gradient-text" data-translate="hero-title-part4">AI Art</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-300 mb-12 text-spacing">
+                <span data-translate="hero-subtitle">Inspire, Create, Craft Prompts, Create Masterpieces</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Feature Section -->
+    <section id="main-feature" class="feature-section bg-gray-800">
+        <div class="container-max-width mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" data-translate="main-title">Free Image to Prompt Generator</h2>
+            
+            <div class="grid md:grid-cols-2 grid-gap-large mb-12">
+                <!-- Upload Area -->
+                <div class="flex flex-col">
+                    <!-- Upload Tabs -->
+                    <div class="flex space-x-4 mb-6">
+                        <button id="uploadTab" class="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium transition-colors">
+                            <span data-translate="upload-image">Upload Image</span>
+                        </button>
+                        <button id="urlTab" class="px-6 py-3 bg-gray-600 text-white rounded-lg font-medium transition-colors hover:bg-gray-500">
+                            <span data-translate="input-url">Input Image URL</span>
+                        </button>
+                    </div>
+
+                    <!-- Upload Area -->
+                    <div id="uploadArea" class="upload-area rounded-lg p-8 text-center cursor-pointer flex-1 flex items-center justify-center">
+                        <div class="space-y-4">
+                            <div class="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300" data-translate="upload-text">Upload a photo or drag and drop</p>
+                            <p class="text-sm text-gray-400" data-translate="upload-formats">PNG, JPG, or WEBP up to 4MB</p>
+                        </div>
+                        <input type="file" id="fileInput" class="hidden" accept="image/png,image/jpeg,image/webp">
+                    </div>
+
+                    <!-- URL Input Area -->
+                    <div id="urlArea" class="hidden space-y-4 flex-1 flex flex-col justify-center">
+                        <input type="url" id="urlInput" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500" 
+                               placeholder="Paste your image link here" data-translate="url-placeholder">
+                        <button id="loadUrlBtn" class="w-full px-6 py-3 bg-gray-600 text-white rounded-lg font-medium transition-colors hover:bg-gray-500" data-translate="load-url">Load Image URL</button>
+                    </div>
+                </div>
+
+                <!-- Image Preview -->
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold text-white mb-4" data-translate="image-preview">Image Preview</h3>
+                    <div id="imagePreview" class="w-full h-80 bg-gray-700 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600 relative overflow-hidden">
+                        <div class="text-center">
+                            <div class="mx-auto w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-400" data-translate="preview-placeholder">Your image will show here</p>
+                        </div>
+                        <!-- 图片显示区域 -->
+                        <img id="previewImage" class="hidden max-w-full max-h-full object-contain" alt="Preview">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Selection -->
+            <div class="max-w-lg mx-auto mb-12">
+                <div class="flex items-center space-x-4">
+                    <label class="text-lg font-medium text-gray-300 whitespace-nowrap" data-translate="prompt-language">Prompt Language</label>
+                    <select id="promptLanguage" class="flex-1 px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 text-lg">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Français</option>
+                    <option value="pt">Português</option>
+                    <option value="zh-cn">简体中文</option>
+                    <option value="zh-tw">繁體中文</option>
+                    <option value="ar">العربية</option>
+                    <option value="ru">Русский</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                </select>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <div class="text-center button-spacing">
+                <button id="generateBtn" class="btn-primary px-12 py-5 rounded-lg font-semibold text-white text-xl disabled:cursor-not-allowed relative overflow-hidden" disabled>
+                    <span id="buttonText" data-translate="generate-prompt">Generate Prompt</span>
+                    <div id="buttonProgress" class="absolute inset-0 bg-gray-700 opacity-0 transition-opacity duration-300">
+                        <div id="buttonProgressBar" class="h-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-300 ease-out" style="width: 0%"></div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Prompt Display -->
+            <div class="container-max-width mx-auto">
+                <div class="card rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-white" data-translate="generated-prompt">Generated Prompt</h3>
+                        <button id="copyBtn" class="hidden px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="promptDisplay" class="min-h-[200px] max-h-[400px] overflow-y-auto bg-gray-800 rounded-lg p-4 border border-gray-600">
+                        <p class="text-gray-400" data-translate="prompt-placeholder">Generated prompt will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration Section -->
+    <section id="inspiration" class="inspiration-section bg-gray-900">
+        <div class="container-max-width mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-8" data-translate="inspiration-title">Unleash Your AI Image Prompt Inspiration</h2>
+            <p class="text-xl md:text-2xl text-gray-300 text-center mb-16 text-spacing" data-translate="inspiration-desc">To precisely modify outstanding AI images, one must obtain the prompt words for the pictures.</p>
+            
+            <div class="grid md:grid-cols-2 grid-gap-large">
+                <!-- Example 1 -->
+                <div class="card rounded-lg p-8 card-spacing">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
+                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                        <span data-translate="example-1">Massive, mechanical shark-like creature looms over a tumultuous sea battle. Dark blue, metallic shark, with glowing blue accents, dominates the foreground. Complex mechanical structure, akin to futuristic armor, is evident...</span>
+                    </p>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="card rounded-lg p-8 card-spacing">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
+                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                        <span data-translate="example-2">Pastel mid-century modern house by a swimming pool, vibrant pink clouds, classic red car. Dreamy, serene, and nostalgic aesthetic. Mid-century modern home with beige facade, large windows...</span>
+                    </p>
+                </div>
+
+                <!-- Example 3 -->
+                <div class="card rounded-lg p-8 card-spacing">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
+                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                        <span data-translate="example-3">Teenage girl with fox ears and foxtail, wearing a light pink kimono, holding a small orange fox. Soft, gentle expression. Delicate, expressive features. Medium-dark gray hair styled in a bun...</span>
+                    </p>
+                </div>
+
+                <!-- Example 4 -->
+                <div class="card rounded-lg p-8 card-spacing">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
+                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                        <span data-translate="example-4">Close-up portrait of a young couple, a light-skinned man and woman, in a romantic embrace. The man is a young adult, with short, dark hair and a sailor's cap. He's wearing a navy blue sailor's uniform...</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section id="tutorials" class="tutorials-section bg-gray-800">
+        <div class="container-max-width mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" data-translate="tutorials-title">Images Prompt Tutorials</h2>
+            
+            <div class="grid md:grid-cols-2 grid-gap-large items-center">
+                <div class="text-center">
+                    <div class="w-full h-80 bg-gray-700 rounded-lg flex items-center justify-center">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                            <p class="text-gray-400" data-translate="tutorial-placeholder">Tutorial Video Placeholder</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
+                        <p class="text-gray-300 pt-2 text-lg text-spacing" data-translate="step-1">Upload an image or image URL.</p>
+                    </div>
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">2</div>
+                        <p class="text-gray-300 pt-2 text-lg text-spacing" data-translate="step-2">Select the language of the generated prompt words.</p>
+                    </div>
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">3</div>
+                        <p class="text-gray-300 pt-2 text-lg text-spacing" data-translate="step-3">Click the "Generate Prompt Words" button.</p>
+                    </div>
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">4</div>
+                        <p class="text-gray-300 pt-2 text-lg text-spacing" data-translate="step-4">Wait for a few seconds to generate the prompt words.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluation Section -->
+    <section id="evaluation" class="evaluation-section bg-gray-900">
+        <div class="container-max-width mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" data-translate="evaluation-title">What Users Say About Image to Prompt</h2>
+            
+            <div id="testimonialsContainer" class="grid md:grid-cols-3 grid-gap-large">
+                <!-- Testimonials will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="assistance" class="faq-section bg-gray-800">
+        <div class="container-max-width mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-8" data-translate="faq-title">Frequently asked questions</h2>
+            <p class="text-xl md:text-2xl text-gray-300 text-center mb-16 text-spacing" data-translate="faq-desc">Do you have any questions? We have got you covered.</p>
+            
+            <div class="space-y-8">
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-1-q">What is Image to Prompt tool?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-1-a">Image to Prompt is a tool that converts images into image prompt(looks like textual descriptions). It uses artificial intelligence to analyze image content and generate image prompt. Image prompt can be used to create similar images or for other AI text-to-image generation tasks. Image to Prompt generator makes it easier for users to understand and describe image content, facilitating AI image generation and other creative work.</p>
+                </div>
+
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-2-q">Is Image to Prompt free to use?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-2-a">Yes, our Image to Prompt Generator offers 5 free uses daily for all users. This daily limit is shared across all image-to-text tools (Image to Prompt, AI Describe Image) on imageprompt.org. If you need more usage, you can upgrade to our premium plans or buy a one-time Power Pack for more access. We aim to make this tool accessible while ensuring sustainable service quality.</p>
+                </div>
+
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-3-q">When does the daily usage reset?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-3-a">The daily usage resets at midnight Pacific Time (PT) every day. This means you can use our Image to Prompt Generator up to 5 times daily, and the count will reset at the start of each day in PT. You can find the next reset time in your timezone next to the usage stats.</p>
+                </div>
+
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-4-q">How are my uploaded images handled in Image to Prompt Generator?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-4-a">We prioritize your privacy and data security. Any images you upload are only temporarily processed to generate prompts and are immediately deleted afterward. We do not store or retain any uploaded images on our servers. Your images are used solely for the purpose of generating prompts in real-time.</p>
+                </div>
+
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-5-q">What is the role of Image to Prompt in AI image generation?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-5-a">Image to Prompt plays a crucial role in AI image generation by helping users extract key information from existing image and generate accurate image prompt. This image prompt can serve as new description for creating similar or improved images. Additionally, it helps users better understand how AI 'sees' images, thereby improving their own prompt-writing skills.</p>
+                </div>
+
+                <div class="card rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-6-q">What elements are typically included in an Image to Prompt output?</h3>
+                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-6-a">An Image to Prompt output typically includes a description of the main subject, the setting or background, the artistic style, color schemes, lighting conditions, and the overall mood or atmosphere of the image. It may also describe specific main subjects, actions, poses, composition, perspective, coloring, style or detailed features present in the image. The goal is to provide a comprehensive textual representation of the image.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section bg-gray-900 border-t border-gray-800">
+        <div class="container-max-width mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Logo and Name -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </div>
+                    <p class="text-gray-400" data-translate="footer-desc">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-nav">Navigation</h3>
+                    <div class="space-y-2">
+                        <a href="#main-feature" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
+                        <a href="#inspiration" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-inspiration">Inspiration</a>
+                        <a href="#tutorials" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
+                        <a href="#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-evaluation">Evaluation</a>
+                        <a href="#assistance" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-assistance">Assistance</a>
+                    </div>
+                </div>
+
+                <!-- Language Selection -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-languages">Languages</h3>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="en" onclick="changeLanguage('en')">🇺🇸 English</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="es" onclick="changeLanguage('es')">🇪🇸 Español</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="de" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="pt" onclick="changeLanguage('pt')">🇵🇹 Português</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-cn" onclick="changeLanguage('zh-cn')">🇨🇳 简体中文</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-tw" onclick="changeLanguage('zh-tw')">🇹🇼 繁體中文</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ar" onclick="changeLanguage('ar')">🇸🇦 العربية</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ru" onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ja" onclick="changeLanguage('ja')">🇯🇵 日本語</button>
+                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ko" onclick="changeLanguage('ko')">🇰🇷 한국어</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400" data-translate="footer-copyright">© 2025 Image to Prompt Generator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-800 rounded-lg p-8 text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <p class="text-white" data-translate="loading-text">Processing your image...</p>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 hidden">
+        <span data-translate="copy-success">Copy successful!</span>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="fixed top-20 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 hidden">
+        <span id="errorMessage">An error occurred. Please try again.</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/languages.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Language Change Function -->
+    <script>
+        function changeLanguage(lang) {
+            if (window.LanguageSystem) {
+                window.LanguageSystem.setCurrentLanguage(lang);
+                // Close dropdown
+                const dropdown = document.getElementById('languageDropdown');
+                if (dropdown) {
+                    dropdown.classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
