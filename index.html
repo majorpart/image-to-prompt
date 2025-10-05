@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image to Prompt Generator - Free AI Image Prompt Creator</title>
     <meta name="description" content="Convert images to detailed AI prompts for Stable Diffusion and Midjourney. Free image to prompt generator with professional quality results.">
+    <meta name="keywords" content="image to prompt, stable diffusion prompts, midjourney prompts, ai prompt generator, image analysis">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://imagetoprompt.app/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Image to Prompt Generator">
+    <meta property="og:description" content="Generate high-quality prompts from images for Midjourney & Stable Diffusion.">
+    <meta property="og:url" content="https://imagetoprompt.app/">
+    <meta property="og:image" content="https://imagetoprompt.app/assets/images/imagetoprompt.png">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image to Prompt Generator">
+    <meta name="twitter:description" content="Free AI image-to-prompt tool for creators.">
+    <meta name="twitter:image" content="https://imagetoprompt.app/assets/images/imagetoprompt.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // 配置 Tailwind CSS 并抑制生产环境警告
@@ -344,7 +358,7 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3">
+                    <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
                     <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
                 </div>
 
@@ -477,7 +491,7 @@
                             <p class="text-gray-400" data-translate="preview-placeholder">Your image will show here</p>
                         </div>
                         <!-- 图片显示区域 -->
-                        <img id="previewImage" class="hidden max-w-full max-h-full object-contain" alt="Preview">
+                        <img id="previewImage" class="hidden max-w-full max-h-full object-contain" alt="Preview" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -590,8 +604,8 @@
                 <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
                     <div class="flex items-center justify-center mb-4 relative">
                         <div class="flex items-center justify-center space-x-3">
-                            <img src="assets/images/image-to-prompt (1).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
-                            <img src="assets/images/image-to-prompt (2).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (1).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
+                            <img src="assets/images/image-to-prompt (2).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
                         </div>
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
@@ -604,8 +618,8 @@
                 <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
                     <div class="flex items-center justify-center mb-4 relative">
                         <div class="flex items-center justify-center space-x-3">
-                            <img src="assets/images/image-to-prompt (3).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
-                            <img src="assets/images/image-to-prompt (4).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (3).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
+                            <img src="assets/images/image-to-prompt (4).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
                         </div>
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
@@ -618,8 +632,8 @@
                 <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
                     <div class="flex items-center justify-center mb-4 relative">
                         <div class="flex items-center justify-center space-x-3">
-                            <img src="assets/images/image-to-prompt (5).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
-                            <img src="assets/images/image-to-prompt (6).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (5).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
+                            <img src="assets/images/image-to-prompt (6).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
                         </div>
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
@@ -632,8 +646,8 @@
                 <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
                     <div class="flex items-center justify-center mb-4 relative">
                         <div class="flex items-center justify-center space-x-3">
-                            <img src="assets/images/image-to-prompt (7).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
-                            <img src="assets/images/image-to-prompt (8).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (7).webp" alt="Original" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
+                            <img src="assets/images/image-to-prompt (8).webp" alt="Generated" class="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 object-cover rounded-lg" loading="lazy">
                         </div>
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
@@ -653,7 +667,7 @@
             <div class="grid md:grid-cols-2 grid-gap-large items-center">
                 <div class="text-center">
                     <div class="w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-[5/4] rounded-lg overflow-hidden">
-                        <img src="assets/images/image-prompt.webp" alt="Tutorial Image" class="w-full h-full object-cover">
+                        <img src="assets/images/image-prompt.webp" alt="Tutorial Image" class="w-full h-full object-cover" loading="lazy">
                     </div>
                 </div>
                 
@@ -848,7 +862,7 @@
                 <!-- Logo and Name -->
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
                         <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
                     </div>
                     <p class="text-gray-400" data-translate="footer-desc">Free, unlimited AI image prompt generator powered by advanced AI models.</p>

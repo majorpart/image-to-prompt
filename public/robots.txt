@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imagetoprompt.app/sitemap.xml
+
+
