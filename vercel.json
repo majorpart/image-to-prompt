@@ -9,76 +9,8 @@
   ],
   "rewrites": [
     {
-      "source": "/js/(.*)",
-      "destination": "/public/js/$1"
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": "/public/assets/$1"
-    },
-    {
-      "source": "/((?!api|js|assets|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html).*)",
+      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html).*)",
       "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/assets/images/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/assets/images/(.*\\.webp)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/webp"
-        }
-      ]
-    },
-    {
-      "source": "/assets/images/(.*\\.png)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/png"
-        }
-      ]
-    },
-    {
-      "source": "/assets/images/(.*\\.jpg)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "source": "/assets/images/(.*\\.svg)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/svg+xml"
-        }
-      ]
     }
   ],
   "env": {
