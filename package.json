@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Free AI Image to Prompt Generator - Convert images to detailed prompts for Stable Diffusion and Midjourney",
   "main": "index.html",
-  "scripts": {
-    "build": "echo 'No build step required for static site'"
-  },
+  "scripts": {},
   "keywords": [
     "ai",
     "image-to-prompt",
