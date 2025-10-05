@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/generate-prompt.js": {
-      "maxDuration": 30
-    }
-  }
-}
