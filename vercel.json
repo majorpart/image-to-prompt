@@ -15,7 +15,11 @@
   ],
   "rewrites": [
     { "source": "/robots.txt", "destination": "/public/robots.txt" },
-    { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" }
+    { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" },
+    {
+      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html|robots\\.txt|sitemap\\.xml).*)",
+      "destination": "/index.html"
+    }
   ]
 }
 
