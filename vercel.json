@@ -13,7 +13,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|js/|css/|assets/|.*\\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot)).*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],
@@ -40,15 +40,6 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
-        }
-      ]
-    },
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
