@@ -5,6 +5,10 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/generate-prompt.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -60,10 +64,5 @@
   ],
   "env": {
     "API_KEY": "@api_key"
-  },
-  "functions": {
-    "js/main.js": {
-      "runtime": "nodejs18.x"
-    }
   }
 }
