@@ -1,0 +1,3 @@
+# Vercel redirects for static files
+/js/* /public/js/:splat 200
+/assets/* /public/assets/:splat 200
