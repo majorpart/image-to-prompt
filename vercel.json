@@ -7,26 +7,18 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/js/(.*)",
+      "destination": "/public/js/$1"
     },
     {
-      "src": "/js/(.*)",
-      "dest": "/public/js/$1"
+      "source": "/assets/(.*)",
+      "destination": "/public/assets/$1"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/public/assets/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/((?!api|js|assets|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html).*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
