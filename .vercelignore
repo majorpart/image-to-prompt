@@ -1,0 +1,19 @@
+# 忽略不必要的文件
+node_modules/
+.git/
+.gitignore
+README.md
+PRD.md
+*.log
+.DS_Store
+Thumbs.db
+
+# 保留所有必要的静态资源
+!assets/
+!js/
+!api/
+!index.html
+!privacy-policy.html
+!terms-and-conditions.html
+!vercel.json
+!package.json
