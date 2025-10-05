@@ -1,19 +1,8 @@
 {
-  "version": 2,
-  "name": "image-to-prompt-generator",
-  "builds": [
-    {
-      "src": "api/generate-prompt.js",
-      "use": "@vercel/node"
-    }
-  ],
   "rewrites": [
     {
       "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html).*)",
       "destination": "/index.html"
     }
-  ],
-  "env": {
-    "API_KEY": "sk-aqfifchzmbknmottxivyewvnokmcwyxmsdjljaommwsbeiza"
-  }
+  ]
 }

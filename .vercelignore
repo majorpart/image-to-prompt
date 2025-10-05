@@ -1,0 +1,10 @@
+# Documentation files
+README.md
+PRD.md
+deploy.md
+DEPLOYMENT_FIX.md
+
+# Development files
+*.log
+.DS_Store
+Thumbs.db
