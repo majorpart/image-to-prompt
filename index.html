@@ -167,36 +167,88 @@
             padding: 6rem 2rem;
         }
         
+        
         .container-max-width {
             max-width: 1200px;
         }
         
         .hero-section {
-            padding: 8rem 2rem 3rem;
+            padding: 6rem 2rem 2rem;
         }
         
         .feature-section {
-            padding: 3rem 2rem 3rem;
+            padding: 2rem 2rem 2rem;
         }
         
         .inspiration-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
         }
         
         .tutorials-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
         }
         
         .evaluation-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
         }
         
         .faq-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
         }
         
         .footer-section {
             padding: 4rem 2rem 2rem;
+        }
+        
+        /* Testimonials Scroll Animation - Three Columns */
+        .testimonials-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: scrollUp 40s linear infinite;
+        }
+        
+        .testimonials-column-1 {
+            animation: scrollUp1 35s linear infinite;
+        }
+        
+        .testimonials-column-2 {
+            animation: scrollUp2 45s linear infinite;
+        }
+        
+        .testimonials-column-3 {
+            animation: scrollUp3 40s linear infinite;
+        }
+        
+        .testimonials-column:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollUp1 {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        
+        @keyframes scrollUp2 {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        
+        @keyframes scrollUp3 {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
         }
         
         .card-spacing {
@@ -230,22 +282,39 @@
             }
             
             .hero-section {
-                padding: 6rem 1rem 2rem;
+                padding: 4rem 1rem 1.5rem;
             }
             
             .feature-section {
-                padding: 2rem 1rem 4rem;
+                padding: 1.5rem 1rem 1.5rem;
             }
             
             .inspiration-section,
             .tutorials-section,
             .evaluation-section,
             .faq-section {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
             
             .grid-gap-large {
                 gap: 2rem;
+            }
+            
+            /* Mobile testimonials scroll */
+            .testimonials-scroll-container {
+                height: 28rem; /* 448px */
+            }
+            
+            .testimonials-column-1 {
+                animation-duration: 25s; /* Faster on mobile */
+            }
+            
+            .testimonials-column-2 {
+                animation-duration: 35s; /* Faster on mobile */
+            }
+            
+            .testimonials-column-3 {
+                animation-duration: 30s; /* Faster on mobile */
             }
         }
     </style>
@@ -358,8 +427,8 @@
                     <!-- Upload Area -->
                     <div id="uploadArea" class="upload-area rounded-lg p-8 text-center cursor-pointer flex-1 flex items-center justify-center">
                         <div class="space-y-4">
-                            <div class="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
@@ -373,7 +442,7 @@
                     <div id="urlArea" class="hidden space-y-4 flex-1 flex flex-col justify-center">
                         <input type="url" id="urlInput" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500" 
                                placeholder="Paste your image link here" data-translate="url-placeholder">
-                        <button id="loadUrlBtn" class="w-full px-6 py-3 bg-gray-600 text-white rounded-lg font-medium transition-colors hover:bg-gray-500" data-translate="load-url">Load Image URL</button>
+                        <button id="loadUrlBtn" class="w-full px-6 py-3 bg-gray-600 text-white rounded-lg font-medium transition-colors hover:bg-gray-500 border border-gray-600" data-translate="load-url">Load Image URL</button>
                     </div>
                 </div>
 
@@ -484,7 +553,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div id="promptDisplay" class="min-h-[200px] max-h-[400px] overflow-y-auto bg-gray-800 rounded-lg p-4 border border-gray-600">
+                    <div id="promptDisplay" class="min-h-[200px] max-h-[800px] overflow-y-auto bg-gray-800 rounded-lg p-4 border border-gray-600">
                         <p class="text-gray-400" data-translate="prompt-placeholder">Generated prompt will appear here</p>
                     </div>
                 </div>
@@ -500,49 +569,57 @@
             
             <div class="grid md:grid-cols-2 grid-gap-large">
                 <!-- Example 1 -->
-                <div class="card rounded-lg p-8 card-spacing">
-                    <div class="flex items-center space-x-6 mb-6">
-                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
-                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
-                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
+                    <div class="flex items-center justify-center mb-4 relative">
+                        <div class="flex items-center justify-center space-x-3">
+                            <img src="assets/images/image-to-prompt (1).webp" alt="Original" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (2).webp" alt="Generated" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                    <p class="text-gray-300 text-xs leading-relaxed text-spacing">
                         <span data-translate="example-1">Massive, mechanical shark-like creature looms over a tumultuous sea battle. Dark blue, metallic shark, with glowing blue accents, dominates the foreground. Complex mechanical structure, akin to futuristic armor, is evident...</span>
                     </p>
                 </div>
 
                 <!-- Example 2 -->
-                <div class="card rounded-lg p-8 card-spacing">
-                    <div class="flex items-center space-x-6 mb-6">
-                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
-                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
-                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
+                    <div class="flex items-center justify-center mb-4 relative">
+                        <div class="flex items-center justify-center space-x-3">
+                            <img src="assets/images/image-to-prompt (3).webp" alt="Original" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (4).webp" alt="Generated" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                    <p class="text-gray-300 text-xs leading-relaxed text-spacing">
                         <span data-translate="example-2">Pastel mid-century modern house by a swimming pool, vibrant pink clouds, classic red car. Dreamy, serene, and nostalgic aesthetic. Mid-century modern home with beige facade, large windows...</span>
                     </p>
                 </div>
 
                 <!-- Example 3 -->
-                <div class="card rounded-lg p-8 card-spacing">
-                    <div class="flex items-center space-x-6 mb-6">
-                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
-                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
-                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
+                    <div class="flex items-center justify-center mb-4 relative">
+                        <div class="flex items-center justify-center space-x-3">
+                            <img src="assets/images/image-to-prompt (5).webp" alt="Original" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (6).webp" alt="Generated" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                    <p class="text-gray-300 text-xs leading-relaxed text-spacing">
                         <span data-translate="example-3">Teenage girl with fox ears and foxtail, wearing a light pink kimono, holding a small orange fox. Soft, gentle expression. Delicate, expressive features. Medium-dark gray hair styled in a bun...</span>
                     </p>
                 </div>
 
                 <!-- Example 4 -->
-                <div class="card rounded-lg p-8 card-spacing">
-                    <div class="flex items-center space-x-6 mb-6">
-                        <img src="assets/images/image-to-prompt1.webp" alt="Original" class="w-32 h-32 object-cover rounded-lg">
-                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">VS</div>
-                        <img src="assets/images/image-to-prompt2.webp" alt="Generated" class="w-32 h-32 object-cover rounded-lg">
+                <div class="bg-transparent border border-gray-300 rounded-lg p-6 card-spacing">
+                    <div class="flex items-center justify-center mb-4 relative">
+                        <div class="flex items-center justify-center space-x-3">
+                            <img src="assets/images/image-to-prompt (7).webp" alt="Original" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                            <img src="assets/images/image-to-prompt (8).webp" alt="Generated" class="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 object-cover rounded-lg">
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-500 border-2 border-white rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg shadow-lg">VS</div>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed text-spacing">
+                    <p class="text-gray-300 text-xs leading-relaxed text-spacing">
                         <span data-translate="example-4">Close-up portrait of a young couple, a light-skinned man and woman, in a romantic embrace. The man is a young adult, with short, dark hair and a sailor's cap. He's wearing a navy blue sailor's uniform...</span>
                     </p>
                 </div>
@@ -557,17 +634,12 @@
             
             <div class="grid md:grid-cols-2 grid-gap-large items-center">
                 <div class="text-center">
-                    <div class="w-full h-80 bg-gray-700 rounded-lg flex items-center justify-center">
-                        <div class="text-center">
-                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                            </svg>
-                            <p class="text-gray-400" data-translate="tutorial-placeholder">Tutorial Video Placeholder</p>
-                        </div>
+                    <div class="w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-[5/4] rounded-lg overflow-hidden">
+                        <img src="assets/images/image-prompt.webp" alt="Tutorial Image" class="w-full h-full object-cover">
                     </div>
                 </div>
                 
-                <div class="space-y-8">
+                <div class="space-y-4">
                     <div class="flex items-start space-x-6">
                         <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
                         <p class="text-gray-300 pt-2 text-lg text-spacing" data-translate="step-1">Upload an image or image URL.</p>
@@ -592,10 +664,21 @@
     <!-- Evaluation Section -->
     <section id="evaluation" class="evaluation-section bg-gray-900">
         <div class="container-max-width mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" data-translate="evaluation-title">What Users Say About Image to Prompt</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-6" data-translate="evaluation-title">What Users Say About Image to Prompt</h2>
+            <p class="text-xl md:text-2xl text-gray-300 text-center mb-16 text-spacing" data-translate="evaluation-subtitle">Discover how creators leverage AI to boost their productivity and creativity</p>
             
-            <div id="testimonialsContainer" class="grid md:grid-cols-3 grid-gap-large">
-                <!-- Testimonials will be populated by JavaScript -->
+            <div class="testimonials-scroll-container overflow-hidden h-[500px] relative">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div id="testimonialsColumn1" class="testimonials-column testimonials-column-1">
+                        <!-- Column 1 testimonials -->
+                    </div>
+                    <div id="testimonialsColumn2" class="testimonials-column testimonials-column-2">
+                        <!-- Column 2 testimonials -->
+                    </div>
+                    <div id="testimonialsColumn3" class="testimonials-column testimonials-column-3">
+                        <!-- Column 3 testimonials -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -606,35 +689,135 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-8" data-translate="faq-title">Frequently asked questions</h2>
             <p class="text-xl md:text-2xl text-gray-300 text-center mb-16 text-spacing" data-translate="faq-desc">Do you have any questions? We have got you covered.</p>
             
-            <div class="space-y-8">
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-1-q">What is Image to Prompt tool?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-1-a">Image to Prompt is a tool that converts images into image prompt(looks like textual descriptions). It uses artificial intelligence to analyze image content and generate image prompt. Image prompt can be used to create similar images or for other AI text-to-image generation tasks. Image to Prompt generator makes it easier for users to understand and describe image content, facilitating AI image generation and other creative work.</p>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-1-q">What is the Image to Prompt tool?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-1-a">The Image to Prompt tool intelligently analyzes image content and generates corresponding text descriptions (i.e., "image prompts"). You can use these image prompts to create similar images or assist in other AI image generation tasks. This tool makes visual content easier to understand and expand, greatly enhancing creative efficiency.</p>
+                    </div>
                 </div>
 
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-2-q">Is Image to Prompt free to use?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-2-a">Yes, our Image to Prompt Generator offers 5 free uses daily for all users. This daily limit is shared across all image-to-text tools (Image to Prompt, AI Describe Image) on imageprompt.org. If you need more usage, you can upgrade to our premium plans or buy a one-time Power Pack for more access. We aim to make this tool accessible while ensuring sustainable service quality.</p>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-2-q">Is Image to Prompt free to use?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-2-a">Yes, it's completely free! There are no usage limits—upload an image anytime and receive high-quality image prompts free of charge.</p>
+                    </div>
                 </div>
 
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-3-q">When does the daily usage reset?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-3-a">The daily usage resets at midnight Pacific Time (PT) every day. This means you can use our Image to Prompt Generator up to 5 times daily, and the count will reset at the start of each day in PT. You can find the next reset time in your timezone next to the usage stats.</p>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-3-q">Will my uploaded images be saved or used?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-3-a">We highly value your privacy. All uploaded images are used only for real-time image prompt generation and are deleted immediately afterward. No image data is stored on our servers.</p>
+                    </div>
                 </div>
 
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-4-q">How are my uploaded images handled in Image to Prompt Generator?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-4-a">We prioritize your privacy and data security. Any images you upload are only temporarily processed to generate prompts and are immediately deleted afterward. We do not store or retain any uploaded images on our servers. Your images are used solely for the purpose of generating prompts in real-time.</p>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-4-q">What role does Image to Prompt play in AI image generation?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-4-a">It helps users extract key visual information from images and convert it into precise image prompts. These can be used to create images with a similar style or help users better understand how AI "sees" an image, thereby improving their prompt writing skills.</p>
+                    </div>
                 </div>
 
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-5-q">What is the role of Image to Prompt in AI image generation?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-5-a">Image to Prompt plays a crucial role in AI image generation by helping users extract key information from existing image and generate accurate image prompt. This image prompt can serve as new description for creating similar or improved images. Additionally, it helps users better understand how AI 'sees' images, thereby improving their own prompt-writing skills.</p>
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-5-q">What do the generated image prompts usually include?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-5-a">They typically describe the main subject, background environment, artistic style, color palette, lighting atmosphere, composition, action, and detailed features—providing a thorough textual representation of the image.</p>
+                    </div>
                 </div>
 
-                <div class="card rounded-lg p-8">
-                    <h3 class="text-xl font-semibold text-white mb-6" data-translate="faq-6-q">What elements are typically included in an Image to Prompt output?</h3>
-                    <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-6-a">An Image to Prompt output typically includes a description of the main subject, the setting or background, the artistic style, color schemes, lighting conditions, and the overall mood or atmosphere of the image. It may also describe specific main subjects, actions, poses, composition, perspective, coloring, style or detailed features present in the image. The goal is to provide a comprehensive textual representation of the image.</p>
+                <!-- FAQ Item 6 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-6-q">Why does generating image prompts take some time?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-6-a">To deliver highly detailed and quality image prompts, the AI performs in-depth analysis of the image. Thanks for your patience—it'll be worth the wait!</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-7-q">How do I use Image to Prompt?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-7-a">Just upload your image, and the AI will analyze it and generate image prompts. You can use these prompts directly to create new images or refine details (like clothing or action) to fit your creative needs.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-8-q">Which AI image models are supported?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-8-a">It currently supports general descriptions, as well as image prompts tailored for models like Flux, Midjourney, and Stable Diffusion. We continue to expand support for more AI models.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-9-q">How accurate are the generated image prompts?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-9-a">Powered by advanced AI, the image prompts are highly accurate. Occasional deviations may occur. We continuously improve our algorithms and recommend fine-tuning prompts as needed for optimal results.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 10 -->
+                <div class="faq-item bg-transparent border border-gray-600 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200">
+                        <h3 class="text-xl font-semibold text-white" data-translate="faq-10-q">Is registration or login required?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-300 leading-relaxed text-spacing" data-translate="faq-10-a">Not at all! No login, no sign-up—just open the page, upload your image, and get image prompts. Three simple steps and you're done!</p>
+                    </div>
                 </div>
             </div>
         </div>

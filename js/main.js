@@ -19,11 +19,17 @@ class ImageToPromptApp {
         this.setupFileUpload();
         this.setupUrlInput();
         this.setupGenerateButton();
+        this.setupFAQAccordion();
         
         // 确保语言切换事件监听器正确绑定
         setTimeout(() => {
             this.setupLanguageClickHandlers();
         }, 100);
+        
+        // 确保拖拽功能在DOM完全渲染后设置
+        setTimeout(() => {
+            this.setupDragAndDrop();
+        }, 200);
     }
 
     // Language System Initialization
@@ -39,46 +45,72 @@ class ImageToPromptApp {
 
     // Event Listeners Setup
     setupEventListeners() {
-        // Prevent default drag behaviors
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            document.addEventListener(eventName, this.preventDefaults, false);
-        });
-
-        // Handle drag events
-        ['dragenter', 'dragover'].forEach(eventName => {
-            document.addEventListener(eventName, this.handleDrag, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            document.addEventListener(eventName, this.handleDrop, false);
-        });
+        // 其他事件监听器设置
     }
 
-    preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    handleDrag(e) {
+    // Setup Drag and Drop for Upload Area
+    setupDragAndDrop() {
         const uploadArea = document.getElementById('uploadArea');
+        
         if (uploadArea) {
-            uploadArea.classList.add('dragover');
+            console.log('Setting up drag and drop for upload area');
+            
+            // 阻止默认的拖拽行为
+            uploadArea.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Drag enter detected');
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Drag over detected');
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Drag leave detected');
+                // 只有当鼠标真正离开上传区域时才移除dragover类
+                const rect = uploadArea.getBoundingClientRect();
+                const x = e.clientX;
+                const y = e.clientY;
+                
+                if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+                    uploadArea.classList.remove('dragover');
+                }
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('File drop detected', e.dataTransfer.files);
+                uploadArea.classList.remove('dragover');
+                
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                if (files.length > 0) {
+                    // 验证拖拽的文件是否为图片
+                    const file = files[0];
+                    console.log('Dropped file:', file.name, file.type, file.size);
+                    const allowedTypes = ['image/png', 'image/jpeg', 'image/webp'];
+                    
+                    if (allowedTypes.includes(file.type)) {
+                        this.handleFileSelect(file);
+                    } else {
+                        this.showError(window.LanguageSystem?.getTranslation('error-file-format') || 'Unsupported file format. Please upload PNG, JPG, or WEBP.');
+                    }
+                }
+            });
+        } else {
+            console.error('Upload area not found!');
         }
     }
 
-    handleDrop(e) {
-        const uploadArea = document.getElementById('uploadArea');
-        if (uploadArea) {
-            uploadArea.classList.remove('dragover');
-        }
-
-        const dt = e.dataTransfer;
-        const files = dt.files;
-
-        if (files.length > 0) {
-            this.handleFileSelect(files[0]);
-        }
-    }
 
     // File Upload Setup
     setupFileUpload() {
@@ -136,6 +168,11 @@ class ImageToPromptApp {
 
         // Load URL functionality
         if (loadUrlBtn && urlInput) {
+            // 监听URL输入框变化，更新按钮状态
+            urlInput.addEventListener('input', () => {
+                this.updateLoadUrlButtonState();
+            });
+
             loadUrlBtn.addEventListener('click', () => {
                 const url = urlInput.value.trim();
                 if (url) {
@@ -151,6 +188,9 @@ class ImageToPromptApp {
                     }
                 }
             });
+
+            // 初始化按钮状态
+            this.updateLoadUrlButtonState();
         }
     }
 
@@ -310,12 +350,47 @@ class ImageToPromptApp {
         activeLink.classList.add('text-white');
     }
 
+    // Clear File Input
+    clearFileInput() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    }
+
+    // Setup FAQ Accordion
+    setupFAQAccordion() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+            
+            if (question && answer && icon) {
+                question.addEventListener('click', () => {
+                    const isOpen = !answer.classList.contains('hidden');
+                    
+                    // Toggle current item only (independent behavior)
+                    if (isOpen) {
+                        answer.classList.add('hidden');
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        answer.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            }
+        });
+    }
+
     // Handle File Selection
     handleFileSelect(file) {
         // Validate file type
         const allowedTypes = ['image/png', 'image/jpeg', 'image/webp'];
         if (!allowedTypes.includes(file.type)) {
             this.showError(window.LanguageSystem?.getTranslation('error-file-format') || 'Unsupported file format. Please upload PNG, JPG, or WEBP.');
+            this.clearFileInput(); // 清空文件输入框
             return;
         }
 
@@ -323,6 +398,7 @@ class ImageToPromptApp {
         const maxSize = 2 * 1024 * 1024; // 2MB in bytes
         if (file.size > maxSize) {
             this.showError(window.LanguageSystem?.getTranslation('error-file-size') || 'File size too large. Please upload an image smaller than 2MB.');
+            this.clearFileInput(); // 清空文件输入框
             return;
         }
 
@@ -339,11 +415,12 @@ class ImageToPromptApp {
     // Load Image from URL
     async loadImageFromUrl(url) {
         try {
-            this.showLoading();
+            // 显示URL加载状态，但不影响Generate Prompt按钮
+            this.showUrlLoading();
             
             // Validate URL
             if (!this.isValidImageUrl(url)) {
-                this.hideLoading();
+                this.hideUrlLoading();
                 this.showError(window.LanguageSystem?.getTranslation('error-url') || 'Invalid image URL. Please check the link and try again.');
                 return;
             }
@@ -364,17 +441,17 @@ class ImageToPromptApp {
                 this.currentImage = canvas.toDataURL('image/jpeg', 0.8);
                 this.displayImagePreview(this.currentImage);
                 this.updateGenerateButton(true);
-                this.hideLoading();
+                this.hideUrlLoading();
             };
 
             img.onerror = () => {
-                this.hideLoading();
+                this.hideUrlLoading();
                 this.showError(window.LanguageSystem?.getTranslation('error-url') || 'Invalid image URL. Please check the link and try again.');
             };
 
             img.src = url;
         } catch (error) {
-            this.hideLoading();
+            this.hideUrlLoading();
             this.showError(window.LanguageSystem?.getTranslation('error-url') || 'Invalid image URL. Please check the link and try again.');
         }
     }
@@ -429,6 +506,33 @@ class ImageToPromptApp {
             // 显示占位符内容
             if (placeholder) {
                 placeholder.style.display = 'block';
+            }
+        }
+    }
+
+    // Update Load URL Button State
+    updateLoadUrlButtonState() {
+        const loadUrlBtn = document.getElementById('loadUrlBtn');
+        const urlInput = document.getElementById('urlInput');
+        
+        if (loadUrlBtn && urlInput) {
+            const hasUrl = urlInput.value.trim().length > 0;
+            
+            // 清理所有可能的状态类
+            loadUrlBtn.classList.remove(
+                'bg-gray-600', 'text-white', 'border-gray-600',
+                'bg-transparent', 'text-orange-500', 'border-orange-500', 'border-2',
+                'bg-gray-500', 'border-gray-500'
+            );
+            
+            if (hasUrl) {
+                // 高亮状态：亮橙色字体、亮橙色边框、透明背景
+                loadUrlBtn.classList.add('bg-transparent', 'text-orange-500', 'border-orange-500', 'border-2');
+                loadUrlBtn.disabled = false;
+            } else {
+                // 默认状态：灰色背景、白色字体、灰色边框
+                loadUrlBtn.classList.add('bg-gray-600', 'text-white', 'border-gray-600');
+                loadUrlBtn.disabled = true;
             }
         }
     }
@@ -495,7 +599,14 @@ class ImageToPromptApp {
         // 根据structuredPrompt选择不同的指令
         let instruction;
         if (structuredPrompt === 'yes') {
-            instruction = `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage}AI文生图提示词，需要用结构化内容输出。分析需要包括：主体描述（人物、物体、动物的细节，如外观、动作、表情）、场景与环境（所处的背景、地点、时代）、构图与视角（镜头角度、景别、人物比例）、视觉风格（艺术风格，如插画、油画、赛博朋克、极简主义，可能参考的艺术家或工作室）、画面质量（光影效果、色彩色调、材质质感、渲染引擎、画质8k）。请直接用${promptLanguage}输出最终提示词，请保证回复语言的单一性，便于我理解。`;
+            instruction = `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage} AI文生图提示词。
+请严格按照以下步骤输出结果：  
+1. **主体**：描述图片的主要对象（人物/动物/物体/场景），包括性别、年龄、种族、姿势、动作、表情等。  
+2. **外观细节**：描述主体的外貌、服装、发型、道具、配饰等。  
+3. **环境/背景**：说明场景位置（如森林、城市、未来科幻、奇幻世界等），光线氛围（晨光、夜晚、霓虹灯、电影感等）。  
+4. **风格与质感**：指定艺术风格（写实、赛博朋克、动漫、水彩、油画、摄影风格等）、色调（冷色调、暖色调、高对比度、黑白等）。  
+5. **技术参数提示**：可补充常用的 AI 绘图关键词（如 "ultra detailed, 8k, sharp focus, masterpiece, cinematic lighting" 等）。
+请直接用${promptLanguage}结构化输出最终提示词，并保证回复语言的单一性，便于我理解。`;
         } else {
             instruction = `你是一名专业的AI绘画提示词工程师。请详细分析这张图片，并为我生成一段非常详细、专业的${promptLanguage}AI文生图提示词。分析需要包括：主体描述（人物、物体、动物的细节，如外观、动作、表情）、场景与环境（所处的背景、地点、时代）、构图与视角（镜头角度、景别、人物比例）、视觉风格（艺术风格，如插画、油画、赛博朋克、极简主义，可能参考的艺术家或工作室）、画面质量（光影效果、色彩色调、材质质感、渲染引擎、画质8k）。请直接用${promptLanguage}输出最终提示词，请保证回复语言的单一性，便于我理解。`;
         }
@@ -630,80 +741,125 @@ class ImageToPromptApp {
 
     // Generate Testimonials
     generateTestimonials() {
+        const currentLanguage = window.LanguageSystem?.getCurrentLanguage() || 'en';
+        const translations = window.LanguageSystem?.getTranslations(currentLanguage) || {};
+        
         const testimonials = [
             {
-                text: "Image to Prompt's AI model boosted my creative efficiency by 10x! The image quality analysis is beyond imagination and perfectly meets commercial requirements.",
+                text: translations['testimonial-1'] || "Image to Prompt's AI model boosted my creative efficiency by 10x! The image quality analysis is beyond imagination and perfectly meets commercial requirements.",
                 name: "Sophie Miller",
-                role: "Freelance Designer",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-1'] || "Freelance Designer",
+                avatar: "assets/images/commenter-of-image-to-prompt (1).webp"
             },
             {
-                text: "With Image to Prompt feature, I can precisely control every detail. This is the most powerful AI Image Prompt Generator available!",
+                text: translations['testimonial-2'] || "With Image to Prompt feature, I can precisely control every detail. This is the most powerful AI Image Prompt Generator available!",
                 name: "Michael Chen",
-                role: "Creative Director",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-2'] || "Creative Director",
+                avatar: "assets/images/commenter-of-image-to-prompt (2).webp"
             },
             {
-                text: "As an e-commerce manager, Image to Prompt helps me quickly generate product showcase descriptions. The AI's effect is so much better than other tools!",
+                text: translations['testimonial-3'] || "As an e-commerce manager, Image to Prompt helps me quickly generate product showcase descriptions. The AI's effect is so much better than other tools!",
                 name: "Sarah Wang",
-                role: "E-commerce Manager",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-3'] || "E-commerce Manager",
+                avatar: "assets/images/commenter-of-image-to-prompt (3).webp"
             },
             {
-                text: "Image to Prompt lets me maintain brand style consistency. This AI Image Generator truly understands my needs.",
+                text: translations['testimonial-4'] || "Image to Prompt lets me maintain brand style consistency. This AI Image Generator truly understands my needs.",
                 name: "David Liu",
-                role: "Brand Designer",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-4'] || "Brand Designer",
+                avatar: "assets/images/commenter-of-image-to-prompt (4).webp"
             },
             {
-                text: "Image to Prompt's generation speed is amazing! Professional-quality descriptions in seconds, dramatically shortening project cycles.",
+                text: translations['testimonial-5'] || "Image to Prompt's generation speed is amazing! Professional-quality descriptions in seconds, dramatically shortening project cycles.",
                 name: "Emma Zhang",
-                role: "Content Creator",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-5'] || "Content Creator",
+                avatar: "assets/images/commenter-of-image-to-prompt (5).webp"
             },
             {
-                text: "The AI model's detail expression is unparalleled. As a game developer, Image to Prompt has become our go-to tool for concept design.",
+                text: translations['testimonial-6'] || "The AI model's detail expression is unparalleled. As a game developer, Image to Prompt has become our go-to tool for concept design.",
                 name: "Kevin Wu",
-                role: "Game Concept Artist",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-6'] || "Game Concept Artist",
+                avatar: "assets/images/commenter-of-image-to-prompt (6).webp"
             },
             {
-                text: "I've tried many AI Image Generators, but Image to Prompt's feature is a true game-changer!",
+                text: translations['testimonial-7'] || "I've tried many AI Image Generators, but Image to Prompt's feature is a true game-changer!",
                 name: "Jessica Li",
-                role: "Digital Marketing Expert",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-7'] || "Digital Marketing Expert",
+                avatar: "assets/images/commenter-of-image-to-prompt (7).webp"
             },
             {
-                text: "Image to Prompt makes realizing creative descriptions so simple. The AI generates text that reaches commercial standards.",
+                text: translations['testimonial-8'] || "Image to Prompt makes realizing creative descriptions so simple. The AI generates text that reaches commercial standards.",
                 name: "Tom Anderson",
-                role: "Ad Creative Director",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-8'] || "Ad Creative Director",
+                avatar: "assets/images/commenter-of-image-to-prompt (8).webp"
             },
             {
-                text: "As an indie developer, Image to Prompt's integration is very friendly. It's the best AI Image Generator solution on the market!",
+                text: translations['testimonial-9'] || "As an indie developer, Image to Prompt's integration is very friendly. It's the best AI Image Generator solution on the market!",
                 name: "Nina Patel",
-                role: "Full-stack Developer",
-                avatar: "assets/images/avatar.svg"
+                role: translations['role-9'] || "Full-stack Developer",
+                avatar: "assets/images/commenter-of-image-to-prompt (9).webp"
             }
         ];
 
-        // Duplicate testimonials to reach 18
-        const allTestimonials = [...testimonials, ...testimonials];
+        // Duplicate testimonials multiple times for seamless scrolling
+        const allTestimonials = [...testimonials, ...testimonials, ...testimonials];
         
-        const container = document.getElementById('testimonialsContainer');
-        if (container) {
-            container.innerHTML = allTestimonials.map((testimonial, index) => `
-                <div class="testimonial-card rounded-lg p-8 hover:transform hover:scale-105 transition-all duration-300">
-                    <p class="text-gray-300 mb-6 leading-relaxed text-spacing">${testimonial.text}</p>
-                    <div class="flex items-center">
-                        <img src="${testimonial.avatar}" alt="${testimonial.name}" class="w-16 h-16 rounded-full mr-6">
-                        <div>
-                            <h4 class="text-white font-semibold text-lg">${testimonial.name}</h4>
-                            <p class="text-gray-400">${testimonial.role}</p>
-                        </div>
+        // Create testimonial card HTML
+        const createTestimonialCard = (testimonial) => `
+            <div class="testimonial-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 hover:bg-gray-800/70 hover:transform hover:scale-105 hover:shadow-2xl transition-all duration-300 border border-gray-700/50 hover:border-orange-500/30">
+                <p class="text-gray-200 mb-6 leading-relaxed text-spacing text-base">${testimonial.text}</p>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                        <img src="${testimonial.avatar}" alt="${testimonial.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold text-base">${testimonial.name}</h4>
+                        <p class="text-gray-400 text-sm">${testimonial.role}</p>
                     </div>
                 </div>
-            `).join('');
+            </div>
+        `;
+        
+        // Distribute testimonials across three columns
+        const column1 = document.getElementById('testimonialsColumn1');
+        const column2 = document.getElementById('testimonialsColumn2');
+        const column3 = document.getElementById('testimonialsColumn3');
+        
+        if (column1 && column2 && column3) {
+            // Distribute testimonials to columns (every 3rd item goes to each column)
+            const column1Testimonials = allTestimonials.filter((_, index) => index % 3 === 0);
+            const column2Testimonials = allTestimonials.filter((_, index) => index % 3 === 1);
+            const column3Testimonials = allTestimonials.filter((_, index) => index % 3 === 2);
+            
+            column1.innerHTML = column1Testimonials.map(createTestimonialCard).join('');
+            column2.innerHTML = column2Testimonials.map(createTestimonialCard).join('');
+            column3.innerHTML = column3Testimonials.map(createTestimonialCard).join('');
+        }
+    }
+
+    // Show URL Loading State (only affects Load URL button)
+    showUrlLoading() {
+        const loadUrlBtn = document.getElementById('loadUrlBtn');
+        if (loadUrlBtn) {
+            loadUrlBtn.disabled = true;
+            loadUrlBtn.textContent = window.LanguageSystem?.getTranslation('loading-image') || 'Loading...';
+            
+            // 清理所有状态类，然后添加加载状态类
+            loadUrlBtn.classList.remove(
+                'bg-gray-600', 'text-white', 'border-gray-600',
+                'bg-transparent', 'text-orange-500', 'border-orange-500', 'border-2'
+            );
+            loadUrlBtn.classList.add('bg-gray-500', 'text-white', 'border-gray-500');
+        }
+    }
+
+    // Hide URL Loading State
+    hideUrlLoading() {
+        const loadUrlBtn = document.getElementById('loadUrlBtn');
+        if (loadUrlBtn) {
+            loadUrlBtn.textContent = window.LanguageSystem?.getTranslation('load-url') || 'Load Image URL';
+            // 恢复按钮状态
+            this.updateLoadUrlButtonState();
         }
     }
 
