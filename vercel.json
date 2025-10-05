@@ -12,6 +12,10 @@
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/robots.txt", "destination": "/public/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" }
   ]
 }
 
