@@ -316,18 +316,27 @@ class ImageToPromptApp {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('data-section');
-                const targetElement = document.getElementById(targetId);
                 
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                if (targetId === 'top') {
+                    // Scroll to the very top of the page
                     window.scrollTo({
-                        top: offsetTop,
+                        top: 0,
                         behavior: 'smooth'
                     });
-
-                    // Update active nav link
-                    this.updateActiveNavLink(link);
+                } else {
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
+
+                // Update active nav link
+                this.updateActiveNavLink(link);
 
                 // Close mobile menu if open
                 const mobileMenu = document.getElementById('mobileMenu');
@@ -1027,7 +1036,7 @@ class ImageToPromptApp {
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new ImageToPromptApp();
+    window.imageToPromptApp = new ImageToPromptApp();
 });
 
 // Handle page visibility change

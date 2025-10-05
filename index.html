@@ -332,7 +332,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#top" class="nav-link text-white hover:text-orange-400 transition-colors" data-section="top" data-translate="nav-image-prompt">Image Prompt</a>
                     <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
@@ -379,7 +379,7 @@
             <!-- Mobile Navigation -->
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-2">
-                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#top" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-section="top" data-translate="nav-image-prompt">Image Prompt</a>
                     <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
@@ -840,7 +840,7 @@
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-nav">Navigation</h3>
                     <div class="space-y-2">
-                        <a href="#main-feature" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
+                        <a href="#top" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
                         <a href="#inspiration" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-inspiration">Inspiration</a>
                         <a href="#tutorials" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
                         <a href="#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-evaluation">Evaluation</a>
@@ -848,21 +848,31 @@
                     </div>
                 </div>
 
-                <!-- Language Selection -->
+                <!-- Legal Links -->
                 <div>
-                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-languages">Languages</h3>
-                    <div class="grid grid-cols-2 gap-2 text-sm">
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="en">🇺🇸 English</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="es">🇪🇸 Español</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="de">🇩🇪 Deutsch</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="fr">🇫🇷 Français</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="pt">🇵🇹 Português</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-cn">🇨🇳 简体中文</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="zh-tw">🇹🇼 繁體中文</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ar">🇸🇦 العربية</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ru">🇷🇺 Русский</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ja">🇯🇵 日本語</button>
-                        <button class="language-option text-left text-gray-400 hover:text-orange-400 transition-colors" data-lang="ko">🇰🇷 한국어</button>
+                    <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+                    <div class="space-y-2">
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Terms and Conditions</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Selection -->
+            <div class="border-t border-gray-800 mt-8 pt-8">
+                <div class="flex justify-center">
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-3 gap-y-2 text-sm max-w-4xl">
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="en">English</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="es">Español</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="de">Deutsch</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="fr">Français</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="pt">Português</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="zh-cn">简体中文</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="zh-tw">繁體中文</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="ar">العربية</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="ru">Русский</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="ja">日本語</button>
+                        <button class="language-option text-center text-gray-400 hover:text-orange-400 transition-colors py-1 px-2" data-lang="ko">한국어</button>
                     </div>
                 </div>
             </div>

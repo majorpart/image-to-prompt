@@ -1371,8 +1371,8 @@ function translatePage(lang) {
     });
     
     // Regenerate testimonials with new language
-    if (window.ImageToPromptApp && window.ImageToPromptApp.generateTestimonials) {
-        window.ImageToPromptApp.generateTestimonials();
+    if (window.imageToPromptApp && window.imageToPromptApp.generateTestimonials) {
+        window.imageToPromptApp.generateTestimonials();
     }
 }
 
