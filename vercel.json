@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html).*)",
-      "destination": "/index.html"
-    }
-  ]
-}
