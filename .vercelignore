@@ -4,6 +4,7 @@ node_modules/
 .gitignore
 README.md
 PRD.md
+deploy.md
 *.log
 .DS_Store
 Thumbs.db
