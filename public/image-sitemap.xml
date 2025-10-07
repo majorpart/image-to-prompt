@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://imagetoprompt.app/</loc>
+    <image:image>
+      <image:loc>https://imagetoprompt.app/assets/images/imagetoprompt.png</image:loc>
+      <image:title>Image to Prompt Generator Logo</image:title>
+      <image:caption>Free AI image prompt generator for Midjourney and Stable Diffusion</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://imagetoprompt.app/assets/images/image-to-prompt.jpg</image:loc>
+      <image:title>Image to Prompt Hero Background</image:title>
+      <image:caption>Hero section background image for the image to prompt generator</image:caption>
+    </image:image>
+  </url>
+</urlset>

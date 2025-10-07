@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://imagetoprompt.app/sitemap.xml
+Sitemap: https://imagetoprompt.app/image-sitemap.xml
 
 

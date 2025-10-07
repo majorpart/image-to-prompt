@@ -16,8 +16,9 @@
   "rewrites": [
     { "source": "/robots.txt", "destination": "/public/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" },
+    { "source": "/image-sitemap.xml", "destination": "/public/image-sitemap.xml" },
     {
-      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html|robots\\.txt|sitemap\\.xml).*)",
+      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html|robots\\.txt|sitemap\\.xml|image-sitemap\\.xml).*)",
       "destination": "/index.html"
     }
   ]
