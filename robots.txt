@@ -3,5 +3,3 @@ Allow: /
 
 Sitemap: https://imagetoprompt.app/sitemap.xml
 Sitemap: https://imagetoprompt.app/public/image-sitemap.xml
-
-
