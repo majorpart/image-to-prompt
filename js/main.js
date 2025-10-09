@@ -927,24 +927,24 @@ class ImageToPromptApp {
             if (progressBar) {
                 const currentWidth = parseFloat(progressBar.style.width) || 0;
                 let newWidth = currentWidth;
-                let increment = 2.5; // 优化后的速度
+                let increment = 4.5; // 调整速度让20秒到达90%
                 
-                // 优化的进度逻辑 - 针对30-40秒API响应时间
-                if (currentWidth < 15) {
-                    // 前15%：快速启动 (0-15%)
-                    increment = 3.5;
-                } else if (currentWidth < 40) {
-                    // 15%-40%：正常速度 (15-40%)
-                    increment = 2.8;
-                } else if (currentWidth < 70) {
-                    // 40%-70%：稍微慢一点 (40-70%)
-                    increment = 2.2;
+                // 优化的进度逻辑 - 针对20秒到达90%
+                if (currentWidth < 20) {
+                    // 前20%：快速启动 (0-20%)
+                    increment = 5.0;
+                } else if (currentWidth < 50) {
+                    // 20%-50%：正常速度 (20-50%)
+                    increment = 4.5;
+                } else if (currentWidth < 80) {
+                    // 50%-80%：稍微慢一点 (50-80%)
+                    increment = 4.0;
                 } else if (currentWidth < 90) {
-                    // 70%-90%：更慢 (70-90%)
-                    increment = 1.8;
+                    // 80%-90%：更慢 (80-90%)
+                    increment = 3.5;
                 } else if (currentWidth < 95) {
                     // 90%-95%：很慢 (90-95%)
-                    increment = 1.2;
+                    increment = 2.0;
                 } else {
                     // 95%以上：停止自动增长，等待API完成
                     return;
@@ -953,7 +953,7 @@ class ImageToPromptApp {
                 newWidth = Math.min(currentWidth + increment, 95);
                 progressBar.style.width = newWidth + '%';
             }
-        }, 400); // 优化后的更新频率：400ms
+        }, 400); // 更新频率：400ms
     }
 
     // Stop Progress Animation
