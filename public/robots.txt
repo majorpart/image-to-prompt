@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://imagetoprompt.app/sitemap.xml
-Sitemap: https://imagetoprompt.app/public/image-sitemap.xml
+Sitemap: https://imagetoprompt.app/image-sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
 
 
