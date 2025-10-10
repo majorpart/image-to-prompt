@@ -110,6 +110,17 @@ const translations = {
         'footer-languages': 'Languages',
         'footer-copyright': '© 2025 Image to Prompt Generator. All rights reserved.',
 
+        // About Section
+        'about-title': 'What is Image to Prompt Generator?',
+        'about-desc-1': 'Our free AI-powered image to prompt generator is the ultimate tool for creators, artists, and AI enthusiasts. Simply upload any image and our advanced AI will analyze it to generate detailed, high-quality prompts that you can use with popular AI art generators like Stable Diffusion, Midjourney, and DALL-E.',
+        'about-desc-2': 'Whether you\'re looking to recreate a specific style, understand how AI interprets images, or generate variations of existing artwork, our tool provides professional-grade prompt generation that saves you time and enhances your creative workflow.',
+        'about-feature-1-title': 'AI-Powered Analysis',
+        'about-feature-1-desc': 'Advanced machine learning algorithms analyze every detail of your image to create comprehensive prompts.',
+        'about-feature-2-title': 'Multi-Language Support',
+        'about-feature-2-desc': 'Generate prompts in 11 different languages including English, Chinese, Spanish, and more.',
+        'about-feature-3-title': 'Compatible with All AI Models',
+        'about-feature-3-desc': 'Works seamlessly with Stable Diffusion, Midjourney, DALL-E, and other popular AI art generators.',
+
         // Common
         'loading-text': 'Processing your image...',
         'error-network': 'Network error. Please check your connection and try again.',
@@ -228,6 +239,17 @@ const translations = {
         'footer-assistance': '帮助中心',
         'footer-languages': '语言',
         'footer-copyright': '© 2025 图片转提示词生成器。版权所有。',
+
+        // About Section
+        'about-title': '什么是图片转提示词生成器？',
+        'about-desc-1': '我们的免费AI图片转提示词生成器是创作者、艺术家和AI爱好者的终极工具。只需上传任何图片，我们的先进AI就会分析它并生成详细的、高质量的提示词，您可以在流行的AI艺术生成器如Stable Diffusion、Midjourney和DALL-E中使用。',
+        'about-desc-2': '无论您是想重现特定风格、了解AI如何解释图片，还是生成现有艺术品的变体，我们的工具都提供专业级的提示词生成，节省您的时间并增强您的创意工作流程。',
+        'about-feature-1-title': 'AI驱动分析',
+        'about-feature-1-desc': '先进的机器学习算法分析您图片的每个细节，创建全面的提示词。',
+        'about-feature-2-title': '多语言支持',
+        'about-feature-2-desc': '支持11种不同语言生成提示词，包括英语、中文、西班牙语等。',
+        'about-feature-3-title': '兼容所有AI模型',
+        'about-feature-3-desc': '与Stable Diffusion、Midjourney、DALL-E和其他流行的AI艺术生成器无缝协作。',
 
         // Common
         'loading-text': '正在处理您的图片...',
@@ -348,6 +370,17 @@ const translations = {
         'footer-languages': 'Idiomas',
         'footer-copyright': '© 2025 Generador de Imagen a Prompt. Todos los derechos reservados.',
 
+        // About Section
+        'about-title': '¿Qué es el Generador de Imagen a Prompt?',
+        'about-desc-1': 'Nuestro generador gratuito de imagen a prompt impulsado por IA es la herramienta definitiva para creadores, artistas y entusiastas de la IA. Simplemente sube cualquier imagen y nuestra IA avanzada la analizará para generar prompts detallados y de alta calidad que puedes usar con generadores de arte IA populares como Stable Diffusion, Midjourney y DALL-E.',
+        'about-desc-2': 'Ya sea que busques recrear un estilo específico, entender cómo la IA interpreta las imágenes, o generar variaciones de obras de arte existentes, nuestra herramienta proporciona generación de prompts de grado profesional que ahorra tiempo y mejora tu flujo de trabajo creativo.',
+        'about-feature-1-title': 'Análisis Impulsado por IA',
+        'about-feature-1-desc': 'Los algoritmos avanzados de aprendizaje automático analizan cada detalle de tu imagen para crear prompts comprensivos.',
+        'about-feature-2-title': 'Soporte Multiidioma',
+        'about-feature-2-desc': 'Genera prompts en 11 idiomas diferentes incluyendo inglés, chino, español y más.',
+        'about-feature-3-title': 'Compatible con Todos los Modelos de IA',
+        'about-feature-3-desc': 'Funciona perfectamente con Stable Diffusion, Midjourney, DALL-E y otros generadores de arte IA populares.',
+
         // Common
         'loading-text': 'Procesando tu imagen...',
         'error-network': 'Error de red. Por favor verifica tu conexión e inténtalo de nuevo.',
@@ -466,6 +499,17 @@ const translations = {
         'footer-assistance': 'Hilfe',
         'footer-languages': 'Sprachen',
         'footer-copyright': '© 2025 Bild-zu-Prompt-Generator. Alle Rechte vorbehalten.',
+
+        // About Section
+        'about-title': 'Was ist der Bild-zu-Prompt-Generator?',
+        'about-desc-1': 'Unser kostenloser KI-gestützter Bild-zu-Prompt-Generator ist das ultimative Tool für Kreative, Künstler und KI-Enthusiasten. Laden Sie einfach ein Bild hoch und unsere fortschrittliche KI analysiert es, um detaillierte, hochwertige Prompts zu generieren, die Sie mit beliebten KI-Kunstgeneratoren wie Stable Diffusion, Midjourney und DALL-E verwenden können.',
+        'about-desc-2': 'Ob Sie einen bestimmten Stil nachbilden, verstehen möchten, wie KI Bilder interpretiert, oder Variationen bestehender Kunstwerke generieren möchten - unser Tool bietet professionelle Prompt-Generierung, die Zeit spart und Ihren kreativen Workflow verbessert.',
+        'about-feature-1-title': 'KI-gestützte Analyse',
+        'about-feature-1-desc': 'Fortschrittliche Machine-Learning-Algorithmen analysieren jedes Detail Ihres Bildes, um umfassende Prompts zu erstellen.',
+        'about-feature-2-title': 'Mehrsprachige Unterstützung',
+        'about-feature-2-desc': 'Generieren Sie Prompts in 11 verschiedenen Sprachen einschließlich Englisch, Chinesisch, Spanisch und mehr.',
+        'about-feature-3-title': 'Kompatibel mit allen KI-Modellen',
+        'about-feature-3-desc': 'Funktioniert nahtlos mit Stable Diffusion, Midjourney, DALL-E und anderen beliebten KI-Kunstgeneratoren.',
 
         // Common
         'loading-text': 'Ihr Bild wird verarbeitet...',
@@ -586,6 +630,17 @@ const translations = {
         'footer-languages': 'Langues',
         'footer-copyright': '© 2025 Générateur d\'Image vers Prompt. Tous droits réservés.',
 
+        // About Section
+        'about-title': 'Qu\'est-ce que le Générateur d\'Image vers Prompt?',
+        'about-desc-1': 'Notre générateur gratuit d\'image vers prompt alimenté par l\'IA est l\'outil ultime pour les créateurs, artistes et passionnés d\'IA. Téléchargez simplement n\'importe quelle image et notre IA avancée l\'analysera pour générer des prompts détaillés et de haute qualité que vous pouvez utiliser avec des générateurs d\'art IA populaires comme Stable Diffusion, Midjourney et DALL-E.',
+        'about-desc-2': 'Que vous cherchiez à recréer un style spécifique, comprendre comment l\'IA interprète les images, ou générer des variations d\'œuvres d\'art existantes, notre outil fournit une génération de prompts de niveau professionnel qui fait gagner du temps et améliore votre flux de travail créatif.',
+        'about-feature-1-title': 'Analyse Alimentée par l\'IA',
+        'about-feature-1-desc': 'Les algorithmes avancés d\'apprentissage automatique analysent chaque détail de votre image pour créer des prompts complets.',
+        'about-feature-2-title': 'Support Multilingue',
+        'about-feature-2-desc': 'Générez des prompts en 11 langues différentes incluant l\'anglais, le chinois, l\'espagnol et plus.',
+        'about-feature-3-title': 'Compatible avec Tous les Modèles IA',
+        'about-feature-3-desc': 'Fonctionne parfaitement avec Stable Diffusion, Midjourney, DALL-E et d\'autres générateurs d\'art IA populaires.',
+
         // Common
         'loading-text': 'Traitement de votre image...',
         'error-network': 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
@@ -704,6 +759,17 @@ const translations = {
         'footer-assistance': 'Assistência',
         'footer-languages': 'Idiomas',
         'footer-copyright': '© 2025 Gerador de Imagem para Prompt. Todos os direitos reservados.',
+
+        // About Section
+        'about-title': 'O que é o Gerador de Imagem para Prompt?',
+        'about-desc-1': 'Nosso gerador gratuito de imagem para prompt alimentado por IA é a ferramenta definitiva para criadores, artistas e entusiastas de IA. Simplesmente carregue qualquer imagem e nossa IA avançada a analisará para gerar prompts detalhados e de alta qualidade que você pode usar com geradores de arte IA populares como Stable Diffusion, Midjourney e DALL-E.',
+        'about-desc-2': 'Seja você procurando recriar um estilo específico, entender como a IA interpreta imagens, ou gerar variações de obras de arte existentes, nossa ferramenta fornece geração de prompts de nível profissional que economiza tempo e melhora seu fluxo de trabalho criativo.',
+        'about-feature-1-title': 'Análise Alimentada por IA',
+        'about-feature-1-desc': 'Algoritmos avançados de aprendizado de máquina analisam cada detalhe da sua imagem para criar prompts abrangentes.',
+        'about-feature-2-title': 'Suporte Multi-idioma',
+        'about-feature-2-desc': 'Gere prompts em 11 idiomas diferentes incluindo inglês, chinês, espanhol e mais.',
+        'about-feature-3-title': 'Compatível com Todos os Modelos de IA',
+        'about-feature-3-desc': 'Funciona perfeitamente com Stable Diffusion, Midjourney, DALL-E e outros geradores de arte IA populares.',
 
         // Common
         'loading-text': 'Processando sua imagem...',
@@ -824,6 +890,17 @@ const translations = {
         'footer-languages': '語言',
         'footer-copyright': '© 2025 圖片轉提示詞生成器。版權所有。',
 
+        // About Section
+        'about-title': '什麼是圖片轉提示詞生成器？',
+        'about-desc-1': '我們的免費AI圖片轉提示詞生成器是創作者、藝術家和AI愛好者的終極工具。只需上傳任何圖片，我們的先進AI就會分析它並生成詳細的、高質量的提示詞，您可以在流行的AI藝術生成器如Stable Diffusion、Midjourney和DALL-E中使用。',
+        'about-desc-2': '無論您是想重現特定風格、了解AI如何解釋圖片，還是生成現有藝術品的變體，我們的工具都提供專業級的提示詞生成，節省您的時間並增強您的創意工作流程。',
+        'about-feature-1-title': 'AI驅動分析',
+        'about-feature-1-desc': '先進的機器學習算法分析您圖片的每個細節，創建全面的提示詞。',
+        'about-feature-2-title': '多語言支持',
+        'about-feature-2-desc': '支持11種不同語言生成提示詞，包括英語、中文、西班牙語等。',
+        'about-feature-3-title': '兼容所有AI模型',
+        'about-feature-3-desc': '與Stable Diffusion、Midjourney、DALL-E和其他流行的AI藝術生成器無縫協作。',
+
         // Common
         'loading-text': '正在處理您的圖片...',
         'error-network': '網路錯誤。請檢查您的連接並重試。',
@@ -942,6 +1019,17 @@ const translations = {
         'footer-assistance': 'المساعدة',
         'footer-languages': 'اللغات',
         'footer-copyright': '© 2025 مولد الصورة إلى التلميح. جميع الحقوق محفوظة.',
+
+        // About Section
+        'about-title': 'ما هو مولد الصورة إلى التلميح؟',
+        'about-desc-1': 'مولد الصورة إلى التلميح المجاني المدعوم بالذكاء الاصطناعي هو الأداة المثلى للمبدعين والفنانين وعشاق الذكاء الاصطناعي. ما عليك سوى رفع أي صورة وسيقوم ذكاؤنا الاصطناعي المتقدم بتحليلها لتوليد تلميحات مفصلة وعالية الجودة يمكنك استخدامها مع مولدات الفن بالذكاء الاصطناعي الشائعة مثل Stable Diffusion وMidjourney وDALL-E.',
+        'about-desc-2': 'سواء كنت تبحث عن إعادة إنشاء نمط معين، أو فهم كيفية تفسير الذكاء الاصطناعي للصور، أو توليد تنويعات من الأعمال الفنية الموجودة، توفر أداتنا توليد تلميحات على مستوى احترافي يوفر الوقت ويعزز سير عملك الإبداعي.',
+        'about-feature-1-title': 'تحليل مدعوم بالذكاء الاصطناعي',
+        'about-feature-1-desc': 'خوارزميات التعلم الآلي المتقدمة تحلل كل تفصيل في صورتك لإنشاء تلميحات شاملة.',
+        'about-feature-2-title': 'دعم متعدد اللغات',
+        'about-feature-2-desc': 'توليد تلميحات بـ 11 لغة مختلفة بما في ذلك الإنجليزية والصينية والإسبانية والمزيد.',
+        'about-feature-3-title': 'متوافق مع جميع نماذج الذكاء الاصطناعي',
+        'about-feature-3-desc': 'يعمل بسلاسة مع Stable Diffusion وMidjourney وDALL-E ومولدات الفن بالذكاء الاصطناعي الشائعة الأخرى.',
 
         // Common
         'loading-text': 'جاري معالجة صورتك...',
@@ -1062,6 +1150,17 @@ const translations = {
         'footer-languages': 'Языки',
         'footer-copyright': '© 2025 Генератор Изображения в Подсказку. Все права защищены.',
 
+        // About Section
+        'about-title': 'Что такое Генератор Изображения в Подсказку?',
+        'about-desc-1': 'Наш бесплатный генератор изображения в подсказку на основе ИИ - это идеальный инструмент для создателей, художников и энтузиастов ИИ. Просто загрузите любое изображение, и наш продвинутый ИИ проанализирует его, чтобы сгенерировать детальные, высококачественные подсказки, которые вы можете использовать с популярными генераторами ИИ-арта, такими как Stable Diffusion, Midjourney и DALL-E.',
+        'about-desc-2': 'Независимо от того, хотите ли вы воссоздать определенный стиль, понять, как ИИ интерпретирует изображения, или генерировать вариации существующих произведений искусства, наш инструмент обеспечивает профессиональную генерацию подсказок, которая экономит время и улучшает ваш творческий рабочий процесс.',
+        'about-feature-1-title': 'Анализ на основе ИИ',
+        'about-feature-1-desc': 'Продвинутые алгоритмы машинного обучения анализируют каждую деталь вашего изображения для создания всесторонних подсказок.',
+        'about-feature-2-title': 'Многоязычная поддержка',
+        'about-feature-2-desc': 'Генерируйте подсказки на 11 различных языках, включая английский, китайский, испанский и другие.',
+        'about-feature-3-title': 'Совместим со всеми моделями ИИ',
+        'about-feature-3-desc': 'Безупречно работает со Stable Diffusion, Midjourney, DALL-E и другими популярными генераторами ИИ-арта.',
+
         // Common
         'loading-text': 'Обработка вашего изображения...',
         'error-network': 'Ошибка сети. Проверьте ваше соединение и попробуйте снова.',
@@ -1181,6 +1280,17 @@ const translations = {
         'footer-languages': '言語',
         'footer-copyright': '© 2025 画像からプロンプト生成器。全著作権所有。',
 
+        // About Section
+        'about-title': '画像からプロンプト生成器とは？',
+        'about-desc-1': '私たちの無料AI画像からプロンプト生成器は、クリエイター、アーティスト、AI愛好家のための究極のツールです。任意の画像をアップロードするだけで、私たちの高度なAIがそれを分析し、Stable Diffusion、Midjourney、DALL-Eなどの人気AIアート生成器で使用できる詳細で高品質なプロンプトを生成します。',
+        'about-desc-2': '特定のスタイルを再現したい、AIが画像をどのように解釈するかを理解したい、既存のアートワークのバリエーションを生成したい場合でも、私たちのツールは時間を節約し、創造的なワークフローを向上させるプロフェッショナルグレードのプロンプト生成を提供します。',
+        'about-feature-1-title': 'AI駆動分析',
+        'about-feature-1-desc': '高度な機械学習アルゴリズムが画像のすべての詳細を分析し、包括的なプロンプトを作成します。',
+        'about-feature-2-title': '多言語サポート',
+        'about-feature-2-desc': '英語、中国語、スペイン語など11の異なる言語でプロンプトを生成します。',
+        'about-feature-3-title': 'すべてのAIモデルと互換性',
+        'about-feature-3-desc': 'Stable Diffusion、Midjourney、DALL-E、その他の人気AIアート生成器とシームレスに動作します。',
+
         // Common
         'loading-text': '画像を処理中...',
         'error-network': 'ネットワークエラー。接続を確認して再試行してください。',
@@ -1299,6 +1409,17 @@ const translations = {
         'footer-assistance': '도움말',
         'footer-languages': '언어',
         'footer-copyright': '© 2025 이미지에서 프롬프트 생성기. 모든 권리 보유.',
+
+        // About Section
+        'about-title': '이미지에서 프롬프트 생성기란 무엇인가요?',
+        'about-desc-1': '우리의 무료 AI 이미지에서 프롬프트 생성기는 크리에이터, 아티스트, AI 애호가를 위한 궁극의 도구입니다. 이미지를 업로드하기만 하면 우리의 고급 AI가 이를 분석하여 Stable Diffusion, Midjourney, DALL-E와 같은 인기 있는 AI 아트 생성기에서 사용할 수 있는 상세하고 고품질의 프롬프트를 생성합니다.',
+        'about-desc-2': '특정 스타일을 재현하고 싶거나, AI가 이미지를 어떻게 해석하는지 이해하고 싶거나, 기존 아트워크의 변형을 생성하고 싶다면, 우리의 도구는 시간을 절약하고 창의적인 워크플로우를 향상시키는 전문가급 프롬프트 생성을 제공합니다.',
+        'about-feature-1-title': 'AI 기반 분석',
+        'about-feature-1-desc': '고급 머신러닝 알고리즘이 이미지의 모든 세부사항을 분석하여 포괄적인 프롬프트를 생성합니다.',
+        'about-feature-2-title': '다국어 지원',
+        'about-feature-2-desc': '영어, 중국어, 스페인어 등 11가지 다른 언어로 프롬프트를 생성합니다.',
+        'about-feature-3-title': '모든 AI 모델과 호환',
+        'about-feature-3-desc': 'Stable Diffusion, Midjourney, DALL-E 및 기타 인기 있는 AI 아트 생성기와 원활하게 작동합니다.',
 
         // Common
         'loading-text': '이미지를 처리 중...',

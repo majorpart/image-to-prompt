@@ -413,13 +413,15 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
-                    <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#top" class="nav-link text-white hover:text-orange-400 transition-colors" data-section="top" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
                     <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
@@ -466,7 +468,7 @@
             <!-- Mobile Navigation -->
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-2">
-                    <a href="#top" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-section="top" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="#main-feature" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-section="main-feature" data-translate="nav-image-prompt">Image Prompt</a>
                     <a href="#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="inspiration" data-translate="nav-inspiration">Inspiration</a>
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
@@ -497,29 +499,29 @@
     <section class="py-16 bg-gray-800">
         <div class="container-max-width mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">What is Image to Prompt Generator?</h2>
-                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-translate="about-title">What is Image to Prompt Generator?</h2>
+                <p class="text-lg text-gray-300 mb-6 leading-relaxed" data-translate="about-desc-1">
                     Our free AI-powered image to prompt generator is the ultimate tool for creators, artists, and AI enthusiasts. 
                     Simply upload any image and our advanced AI will analyze it to generate detailed, high-quality prompts 
                     that you can use with popular AI art generators like Stable Diffusion, Midjourney, and DALL-E.
                 </p>
-                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                <p class="text-lg text-gray-300 mb-6 leading-relaxed" data-translate="about-desc-2">
                     Whether you're looking to recreate a specific style, understand how AI interprets images, or generate 
                     variations of existing artwork, our tool provides professional-grade prompt generation that saves 
                     you time and enhances your creative workflow.
                 </p>
                 <div class="grid md:grid-cols-3 gap-6 mt-8">
                     <div class="bg-gray-700 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">AI-Powered Analysis</h3>
-                        <p class="text-gray-300">Advanced machine learning algorithms analyze every detail of your image to create comprehensive prompts.</p>
+                        <h3 class="text-xl font-semibold text-white mb-3" data-translate="about-feature-1-title">AI-Powered Analysis</h3>
+                        <p class="text-gray-300" data-translate="about-feature-1-desc">Advanced machine learning algorithms analyze every detail of your image to create comprehensive prompts.</p>
                     </div>
                     <div class="bg-gray-700 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">Multi-Language Support</h3>
-                        <p class="text-gray-300">Generate prompts in 11 different languages including English, Chinese, Spanish, and more.</p>
+                        <h3 class="text-xl font-semibold text-white mb-3" data-translate="about-feature-2-title">Multi-Language Support</h3>
+                        <p class="text-gray-300" data-translate="about-feature-2-desc">Generate prompts in 11 different languages including English, Chinese, Spanish, and more.</p>
                     </div>
                     <div class="bg-gray-700 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">Compatible with All AI Models</h3>
-                        <p class="text-gray-300">Works seamlessly with Stable Diffusion, Midjourney, DALL-E, and other popular AI art generators.</p>
+                        <h3 class="text-xl font-semibold text-white mb-3" data-translate="about-feature-3-title">Compatible with All AI Models</h3>
+                        <p class="text-gray-300" data-translate="about-feature-3-desc">Works seamlessly with Stable Diffusion, Midjourney, DALL-E, and other popular AI art generators.</p>
                     </div>
                 </div>
             </div>
@@ -950,8 +952,10 @@
                 <!-- Logo and Name -->
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
-                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                            <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        </a>
                     </div>
                     <p class="text-gray-400" data-translate="footer-desc">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
                 </div>
@@ -960,7 +964,7 @@
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-nav">Navigation</h3>
                     <div class="space-y-2">
-                        <a href="#top" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
+                        <a href="#main-feature" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
                         <a href="#inspiration" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-inspiration">Inspiration</a>
                         <a href="#tutorials" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
                         <a href="#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-evaluation">Evaluation</a>
