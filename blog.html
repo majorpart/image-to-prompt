@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Image to Prompt Generator | AI Art Tutorials & Tips</title>
+    <meta name="description" content="Learn how to create amazing AI art with our comprehensive tutorials, tips, and guides for image prompt generation.">
+    <meta name="keywords" content="AI art tutorials, image prompt tips, AI art guides, prompt engineering, AI image generation">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="bingbot" content="index,follow">
+    <link rel="canonical" href="https://imagetoprompt.app/blog.html">
+    <meta name="author" content="Image to Prompt Generator">
+    <meta name="publisher" content="Image to Prompt Generator">
+    <meta name="theme-color" content="#ff6b35">
+    <meta name="msapplication-TileColor" content="#ff6b35">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog - Image to Prompt Generator">
+    <meta property="og:description" content="Learn how to create amazing AI art with our comprehensive tutorials and tips.">
+    <meta property="og:url" content="https://imagetoprompt.app/blog.html">
+    <meta property="og:image" content="https://imagetoprompt.app/assets/images/imagetoprompt.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog - Image to Prompt Generator">
+    <meta name="twitter:description" content="AI art tutorials and tips for better prompt generation.">
+    <meta name="twitter:image" content="https://imagetoprompt.app/assets/images/imagetoprompt.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {}
+            }
+        };
+        
+        const originalWarn = console.warn;
+        console.warn = function(...args) {
+            if (args[0] && args[0].includes && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
+                return;
+            }
+            originalWarn.apply(console, args);
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
+    
+    <style>
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-orange: #ff6b35;
+            --accent-hover: #e55a2b;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Slabo 27px', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .font-bold {
+            font-weight: 400;
+        }
+        
+        .font-semibold {
+            font-weight: 400;
+        }
+        
+        .font-medium {
+            font-weight: 400;
+        }
+        
+        button, input, select, textarea {
+            font-family: inherit;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .nav-link {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .blog-card {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .blog-tag {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS7EJJ95YX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} 
+      gtag('js', new Date());
+      gtag('config', 'G-ZS7EJJ95YX');
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Image to Prompt Generator Blog",
+      "description": "Learn how to create amazing AI art with our comprehensive tutorials, tips, and guides for image prompt generation",
+      "url": "https://imagetoprompt.app/blog.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Image to Prompt Generator Team"
+      }
+    }
+    </script>
+</head>
+<body class="smooth-scroll">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#main-feature" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="index.html#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="index.html#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="index.html#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="index.html#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-white hover:text-orange-400 transition-colors" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-case">Case</a>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="relative">
+                    <button id="languageBtn" class="flex items-center space-x-2 text-white hover:text-orange-400 transition-colors">
+                        <span class="text-sm">🇺🇸 EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Language Dropdown -->
+                    <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+                        <div class="py-1">
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="en">🇺🇸 English</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="es">🇪🇸 Español</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="de">🇩🇪 Deutsch</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="fr">🇫🇷 Français</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="pt">🇵🇹 Português</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-cn">🇨🇳 简体中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="zh-tw">🇹🇼 繁體中文</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ar">🇸🇦 العربية</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ru">🇷🇺 Русский</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ja">🇯🇵 日本語</button>
+                            <button class="language-option w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700" data-lang="ko">🇰🇷 한국어</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-orange-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="index.html#main-feature" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="index.html#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="index.html#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="index.html#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="index.html#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-case">Case</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="pt-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-orange-400 hover:text-orange-300 transition-colors" data-translate="breadcrumb-home">Home</a>
+                <span class="text-gray-500">/</span>
+                <span class="text-gray-300" data-translate="breadcrumb-blog">Blog</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    <span class="gradient-text" data-translate="blog-title">AI Art Blog</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8" data-translate="blog-subtitle">
+                    Learn how to make AI draw anything you imagine
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Blog Post 1 -->
+                <a href="blog-post-1.html" class="block">
+                    <article class="blog-card rounded-lg p-6 fade-in hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
+                        <div class="mb-4">
+                            <img src="assets/images/image-to-prompt-blog (1).webp" alt="AI Prompt Engineering" class="w-full aspect-video object-cover rounded-lg mb-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="blog-tag">#TUTORIAL</span>
+                                <span class="text-sm text-gray-400">1/27/2025</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-white mb-3" data-translate="blog-post-1-title">How to Write Effective Image Prompts</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4" data-translate="blog-post-1-desc">
+                                From key principles to practical examples, learn how to craft effective image prompts for creating controllable and desired AI-generated visuals.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="assets/images/image-to-prompt-engineer.webp" alt="AI Expert" class="w-8 h-8 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm text-white font-medium">AI Expert</p>
+                                    <p class="text-xs text-gray-400">Image to Prompt Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <!-- Blog Post 2 -->
+                <a href="blog-post-2.html" class="block">
+                    <article class="blog-card rounded-lg p-6 fade-in hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
+                        <div class="mb-4">
+                            <img src="assets/images/image-to-prompt-blog (2).webp" alt="AI Image Generation" class="w-full aspect-video object-cover rounded-lg mb-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="blog-tag">#GUIDE</span>
+                                <span class="text-sm text-gray-400">1/25/2025</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-white mb-3" data-translate="blog-post-2-title">How AI Image Generators Work</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4" data-translate="blog-post-2-desc">
+                                Explore how AI transforms image prompts into images, the process behind tools like Flux, Midjourney and DALL-E, and the current limitations of AI image generators.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="assets/images/image-to-prompt-engineer.webp" alt="AI Expert" class="w-8 h-8 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm text-white font-medium">AI Expert</p>
+                                    <p class="text-xs text-gray-400">Image to Prompt Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <!-- Blog Post 3 -->
+                <a href="blog-post-3.html" class="block">
+                    <article class="blog-card rounded-lg p-6 fade-in hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
+                        <div class="mb-4">
+                            <img src="assets/images/image-to-prompt-blog (3).webp" alt="Image Prompt Guide" class="w-full aspect-video object-cover rounded-lg mb-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="blog-tag">#GUIDE</span>
+                                <span class="text-sm text-gray-400">1/23/2025</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-white mb-3" data-translate="blog-post-3-title">What is an Image Prompt? A Comprehensive Guide</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4" data-translate="blog-post-3-desc">
+                                Explore image prompts, the textual instructions for AI art generation. Learn how these image prompts guide AI to create visuals, from simple concepts to detailed scenes.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="assets/images/image-to-prompt-engineer.webp" alt="AI Expert" class="w-8 h-8 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm text-white font-medium">AI Expert</p>
+                                    <p class="text-xs text-gray-400">Image to Prompt Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Cases Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4" data-translate="related-cases-title">Explore Real Examples</h2>
+                <p class="text-lg text-gray-400" data-translate="related-cases-desc">See how our AI transforms images into detailed prompts with these case studies.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors">
+                    <img src="assets/images/image-to-prompt-case (1).webp" alt="Case 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2" data-translate="case-1-title">Portrait with Kitten</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-translate="case-1-desc">A woman with long wavy brown hair in a single braid, wearing a light blue off-shoulder knitted sweater...</p>
+                        <a href="case.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium">
+                            <span data-translate="view-case">View Case</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors">
+                    <img src="assets/images/image-to-prompt-case (2).webp" alt="Case 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2" data-translate="case-2-title">Vintage Style Portrait</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-translate="case-2-desc">A woman with curly brown hair, wearing a wide-brimmed brown hat, dressed in a vintage-style brown dress...</p>
+                        <a href="case.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium">
+                            <span data-translate="view-case">View Case</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors">
+                    <img src="assets/images/image-to-prompt-case (3).webp" alt="Case 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2" data-translate="case-3-title">Cyberpunk Pikachu</h3>
+                        <p class="text-gray-400 text-sm mb-4" data-translate="case-3-desc">A yellow Pikachu character with red cheeks, wearing a metallic helmet and detailed mechanical armor...</p>
+                        <a href="case.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium">
+                            <span data-translate="view-case">View Case</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="case.html" class="inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full hover:bg-orange-600 transition-colors duration-300" data-translate="view-all-cases">View All Cases</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Logo and Name -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                            <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-nav">Navigation</h3>
+                    <div class="space-y-2">
+                        <a href="index.html#main-feature" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
+                        <a href="index.html#inspiration" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-inspiration">Inspiration</a>
+                        <a href="index.html#tutorials" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
+                        <a href="index.html#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-evaluation">Evaluation</a>
+                        <a href="index.html#assistance" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-assistance">Assistance</a>
+                        <a href="blog.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-blog">Blog</a>
+                        <a href="case.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-case">Case</a>
+                    </div>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-legal">Legal</h3>
+                    <div class="space-y-2">
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Terms and Conditions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2025 Image to Prompt Generator. All rights reserved.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                    <p class="text-gray-400">
+                        Contact: <a href="mailto:support@imagetoprompt.app" class="text-orange-400 hover:text-orange-300">support@imagetoprompt.app</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/languages.js"></script>
+    <script>
+        // Language functionality
+        let currentLanguage = 'en';
+        
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.getElementById('languageBtn');
+            const langNames = {
+                'en': '🇺🇸 EN',
+                'es': '🇪🇸 ES',
+                'de': '🇩🇪 DE',
+                'fr': '🇫🇷 FR',
+                'pt': '🇵🇹 PT',
+                'zh-cn': '🇨🇳 中文',
+                'zh-tw': '🇹🇼 中文',
+                'ar': '🇸🇦 عربي',
+                'ru': '🇷🇺 RU',
+                'ja': '🇯🇵 日本語',
+                'ko': '🇰🇷 한국어'
+            };
+            langBtn.querySelector('span').textContent = langNames[lang] || '🇺🇸 EN';
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize with English
+            updateLanguage('en');
+            
+            // Language dropdown functionality
+            document.getElementById('languageBtn').addEventListener('click', function() {
+                const dropdown = document.getElementById('languageDropdown');
+                dropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                const dropdown = document.getElementById('languageDropdown');
+                const button = document.getElementById('languageBtn');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+            
+            // Language option clicks
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    updateLanguage(lang);
+                    document.getElementById('languageDropdown').classList.add('hidden');
+                });
+            });
+            
+            // Mobile menu functionality
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

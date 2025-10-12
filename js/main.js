@@ -313,35 +313,40 @@ class ImageToPromptApp {
         
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const targetId = link.getAttribute('data-section');
                 
-                if (targetId === 'top') {
-                    // Scroll to the very top of the page
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    const targetElement = document.getElementById(targetId);
+                // 如果链接有data-section属性，说明是页面内滚动链接
+                if (targetId) {
+                    e.preventDefault();
                     
-                    if (targetElement) {
-                        const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                    if (targetId === 'top') {
+                        // Scroll to the very top of the page
                         window.scrollTo({
-                            top: offsetTop,
+                            top: 0,
                             behavior: 'smooth'
                         });
+                    } else {
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+
+                    // Update active nav link
+                    this.updateActiveNavLink(link);
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
                 }
-
-                // Update active nav link
-                this.updateActiveNavLink(link);
-
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
+                // 如果没有data-section属性，说明是外部链接（如blog.html），让它正常跳转
             });
         });
     }

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AI Image Generators Work - Image to Prompt Generator</title>
+    <meta name="description" content="Explore how AI transforms image prompts into images, the process behind tools like Flux, Midjourney and DALL-E, and the current limitations of AI image generators.">
+    <meta name="keywords" content="AI image generation, how AI works, machine learning, neural networks, image synthesis">
+    <meta name="author" content="AI Expert">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="How AI Image Generators Work">
+    <meta property="og:description" content="Explore how AI transforms image prompts into images, the process behind tools like Flux, Midjourney and DALL-E.">
+    <meta property="og:image" content="https://imagetoprompt.app/assets/images/image-to-prompt (3).webp">
+    <meta property="og:url" content="https://imagetoprompt.app/blog-post-2.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Image to Prompt Generator">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How AI Image Generators Work">
+    <meta name="twitter:description" content="Explore how AI transforms image prompts into images, the process behind tools like Flux, Midjourney and DALL-E.">
+    <meta name="twitter:image" content="https://imagetoprompt.app/assets/images/image-to-prompt (3).webp">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://imagetoprompt.app/blog-post-2.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 配置 Tailwind CSS 并抑制生产环境警告
+        tailwind.config = {
+            theme: {
+                extend: {}
+            }
+        };
+        
+        // 抑制 Tailwind CSS 生产环境警告
+        const originalWarn = console.warn;
+        console.warn = function(...args) {
+            if (args[0] && args[0].includes && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
+                return; // 忽略 Tailwind CSS 生产环境警告
+            }
+            originalWarn.apply(console, args);
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Custom styles for dark theme and animations */
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-orange: #ff6b35;
+            --accent-hover: #e55a2b;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Slabo 27px', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .prose {
+            max-width: none;
+        }
+        
+        .prose h1 {
+            color: #ff6b35;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .prose h2 {
+            color: #ff6b35;
+            font-size: 1.875rem;
+            font-weight: semibold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .prose h3 {
+            color: #f7931e;
+            font-size: 1.5rem;
+            font-weight: semibold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .prose p {
+            color: #d1d5db;
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+        
+        .prose ul, .prose ol {
+            color: #d1d5db;
+            margin-bottom: 1.25rem;
+        }
+        
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .prose strong {
+            color: #ff6b35;
+            font-weight: semibold;
+        }
+        
+        .prose em {
+            color: #f7931e;
+            font-style: italic;
+        }
+        
+        .prose blockquote {
+            border-left: 4px solid #ff6b35;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #9ca3af;
+            font-style: italic;
+        }
+        
+        .prose code {
+            background-color: #374151;
+            color: #ff6b35;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .prose pre {
+            background-color: #1f2937;
+            color: #d1d5db;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .prose pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#main-feature" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="index.html#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="index.html#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="index.html#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="index.html#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-white hover:text-orange-400 transition-colors" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-case">Case</a>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="relative">
+                    <button id="languageBtn" class="flex items-center space-x-2 text-white hover:text-orange-400 transition-colors">
+                        <span class="text-sm">🇺🇸 EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 py-1 z-50">
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="en">🇺🇸 English</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="es">🇪🇸 Español</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="de">🇩🇪 Deutsch</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="fr">🇫🇷 Français</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="pt">🇵🇹 Português</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="zh-cn">🇨🇳 简体中文</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="zh-tw">🇹🇼 繁體中文</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="ar">🇸🇦 العربية</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="ru">🇷🇺 Русский</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="ja">🇯🇵 日本語</a>
+                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-lang="ko">🇰🇷 한국어</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-orange-400 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="index.html#main-feature" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-image-prompt">Image Prompt</a>
+                    <a href="index.html#inspiration" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-inspiration">Inspiration</a>
+                    <a href="index.html#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-tutorials">Tutorials</a>
+                    <a href="index.html#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-evaluation">Evaluation</a>
+                    <a href="index.html#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-white hover:text-orange-400 transition-colors py-2" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-case">Case</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="pt-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-orange-400 hover:text-orange-300 transition-colors" data-translate="breadcrumb-home">Home</a>
+                <span class="text-gray-500">/</span>
+                <a href="blog.html" class="text-orange-400 hover:text-orange-300 transition-colors" data-translate="breadcrumb-blog">Blog</a>
+                <span class="text-gray-500">/</span>
+                <span class="text-gray-300" data-translate="breadcrumb-article">Article</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Back to Blog Link -->
+    <div class="pt-20 pb-8 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="blog.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors mb-8">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <span data-translate="back-to-blog">← Back to Blog</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Article Header -->
+    <div class="bg-gray-900 pb-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Article Meta -->
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">#GUIDE</span>
+                    <span class="text-gray-400 text-sm">1/27/2025</span>
+                </div>
+                <div class="flex items-center">
+                    <img src="assets/images/image-to-prompt-engineer.webp" alt="AI Expert" class="w-8 h-8 rounded-full object-cover mr-3">
+                    <div>
+                        <p class="text-sm text-white font-medium">AI Expert</p>
+                        <p class="text-xs text-gray-400">Image to Prompt Team</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Title -->
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="blog-post-2-title">How AI Image Generators Work</h1>
+            
+            <!-- Article Image -->
+            <div class="mb-8">
+                <img src="assets/images/image-to-prompt-blog (2).webp" alt="AI Image Generation" class="w-full aspect-video object-cover rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="bg-gray-800 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg">
+                <h2 data-translate="blog-post-2-h2-1">The Magic Behind AI Image Generation</h2>
+                <p data-translate="blog-post-2-p1">Have you ever wondered how AI can transform a simple text description into a stunning, photorealistic image? The process is both fascinating and complex, involving cutting-edge machine learning techniques that have revolutionized digital art creation.</p>
+                
+                <p data-translate="blog-post-2-p2">AI image generators like <strong>DALL-E, Midjourney, and Stable Diffusion</strong> represent some of the most advanced applications of artificial intelligence today. But how exactly do they work?</p>
+
+                <h2 data-translate="blog-post-2-h2-2">The Foundation: Neural Networks</h2>
+                <p data-translate="blog-post-2-p3">At the heart of every AI image generator lies a <strong>neural network</strong> - a computational model inspired by the human brain. These networks consist of millions, sometimes billions, of interconnected nodes that process information in layers.</p>
+
+                <h3 data-translate="blog-post-2-h3-1">Training Process</h3>
+                <p data-translate="blog-post-2-p4">AI image generators are trained on massive datasets containing millions of image-text pairs. During training, the AI learns to:</p>
+                <ul>
+                    <li data-translate="blog-post-2-li1">Associate text descriptions with visual elements</li>
+                    <li data-translate="blog-post-2-li2">Understand spatial relationships and composition</li>
+                    <li data-translate="blog-post-2-li3">Recognize artistic styles and techniques</li>
+                    <li data-translate="blog-post-2-li4">Generate coherent visual representations</li>
+                </ul>
+
+                <h2 data-translate="blog-post-2-h2-3">Diffusion Models: The Current Standard</h2>
+                <p data-translate="blog-post-2-p5">Most modern AI image generators use <strong>diffusion models</strong>, which work by gradually transforming random noise into coherent images through a process called denoising.</p>
+
+                <h3 data-translate="blog-post-2-h3-2">The Diffusion Process</h3>
+                <ol>
+                    <li data-translate="blog-post-2-ol1"><strong>Noise Addition:</strong> Start with pure random noise</li>
+                    <li data-translate="blog-post-2-ol2"><strong>Iterative Denoising:</strong> Gradually remove noise while adding structure</li>
+                    <li data-translate="blog-post-2-ol3"><strong>Text Guidance:</strong> Use text prompts to guide the generation process</li>
+                    <li data-translate="blog-post-2-ol4"><strong>Final Image:</strong> Result in a coherent, detailed image</li>
+                </ol>
+
+                <blockquote data-translate="blog-post-2-quote1">"Think of it like a sculptor working with a block of marble - the AI starts with chaos and gradually reveals the image hidden within."</blockquote>
+
+                <h2 data-translate="blog-post-2-h2-4">Key Components of AI Image Generation</h2>
+                
+                <h3 data-translate="blog-post-2-h3-3">1. Text Encoder</h3>
+                <p data-translate="blog-post-2-p6">The text encoder converts your written prompt into a numerical representation that the AI can understand. This involves:</p>
+                <ul>
+                    <li data-translate="blog-post-2-li5">Tokenization (breaking text into smaller units)</li>
+                    <li data-translate="blog-post-2-li6">Embedding (converting tokens to numbers)</li>
+                    <li data-translate="blog-post-2-li7">Contextual understanding (understanding relationships between words)</li>
+                </ul>
+
+                <h3 data-translate="blog-post-2-h3-4">2. U-Net Architecture</h3>
+                <p data-translate="blog-post-2-p7">The U-Net is the core neural network that performs the actual image generation. It's designed to:</p>
+                <ul>
+                    <li data-translate="blog-post-2-li8">Process images at multiple resolutions</li>
+                    <li data-translate="blog-post-2-li9">Maintain spatial coherence</li>
+                    <li data-translate="blog-post-2-li10">Integrate text guidance effectively</li>
+                </ul>
+
+                <h3 data-translate="blog-post-2-h3-5">3. VAE (Variational Autoencoder)</h3>
+                <p data-translate="blog-post-2-p8">The VAE handles the conversion between the high-dimensional image space and a more manageable latent space, making the generation process more efficient.</p>
+
+                <h2 data-translate="blog-post-2-h2-5">Popular AI Image Generators</h2>
+                
+                <h3 data-translate="blog-post-2-h3-6">DALL-E 3</h3>
+                <p data-translate="blog-post-2-p9">Developed by OpenAI, DALL-E 3 excels at understanding complex prompts and generating highly detailed, creative images. It's particularly good at:</p>
+                <ul>
+                    <li data-translate="blog-post-2-li11">Following complex instructions</li>
+                    <li data-translate="blog-post-2-li12">Generating creative and artistic content</li>
+                    <li data-translate="blog-post-2-li13">Understanding context and relationships</li>
+                </ul>
+
+                <h3 data-translate="blog-post-2-h3-7">Midjourney</h3>
+                <p data-translate="blog-post-2-p10">Known for its artistic and aesthetic quality, Midjourney produces images with a distinctive style that's often described as more "painterly" or artistic.</p>
+
+                <h3 data-translate="blog-post-2-h3-8">Stable Diffusion</h3>
+                <p data-translate="blog-post-2-p11">An open-source model that offers flexibility and customization. Users can fine-tune it for specific styles or use cases.</p>
+
+                <h2 data-translate="blog-post-2-h2-6">Current Limitations</h2>
+                <p data-translate="blog-post-2-p12">While AI image generators are incredibly powerful, they still have several limitations:</p>
+                
+                <h3 data-translate="blog-post-2-h3-9">Technical Limitations</h3>
+                <ul>
+                    <li data-translate="blog-post-2-li14">Difficulty with precise text rendering</li>
+                    <li data-translate="blog-post-2-li15">Challenges with complex spatial relationships</li>
+                    <li data-translate="blog-post-2-li16">Inconsistency in generating the same subject multiple times</li>
+                    <li data-translate="blog-post-2-li17">Limited understanding of physics and anatomy</li>
+                </ul>
+
+                <h3 data-translate="blog-post-2-h3-10">Ethical Considerations</h3>
+                <ul>
+                    <li data-translate="blog-post-2-li18">Copyright and intellectual property concerns</li>
+                    <li data-translate="blog-post-2-li19">Potential for creating misleading or harmful content</li>
+                    <li data-translate="blog-post-2-li20">Impact on traditional artists and creators</li>
+                </ul>
+
+                <h2 data-translate="blog-post-2-h2-7">The Future of AI Image Generation</h2>
+                <p data-translate="blog-post-2-p13">The field is rapidly evolving, with new developments including:</p>
+                <ul>
+                    <li data-translate="blog-post-2-li21">Better text understanding and rendering</li>
+                    <li data-translate="blog-post-2-li22">Improved consistency and control</li>
+                    <li data-translate="blog-post-2-li23">Real-time generation capabilities</li>
+                    <li data-translate="blog-post-2-li24">Integration with video and 3D generation</li>
+                </ul>
+
+                <h2 data-translate="blog-post-2-h2-8">Conclusion</h2>
+                <p data-translate="blog-post-2-p14">AI image generation represents a remarkable fusion of computer science, machine learning, and creative expression. While the technology is still evolving, it has already democratized visual creation and opened up new possibilities for artists, designers, and content creators worldwide.</p>
+                
+                <p data-translate="blog-post-2-p15">Understanding how these systems work helps us appreciate both their capabilities and limitations, enabling us to use them more effectively and responsibly in our creative endeavors.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <a href="https://www.imagetoprompt.app/" class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                            <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 mb-4" data-translate="footer-description">Transform your images into detailed prompts for AI art generation. Create stunning visuals with our advanced image-to-prompt technology.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-nav">Navigation</h3>
+                    <div class="space-y-2">
+                        <a href="index.html#main-feature" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-image-prompt">Image Prompt</a>
+                        <a href="index.html#inspiration" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-inspiration">Inspiration</a>
+                        <a href="index.html#tutorials" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
+                        <a href="index.html#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-evaluation">Evaluation</a>
+                        <a href="index.html#assistance" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-assistance">Assistance</a>
+                        <a href="blog.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-blog">Blog</a>
+                    </div>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-legal">Legal</h3>
+                    <div class="space-y-2">
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-privacy">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-terms">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400" data-translate="footer-copyright">© 2025 Image to Prompt Generator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/languages.js"></script>
+    <script>
+        // Language functionality
+        let currentLanguage = 'en';
+        
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.getElementById('languageBtn');
+            const langNames = {
+                'en': '🇺🇸 EN',
+                'es': '🇪🇸 ES',
+                'de': '🇩🇪 DE',
+                'fr': '🇫🇷 FR',
+                'pt': '🇵🇹 PT',
+                'zh-cn': '🇨🇳 中文',
+                'zh-tw': '🇹🇼 中文',
+                'ar': '🇸🇦 عربي',
+                'ru': '🇷🇺 RU',
+                'ja': '🇯🇵 日本語',
+                'ko': '🇰🇷 한국어'
+            };
+            langBtn.querySelector('span').textContent = langNames[lang] || '🇺🇸 EN';
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize with English
+            updateLanguage('en');
+            
+            // Language dropdown functionality
+            document.getElementById('languageBtn').addEventListener('click', function() {
+                const dropdown = document.getElementById('languageDropdown');
+                dropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                const dropdown = document.getElementById('languageDropdown');
+                const button = document.getElementById('languageBtn');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+            
+            // Language option clicks
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    updateLanguage(lang);
+                    document.getElementById('languageDropdown').classList.add('hidden');
+                });
+            });
+            
+            // Mobile menu functionality
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

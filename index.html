@@ -426,6 +426,8 @@
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
                     <a href="#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-section="assistance" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors" data-translate="nav-case">Case</a>
                 </div>
 
                 <!-- Language Selector -->
@@ -473,10 +475,23 @@
                     <a href="#tutorials" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="tutorials" data-translate="nav-tutorials">Tutorials</a>
                     <a href="#evaluation" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="evaluation" data-translate="nav-evaluation">Evaluation</a>
                     <a href="#assistance" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-section="assistance" data-translate="nav-assistance">Assistance</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-blog">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2" data-translate="nav-case">Case</a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="pt-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-orange-400 hover:text-orange-300 transition-colors" data-translate="breadcrumb-home">Home</a>
+                <span class="text-gray-500">/</span>
+                <span class="text-gray-300" data-translate="breadcrumb-home">Home</span>
+            </nav>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="pt-32 hero-section bg-gradient-to-b from-gray-900 to-gray-800 relative" style="background-image: url('assets/images/image-to-prompt.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -945,10 +960,66 @@
         </div>
     </section>
 
+    <!-- Related Resources Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="container-max-width mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4" data-translate="related-resources-title">Explore More Resources</h2>
+                <p class="text-lg text-gray-400" data-translate="related-resources-desc">Discover tutorials, case studies, and expert insights to enhance your AI art creation journey.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Blog Section -->
+                <div class="bg-gray-900 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white" data-translate="related-blog-title">AI Art Blog</h3>
+                            <p class="text-gray-400 text-sm" data-translate="related-blog-desc">Expert tutorials and insights</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4" data-translate="related-blog-content">Learn advanced prompt engineering techniques, discover new AI art tools, and stay updated with the latest trends in AI-generated art.</p>
+                    <a href="blog.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium">
+                        <span data-translate="related-blog-link">Read Articles</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Case Studies Section -->
+                <div class="bg-gray-900 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white" data-translate="related-case-title">Case Studies</h3>
+                            <p class="text-gray-400 text-sm" data-translate="related-case-desc">Real-world examples</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4" data-translate="related-case-content">Explore detailed case studies showing how our AI transforms various images into high-quality prompts for different art styles and genres.</p>
+                    <a href="case.html" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium">
+                        <span data-translate="related-case-link">View Cases</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer-section bg-gray-900 border-t border-gray-800">
         <div class="container-max-width mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <!-- Logo and Name -->
                 <div>
                     <div class="flex items-center mb-4">
@@ -957,7 +1028,11 @@
                             <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
                         </a>
                     </div>
-                    <p class="text-gray-400" data-translate="footer-desc">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                    <p class="text-gray-400 mb-4" data-translate="footer-desc">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                    <div class="flex space-x-4">
+                        <a href="index.html#main-feature" class="text-orange-400 hover:text-orange-300 transition-colors font-medium" data-translate="footer-try-now">Try Now</a>
+                        <a href="case.html" class="text-orange-400 hover:text-orange-300 transition-colors font-medium" data-translate="footer-view-cases">View Cases</a>
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->
@@ -972,12 +1047,26 @@
                     </div>
                 </div>
 
+                <!-- Resources Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-resources">Resources</h3>
+                    <div class="space-y-2">
+                        <a href="blog.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-blog">Blog</a>
+                        <a href="case.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-case">Case Studies</a>
+                        <a href="blog-post-1.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-tutorials">Tutorials</a>
+                        <a href="blog-post-2.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-guides">Guides</a>
+                        <a href="blog-post-3.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-faq">FAQ</a>
+                    </div>
+                </div>
+
                 <!-- Legal Links -->
                 <div>
-                    <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-translate="footer-legal">Legal</h3>
                     <div class="space-y-2">
-                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Privacy Policy</a>
-                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Terms and Conditions</a>
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-privacy">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-terms">Terms and Conditions</a>
+                        <a href="index.html#assistance" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-support">Support</a>
+                        <a href="index.html#evaluation" class="block text-gray-400 hover:text-orange-400 transition-colors" data-translate="footer-contact">Contact</a>
                     </div>
                 </div>
             </div>
