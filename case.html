@@ -31,28 +31,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // 配置 Tailwind CSS 并抑制生产环境警告
-        tailwind.config = {
-            theme: {
-                extend: {}
-            }
-        };
-        
-        // 抑制 Tailwind CSS 生产环境警告
-        const originalWarn = console.warn;
-        console.warn = function(...args) {
-            if (args[0] && args[0].includes && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
-                return; // 忽略 Tailwind CSS 生产环境警告
-            }
-            originalWarn.apply(console, args);
-        };
-    </script>
+    <!-- 本地Tailwind CSS，避免CDN重定向问题 -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    
+    <!-- 优化的Google Fonts加载 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400&display=swap" rel="stylesheet">
     
     <!-- Custom Styles -->
     <style>

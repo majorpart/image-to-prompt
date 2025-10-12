@@ -1,9 +1,24 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /js/
+Allow: /api/
+
+# 禁止抓取广告和跟踪脚本（这些是正常的）
+Disallow: /ads/
+Disallow: /*.ads
+Disallow: /tracking/
 
 # Sitemaps
 Sitemap: https://imagetoprompt.app/sitemap.xml
 Sitemap: https://imagetoprompt.app/image-sitemap.xml
 
-# Crawl-delay for better server performance
+# 优化爬取频率
 Crawl-delay: 1
+
+# 特别允许Googlebot访问所有重要资源
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Allow: /js/
+Allow: /api/
