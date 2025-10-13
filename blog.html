@@ -28,8 +28,27 @@
     <meta name="twitter:description" content="AI art tutorials and tips for better prompt generation.">
     <meta name="twitter:image" content="https://imagetoprompt.app/assets/images/imagetoprompt.png">
     
-    <!-- 本地Tailwind CSS，避免CDN重定向问题 -->
-    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg': '#1a1a1a',
+                        'secondary-bg': '#2a2a2a',
+                        'text-primary': '#ffffff',
+                        'text-secondary': '#a0a0a0',
+                        'accent-orange': '#ff6b35',
+                        'accent-hover': '#e55a2b'
+                    },
+                    fontFamily: {
+                        'slabo': ['Slabo 27px', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- 优化的Google Fonts加载 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

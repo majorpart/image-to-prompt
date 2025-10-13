@@ -31,8 +31,27 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
     
-    <!-- 本地Tailwind CSS，避免CDN重定向问题 -->
-    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg': '#1a1a1a',
+                        'secondary-bg': '#2a2a2a',
+                        'text-primary': '#ffffff',
+                        'text-secondary': '#a0a0a0',
+                        'accent-orange': '#ff6b35',
+                        'accent-hover': '#e55a2b'
+                    },
+                    fontFamily: {
+                        'slabo': ['Slabo 27px', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- 优化的Google Fonts加载 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +117,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-gray-900 text-white min-h-screen font-slabo bg-primary-bg text-text-primary">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

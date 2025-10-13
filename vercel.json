@@ -58,7 +58,7 @@
     { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" },
     { "source": "/image-sitemap.xml", "destination": "/public/image-sitemap.xml" },
     {
-      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html|robots\\.txt|sitemap\\.xml|image-sitemap\\.xml).*)",
+      "source": "/((?!api|favicon\\.ico|privacy-policy\\.html|terms-and-conditions\\.html|case\\.html|blog\\.html|blog-post-1\\.html|blog-post-2\\.html|blog-post-3\\.html|robots\\.txt|sitemap\\.xml|image-sitemap\\.xml).*)",
       "destination": "/index.html"
     }
   ]
