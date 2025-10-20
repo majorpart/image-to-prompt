@@ -1,3 +1,8 @@
+## Demo
+
+Visit the live demo:https://www.imagetoprompt.app/
+
+
 # Image to Prompt Generator
 
 A free, unlimited AI image to prompt generator that converts images into detailed prompts for Stable Diffusion and Midjourney.
@@ -11,9 +16,6 @@ A free, unlimited AI image to prompt generator that converts images into detaile
 - 🚀 **Fast Processing**: Optimized for quick prompt generation
 - 🔒 **Privacy-Focused**: Images are processed temporarily and immediately deleted
 
-## Demo
-
-Visit the live demo: [https://your-vercel-app.vercel.app](https://your-vercel-app.vercel.app)
 
 ## Supported Languages
 
