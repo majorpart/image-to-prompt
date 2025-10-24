@@ -4,94 +4,99 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<!-- Updated sitemap with unified navigation structure -->
 
-
+<!-- Main Pages -->
 <url>
   <loc>https://www.imagetoprompt.app/</loc>
-  <lastmod>2025-10-12T02:25:53+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://www.imagetoprompt.app/index.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+
+<!-- Navigation Pages -->
+<url>
   <loc>https://www.imagetoprompt.app/blog.html</loc>
-  <lastmod>2025-10-12T02:25:53+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.90</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/case.html</loc>
-  <lastmod>2025-10-12T02:25:54+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.90</priority>
 </url>
 <url>
-  <loc>https://www.imagetoprompt.app/index.html</loc>
-  <lastmod>2025-10-12T02:25:54+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://www.imagetoprompt.app/about.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.90</priority>
 </url>
+<url>
+  <loc>https://www.imagetoprompt.app/contact.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://www.imagetoprompt.app/faq.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+
+<!-- Blog Posts -->
 <url>
   <loc>https://www.imagetoprompt.app/how-to-write-effective-image-prompts.html</loc>
-  <lastmod>2025-10-12T02:25:54+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/how-ai-image-generators-work.html</loc>
-  <lastmod>2025-10-12T02:25:54+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/what-is-an-image-prompt-comprehensive-guide.html</loc>
-  <lastmod>2025-10-12T02:25:54+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.imagetoprompt.app/privacy-policy.html</loc>
-  <lastmod>2025-10-12T02:25:55+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.imagetoprompt.app/terms-and-conditions.html</loc>
-  <lastmod>2025-10-12T02:25:55+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.imagetoprompt.app/about.html</loc>
-  <lastmod>2025-01-21T13:30:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.imagetoprompt.app/contact.html</loc>
-  <lastmod>2025-01-21T13:30:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.imagetoprompt.app/faq.html</loc>
-  <lastmod>2025-01-21T13:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/ai-art-prompt-engineering-complete-guide.html</loc>
-  <lastmod>2025-01-21T13:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/how-to-generate-prompt-from-image.html</loc>
-  <lastmod>2025-01-24T09:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/how-to-prompt-ai-to-create-image.html</loc>
-  <lastmod>2025-01-24T09:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/how-to-use-ai-image-generator-prompts.html</loc>
-  <lastmod>2025-01-24T09:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.imagetoprompt.app/how-to-write-ai-prompts-for-images.html</loc>
-  <lastmod>2025-01-24T09:30:00+00:00</lastmod>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
+<!-- Legal Pages -->
+<url>
+  <loc>https://www.imagetoprompt.app/privacy-policy.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://www.imagetoprompt.app/terms-and-conditions.html</loc>
+  <lastmod>2025-10-24T13:17:00+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
 
 </urlset>
