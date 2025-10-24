@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Image to Prompt Generator</title>
+    <meta name="description" content="Learn about Image to Prompt Generator - the free AI tool that converts images to detailed prompts for Stable Diffusion and Midjourney.">
+    <meta name="keywords" content="about us, image to prompt, AI tool, team, mission">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imagetoprompt.app/about.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us - Image to Prompt Generator">
+    <meta property="og:description" content="Learn about our mission to make AI art creation accessible to everyone.">
+    <meta property="og:url" content="https://imagetoprompt.app/about.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg': '#1a1a1a',
+                        'secondary-bg': '#2a2a2a',
+                        'text-primary': '#ffffff',
+                        'text-secondary': '#a0a0a0',
+                        'accent-orange': '#ff6b35',
+                        'accent-hover': '#e55a2b'
+                    },
+                    fontFamily: {
+                        'slabo': ['Slabo 27px', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 优化的Google Fonts加载 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
+    <style>
+        /* Custom styles for dark theme and animations */
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-orange: #ff6b35;
+            --accent-hover: #e55a2b;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Slabo 27px', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography improvements for Slabo 27px */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .font-bold {
+            font-weight: 400;
+        }
+        
+        .font-semibold {
+            font-weight: 400;
+        }
+        
+        .font-medium {
+            font-weight: 400;
+        }
+        
+        /* Button and form typography */
+        button, input, select, textarea {
+            font-family: inherit;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Navigation typography */
+        .nav-link {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-orange), #f7931e);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--accent-hover), #d8810f);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero section styling */
+        .hero-section {
+            padding: 6rem 2rem 2rem;
+        }
+
+        .container-max-width {
+            max-width: 1200px;
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-primary-bg text-text-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-16 relative">
+                <!-- Logo -->
+                <div class="absolute left-0 flex items-center">
+                    <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links - Centered -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Home</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Case</a>
+                    <a href="about.html" class="nav-link text-orange-400 transition-colors">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Contact</a>
+                    <a href="faq.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">FAQ</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden absolute right-0">
+                    <button id="mobileMenuBtn" class="text-white hover:text-orange-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Home</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Case</a>
+                    <a href="about.html" class="nav-link text-orange-400 transition-colors py-2">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Contact</a>
+                    <a href="faq.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 hero-section bg-gradient-to-b from-gray-900 to-gray-800 relative">
+        <div class="container-max-width mx-auto text-center fade-in relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8">
+                <span class="text-white">About </span>
+                <span class="gradient-text">Image to Prompt</span>
+                <span class="text-white"> Generator</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-300 mb-12">Making AI art creation accessible to everyone, one prompt at a time.</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-primary-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Our Mission</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        We believe that AI art creation should be accessible to everyone, regardless of technical expertise. 
+                        Our mission is to bridge the gap between creative vision and AI-generated art by providing 
+                        intuitive tools that convert images into detailed, effective prompts.
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        Whether you're a professional artist, content creator, or just someone who loves to experiment 
+                        with AI art, our tools are designed to make your creative process smoother and more effective.
+                    </p>
+                </div>
+                <div class="bg-secondary-bg rounded-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">Why We Built This</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-orange-400 mr-3">✓</span>
+                            <span>Democratize AI art creation for everyone</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 mr-3">✓</span>
+                            <span>Provide high-quality, accurate prompt generation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 mr-3">✓</span>
+                            <span>Support multiple AI platforms and models</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 mr-3">✓</span>
+                            <span>Offer free, unlimited access to our tools</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12">What Makes Us Different</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-primary-bg rounded-lg p-6">
+                    <div class="text-orange-400 text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-semibold mb-3">Accuracy</h3>
+                    <p class="text-gray-300">
+                        Our AI models are specifically trained to generate highly accurate and detailed prompts 
+                        that produce the best results across different AI art platforms.
+                    </p>
+                </div>
+                <div class="bg-primary-bg rounded-lg p-6">
+                    <div class="text-orange-400 text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-semibold mb-3">Global Access</h3>
+                    <p class="text-gray-300">
+                        We support 11 different languages, making our tools accessible to creators 
+                        worldwide, regardless of their native language.
+                    </p>
+                </div>
+                <div class="bg-primary-bg rounded-lg p-6">
+                    <div class="text-orange-400 text-4xl mb-4">🆓</div>
+                    <h3 class="text-xl font-semibold mb-3">Always Free</h3>
+                    <p class="text-gray-300">
+                        We believe in keeping AI art tools accessible. Our platform is completely free 
+                        with no hidden costs or premium tiers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="py-16 bg-primary-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12">Powered by Advanced AI</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">THUDM/GLM-4.1V-9B-Thinking Model</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        We use state-of-the-art vision-language models to analyze your images and generate 
+                        comprehensive prompts. Our AI understands composition, style, lighting, and artistic 
+                        elements to create prompts that truly capture your image's essence.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-orange-400 mr-3">•</span>
+                            <span class="text-gray-300">Advanced computer vision capabilities</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-orange-400 mr-3">•</span>
+                            <span class="text-gray-300">Natural language processing</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-orange-400 mr-3">•</span>
+                            <span class="text-gray-300">Continuous model improvements</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-secondary-bg rounded-lg p-8">
+                    <h4 class="text-xl font-semibold mb-4">Supported Platforms</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-primary-bg rounded">
+                            <div class="text-2xl mb-2">🎨</div>
+                            <div class="text-sm">Midjourney</div>
+                        </div>
+                        <div class="text-center p-4 bg-primary-bg rounded">
+                            <div class="text-2xl mb-2">⚡</div>
+                            <div class="text-sm">Stable Diffusion</div>
+                        </div>
+                        <div class="text-center p-4 bg-primary-bg rounded">
+                            <div class="text-2xl mb-2">🤖</div>
+                            <div class="text-sm">DALL-E</div>
+                        </div>
+                        <div class="text-center p-4 bg-primary-bg rounded">
+                            <div class="text-2xl mb-2">✨</div>
+                            <div class="text-sm">Flux</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-6">Get in Touch</h2>
+            <p class="text-lg text-gray-300 mb-8">
+                Have questions, suggestions, or feedback? We'd love to hear from you!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:support@imagetoprompt.app" 
+                   class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg transition-colors">
+                    Contact Us
+                </a>
+                <a href="index.html" 
+                   class="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-3 rounded-lg transition-colors">
+                    Try Our Tool
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section bg-gray-900 border-t border-gray-800">
+        <div class="container-max-width mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and Name -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                            <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 mb-4">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                    <div class="flex space-x-4">
+                        <a href="index.html#main-feature" class="text-orange-400 hover:text-orange-300 transition-colors font-medium">Try Now</a>
+                        <a href="case.html" class="text-orange-400 hover:text-orange-300 transition-colors font-medium">View Cases</a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Navigation</h3>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Home</a>
+                        <a href="blog.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Blog</a>
+                        <a href="case.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Case</a>
+                        <a href="about.html" class="block text-gray-400 hover:text-orange-400 transition-colors">About</a>
+                        <a href="contact.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Contact</a>
+                        <a href="faq.html" class="block text-gray-400 hover:text-orange-400 transition-colors">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Resources Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Resources</h3>
+                    <div class="space-y-2">
+                        <a href="blog-post-1.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Tutorials</a>
+                        <a href="blog-post-2.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Guides</a>
+                        <a href="blog-post-3.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Tips</a>
+                        <a href="blog-post-4.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Best Practices</a>
+                    </div>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+                    <div class="space-y-2">
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Terms and Conditions</a>
+                        <a href="contact.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Support</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2025 Image to Prompt Generator. All rights reserved.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                    <p class="text-gray-400">
+                        Contact: <a href="mailto:support@imagetoprompt.app" class="text-orange-400 hover:text-orange-300">support@imagetoprompt.app</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

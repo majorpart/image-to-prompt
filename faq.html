@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Image to Prompt Generator</title>
+    <meta name="description" content="Frequently asked questions about Image to Prompt Generator. Find answers to common questions about our AI image to prompt tool.">
+    <meta name="keywords" content="FAQ, help, support, image to prompt, questions, answers">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imagetoprompt.app/faq.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="FAQ - Image to Prompt Generator">
+    <meta property="og:description" content="Find answers to common questions about our AI image to prompt tool.">
+    <meta property="og:url" content="https://imagetoprompt.app/faq.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg': '#1a1a1a',
+                        'secondary-bg': '#2a2a2a',
+                        'text-primary': '#ffffff',
+                        'text-secondary': '#a0a0a0',
+                        'accent-orange': '#ff6b35',
+                        'accent-hover': '#e55a2b'
+                    },
+                    fontFamily: {
+                        'slabo': ['Slabo 27px', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 优化的Google Fonts加载 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/imagetoprompt.png">
+    <style>
+        /* Custom styles for dark theme and animations */
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-orange: #ff6b35;
+            --accent-hover: #e55a2b;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Slabo 27px', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography improvements for Slabo 27px */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .font-bold {
+            font-weight: 400;
+        }
+        
+        .font-semibold {
+            font-weight: 400;
+        }
+        
+        .font-medium {
+            font-weight: 400;
+        }
+        
+        /* Button and form typography */
+        button, input, select, textarea {
+            font-family: inherit;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Navigation typography */
+        .nav-link {
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-orange), #f7931e);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--accent-hover), #d8810f);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero section styling */
+        .hero-section {
+            padding: 6rem 2rem 2rem;
+        }
+
+        .container-max-width {
+            max-width: 1200px;
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-primary-bg text-text-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-16 relative">
+                <!-- Logo -->
+                <div class="absolute left-0 flex items-center">
+                    <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links - Centered -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Home</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Case</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Contact</a>
+                    <a href="faq.html" class="nav-link text-orange-400 transition-colors">FAQ</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden absolute right-0">
+                    <button id="mobileMenuBtn" class="text-white hover:text-orange-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Home</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Case</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors py-2">Contact</a>
+                    <a href="faq.html" class="nav-link text-orange-400 transition-colors py-2">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 hero-section bg-gradient-to-b from-gray-900 to-gray-800 relative">
+        <div class="container-max-width mx-auto text-center fade-in relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8">
+                <span class="text-white">Frequently Asked </span>
+                <span class="gradient-text">Questions</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-300 mb-12">Find answers to common questions about our AI image to prompt tool.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="py-16 bg-primary-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-8">
+                
+                <!-- General Questions -->
+                <div class="bg-secondary-bg rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-orange-400">General Questions</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">What is Image to Prompt Generator?</h3>
+                            <p class="text-gray-300">
+                                Image to Prompt Generator is a free AI tool that converts images into detailed, 
+                                descriptive prompts that can be used with AI art generators like Midjourney, 
+                                Stable Diffusion, DALL-E, and Flux. Simply upload an image, and our AI will 
+                                analyze it to create a comprehensive prompt.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">How does the tool work?</h3>
+                            <p class="text-gray-300">
+                                Our tool uses advanced AI vision models (THUDM/GLM-4.1V-9B-Thinking) to analyze 
+                                your uploaded image. The AI identifies visual elements like composition, style, 
+                                lighting, colors, and subjects, then generates a detailed text prompt that 
+                                describes these elements in a way that AI art generators can understand.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Is the tool really free?</h3>
+                            <p class="text-gray-300">
+                                Yes, completely free! There are no hidden costs, no premium tiers, and no 
+                                usage limits. You can generate as many prompts as you need without any restrictions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="bg-secondary-bg rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-orange-400">Technical Questions</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">What image formats are supported?</h3>
+                            <p class="text-gray-300">
+                                We support PNG, JPG, and WEBP formats. For best results, use high-quality images 
+                                under 4MB in size. Higher resolution images generally produce more detailed prompts.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">How accurate are the generated prompts?</h3>
+                            <p class="text-gray-300">
+                                Our AI model is specifically trained for prompt generation and achieves high 
+                                accuracy in identifying visual elements. However, you may want to fine-tune the 
+                                generated prompts based on your specific needs and the AI art generator you're using.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Which AI art platforms are supported?</h3>
+                            <p class="text-gray-300">
+                                Our prompts work with all major AI art generators including Midjourney, Stable 
+                                Diffusion, DALL-E, Flux, and others. The generated prompts are designed to be 
+                                universally compatible across different platforms.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Do I need to create an account?</h3>
+                            <p class="text-gray-300">
+                                No account required! Simply visit the website, upload your image, and get your 
+                                prompt instantly. No registration, login, or personal information needed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security -->
+                <div class="bg-secondary-bg rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-orange-400">Privacy & Security</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Is my image data secure?</h3>
+                            <p class="text-gray-300">
+                                Absolutely. We prioritize your privacy and security. Images are processed 
+                                temporarily and immediately deleted after prompt generation. We don't store 
+                                your images, personal data, or generated prompts on our servers.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Can I use the generated prompts commercially?</h3>
+                            <p class="text-gray-300">
+                                Yes, all generated prompts are yours to use freely for any purpose, including 
+                                commercial projects, personal artwork, or client work. There are no usage 
+                                restrictions or licensing fees.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Do you track my usage?</h3>
+                            <p class="text-gray-300">
+                                We only collect basic analytics to improve our service (like page views 
+                                and general usage patterns). We don't track individual users or their 
+                                specific image uploads.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Support -->
+                <div class="bg-secondary-bg rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-orange-400">Language Support</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">What languages are supported?</h3>
+                            <p class="text-gray-300">
+                                We support 11 languages: English, Chinese (Simplified & Traditional), 
+                                Spanish, German, French, Portuguese, Arabic, Russian, Japanese, and Korean. 
+                                You can select your preferred language before generating prompts.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Can I get prompts in multiple languages?</h3>
+                            <p class="text-gray-300">
+                                Currently, you can select one language per generation. If you need prompts 
+                                in multiple languages, simply run the tool multiple times with different 
+                                language selections.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Troubleshooting -->
+                <div class="bg-secondary-bg rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-orange-400">Troubleshooting</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">The tool isn't working. What should I do?</h3>
+                            <p class="text-gray-300">
+                                Try refreshing the page and uploading your image again. Make sure your image 
+                                is in a supported format (PNG, JPG, WEBP) and under 4MB. If the problem 
+                                persists, contact us at support@imagetoprompt.app.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">The generated prompt seems inaccurate. Why?</h3>
+                            <p class="text-gray-300">
+                                AI analysis can sometimes miss subtle details or interpret images differently. 
+                                Try using higher quality images with clear subjects and good lighting. You 
+                                can also manually edit the generated prompt to better match your vision.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Can I suggest improvements or report bugs?</h3>
+                            <p class="text-gray-300">
+                                Absolutely! We welcome feedback and suggestions. Please contact us at 
+                                support@imagetoprompt.app with your suggestions or bug reports. Your 
+                                input helps us improve the tool for everyone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Still Have Questions?</h2>
+            <p class="text-lg text-gray-300 mb-8">
+                Can't find the answer you're looking for? We're here to help!
+            </p>
+            <a href="contact.html" 
+               class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                Contact Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section bg-gray-900 border-t border-gray-800">
+        <div class="container-max-width mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and Name -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                            <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 mb-4">Free, unlimited AI image prompt generator powered by advanced AI models.</p>
+                    <div class="flex space-x-4">
+                        <a href="index.html#main-feature" class="text-orange-400 hover:text-orange-300 transition-colors font-medium">Try Now</a>
+                        <a href="case.html" class="text-orange-400 hover:text-orange-300 transition-colors font-medium">View Cases</a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Navigation</h3>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Home</a>
+                        <a href="blog.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Blog</a>
+                        <a href="case.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Case</a>
+                        <a href="about.html" class="block text-gray-400 hover:text-orange-400 transition-colors">About</a>
+                        <a href="contact.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Contact</a>
+                        <a href="faq.html" class="block text-gray-400 hover:text-orange-400 transition-colors">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Resources Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Resources</h3>
+                    <div class="space-y-2">
+                        <a href="blog-post-1.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Tutorials</a>
+                        <a href="blog-post-2.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Guides</a>
+                        <a href="blog-post-3.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Tips</a>
+                        <a href="blog-post-4.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Best Practices</a>
+                    </div>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+                    <div class="space-y-2">
+                        <a href="privacy-policy.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Terms and Conditions</a>
+                        <a href="contact.html" class="block text-gray-400 hover:text-orange-400 transition-colors">Support</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2025 Image to Prompt Generator. All rights reserved.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                    <p class="text-gray-400">
+                        Contact: <a href="mailto:support@imagetoprompt.app" class="text-orange-400 hover:text-orange-300">support@imagetoprompt.app</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
