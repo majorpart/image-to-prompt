@@ -122,21 +122,23 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex items-center justify-center h-16 relative">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3">
-                    <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                <div class="absolute left-0 flex items-center">
+                    <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="assets/images/imagetoprompt.png" alt="Image to Prompt" class="h-8 w-auto mr-3" loading="lazy">
+                        <span class="text-xl font-bold" style="color: #ff6b35;">Imagetoprompt.app</span>
+                    </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links - Centered -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-orange-400 transition-colors">Home</a>
-                    <a href="blog.html" class="text-gray-300 hover:text-orange-400 transition-colors">Blog</a>
-                    <a href="case.html" class="text-gray-300 hover:text-orange-400 transition-colors">Case</a>
-                    <a href="about.html" class="text-gray-300 hover:text-orange-400 transition-colors">About</a>
-                    <a href="contact.html" class="text-gray-300 hover:text-orange-400 transition-colors">Contact</a>
-                    <a href="faq.html" class="text-gray-300 hover:text-orange-400 transition-colors">FAQ</a>
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Home</a>
+                    <a href="blog.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Blog</a>
+                    <a href="case.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Case</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">Contact</a>
+                    <a href="faq.html" class="nav-link text-gray-300 hover:text-orange-400 transition-colors">FAQ</a>
                 </div>
             </div>
         </div>
