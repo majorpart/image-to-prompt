@@ -62,6 +62,12 @@
       "destination": "https://imagetoprompt.app/$1",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog.html",
+      "destination": "/blog"
+    }
   ]
 }
 

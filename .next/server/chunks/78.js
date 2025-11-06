@@ -1,1 +1,0 @@
-"use strict";exports.id=78,exports.ids=[78],exports.modules={78:(e,t,n)=>{async function r(){try{let e=await n.e(372).then(n.bind(n,3372));return e.PAGES||e.default?.PAGES||e}catch(e){return console.error("[Content] Error loading pages:",e.message),null}}async function s(e){let t=await r();return t&&t[e]||null}n.d(t,{getPageBySlug:()=>s})}};

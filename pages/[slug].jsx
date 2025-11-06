@@ -15,6 +15,15 @@ const BLOG_POST_SLUGS = [
 export async function getServerSideProps({ params }) {
   const { slug } = params;
   
+  // 排除已知的页面路由，这些路由应该由对应的页面文件处理
+  const reservedRoutes = ['blog', 'about', 'case', 'contact', 'faq', 'privacy-policy', 'terms-and-conditions'];
+  if (reservedRoutes.includes(slug)) {
+    // 如果是保留路由，返回 404，让对应的页面文件处理
+    return {
+      notFound: true
+    };
+  }
+  
   // 检查是否是博客文章的slug
   if (BLOG_POST_SLUGS.includes(slug)) {
     // 服务器端重定向到 /blog/[slug]

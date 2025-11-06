@@ -1,17 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/404": "pages/404.js",
-  "/api/generate-prompt": "pages/api/generate-prompt.js",
-  "/[slug]": "pages/[slug].js",
-  "/about": "pages/about.js",
-  "/case": "pages/case.js",
-  "/blog": "pages/blog.js",
-  "/blog/[slug]": "pages/blog/[slug].js",
-  "/contact": "pages/contact.js",
-  "/faq": "pages/faq.js",
-  "/privacy-policy": "pages/privacy-policy.js",
-  "/terms-and-conditions": "pages/terms-and-conditions.js",
-  "/": "pages/index.js"
-}
+{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/404":"pages/404.html","/api/generate-prompt":"pages/api/generate-prompt.js","/[slug]":"pages/[slug].js","/about":"pages/about.js","/case":"pages/case.js","/blog/[slug]":"pages/blog/[slug].js","/blog":"pages/blog.js","/faq":"pages/faq.js","/contact":"pages/contact.js","/privacy-policy":"pages/privacy-policy.js","/terms-and-conditions":"pages/terms-and-conditions.js","/":"pages/index.js"}
