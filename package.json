@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run generate-content",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
