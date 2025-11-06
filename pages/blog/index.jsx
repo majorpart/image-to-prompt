@@ -5,130 +5,55 @@ import Image from 'next/image';
 
 export async function getServerSideProps() {
   try {
-    // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
-    // 使用绝对路径确保在 Vercel serverless 环境中正确解析
-    const path = require('path');
-    const fs = require('fs');
+    // 使用动态导入，在 getServerSideProps 中动态加载生成的内容
+    // 这样可以确保 webpack 在构建时能够找到这些文件
+    const { default: pagesModule } = await import('../../lib/content/generated/pages.js');
+    const { default: postsModule } = await import('../../lib/content/generated/posts.js');
     
-    // 尝试多个可能的路径（在 Vercel serverless 环境中，优先使用 process.cwd()）
-    const possiblePagesPaths = [
-      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js'),
-      path.join(process.cwd(), 'lib', 'content', 'generated', 'pages.js')
-    ];
+    const PAGES = pagesModule?.PAGES || pagesModule;
+    const POSTS = postsModule?.POSTS || postsModule;
     
-    // 如果 __dirname 可用，也尝试使用它
-    if (typeof __dirname !== 'undefined') {
-      possiblePagesPaths.push(path.resolve(__dirname, '..', '..', 'lib', 'content', 'generated', 'pages.js'));
-    }
+    const pageData = PAGES?.blog;
     
-    const possiblePostsPaths = [
-      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js'),
-      path.join(process.cwd(), 'lib', 'content', 'generated', 'posts.js')
-    ];
+    // 检查是否有完整的HTML内容（包含导航和页脚）
+    const hasFullHtml = pageData?.html && (pageData.html.includes('<nav') || pageData.html.includes('<footer'));
     
-    // 如果 __dirname 可用，也尝试使用它
-    if (typeof __dirname !== 'undefined') {
-      possiblePostsPaths.push(path.resolve(__dirname, '..', '..', 'lib', 'content', 'generated', 'posts.js'));
-    }
-    
-    let pagesPath = null;
-    let postsPath = null;
-    
-    for (const testPath of possiblePagesPaths) {
-      if (fs.existsSync(testPath)) {
-        pagesPath = testPath;
-        break;
-      }
-    }
-    
-    for (const testPath of possiblePostsPaths) {
-      if (fs.existsSync(testPath)) {
-        postsPath = testPath;
-        break;
-      }
-    }
-    
-    // 如果文件找不到，直接返回降级内容，不要抛出错误
-    if (!pagesPath || !postsPath) {
-      console.warn('[SSR] Content files not found. Pages path:', pagesPath, 'Posts path:', postsPath);
-      console.warn('[SSR] process.cwd():', process.cwd());
-      console.warn('[SSR] __dirname:', __dirname);
-      // 返回降级内容，不要抛出错误
+    // 如果原始HTML包含完整结构，直接返回HTML内容
+    if (hasFullHtml) {
       return {
         props: {
-          posts: [],
           pageData: {
-            title: 'Blog',
-            description: 'Blog',
-            canonical: 'https://imagetoprompt.app/blog',
-            styles: ''
+            title: pageData.title || 'Blog',
+            description: pageData.description || '',
+            canonical: pageData.canonical || 'https://imagetoprompt.app/blog',
+            html: pageData.html || '',
+            styles: pageData.styles || ''
           }
         }
       };
     }
     
-    try {
-      const pagesModule = require(pagesPath);
-      const postsModule = require(postsPath);
-      
-      const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
-      const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
-      
-      const pageData = PAGES?.blog;
-      
-      // 检查是否有完整的HTML内容（包含导航和页脚）
-      const hasFullHtml = pageData?.html && (pageData.html.includes('<nav') || pageData.html.includes('<footer'));
-      
-      // 如果原始HTML包含完整结构，直接返回HTML内容
-      if (hasFullHtml) {
-        return {
-          props: {
-            pageData: {
-              title: pageData.title || 'Blog',
-              description: pageData.description || '',
-              canonical: pageData.canonical || 'https://imagetoprompt.app/blog',
-              html: pageData.html || '',
-              styles: pageData.styles || ''
-            }
-          }
-        };
+    const posts = POSTS ? Object.values(POSTS).sort((a, b) => {
+      const dateA = new Date(a.date || 0);
+      const dateB = new Date(b.date || 0);
+      return dateB - dateA;
+    }) : [];
+    
+    return {
+      props: {
+        posts,
+        pageData: {
+          title: pageData?.title || 'Blog',
+          description: pageData?.description || '',
+          canonical: pageData?.canonical || 'https://imagetoprompt.app/blog',
+          styles: pageData?.styles || ''
+        }
       }
-      
-      const posts = POSTS ? Object.values(POSTS).sort((a, b) => {
-        const dateA = new Date(a.date || 0);
-        const dateB = new Date(b.date || 0);
-        return dateB - dateA;
-      }) : [];
-      
-      return {
-        props: {
-          posts,
-          pageData: {
-            title: pageData?.title || 'Blog',
-            description: pageData?.description || '',
-            canonical: pageData?.canonical || 'https://imagetoprompt.app/blog',
-            styles: pageData?.styles || ''
-          }
-        }
-      };
-    } catch (requireError) {
-      console.error('[SSR] Error requiring content modules:', requireError.message);
-      console.error('[SSR] Error stack:', requireError.stack);
-      // 返回降级内容，不要抛出错误
-      return {
-        props: {
-          posts: [],
-          pageData: {
-            title: 'Blog',
-            description: 'Blog',
-            canonical: 'https://imagetoprompt.app/blog',
-            styles: ''
-          }
-        }
-      };
-    }
+    };
   } catch (error) {
     console.error('[SSR] Error loading blog index:', error.message);
+    console.error('[SSR] Error stack:', error.stack);
+    // 返回降级内容，不要抛出错误
     return {
       props: {
         posts: [],

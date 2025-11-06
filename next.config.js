@@ -37,12 +37,30 @@ const nextConfig = {
         path.resolve(__dirname, 'lib'),
       ];
       
-      // 确保文件系统模块在服务器端可用
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-      };
+      // 使用 webpack 的 NormalModuleReplacementPlugin 确保文件被包含
+      // 这确保生成的文件在构建时被打包到服务器 bundle
+      const fs = require('fs');
+      const generatedPagesPath = path.resolve(__dirname, 'lib', 'content', 'generated', 'pages.js');
+      const generatedPostsPath = path.resolve(__dirname, 'lib', 'content', 'generated', 'posts.js');
+      
+      // 如果文件存在，确保它们被包含在 bundle 中
+      if (fs.existsSync(generatedPagesPath)) {
+        config.plugins.push(
+          new webpack.NormalModuleReplacementPlugin(
+            /lib\/content\/generated\/pages\.js$/,
+            generatedPagesPath
+          )
+        );
+      }
+      
+      if (fs.existsSync(generatedPostsPath)) {
+        config.plugins.push(
+          new webpack.NormalModuleReplacementPlugin(
+            /lib\/content\/generated\/posts\.js$/,
+            generatedPostsPath
+          )
+        );
+      }
     }
     
     return config;
