@@ -5,11 +5,14 @@ import Image from 'next/image';
 
 export async function getServerSideProps() {
   try {
-    // 使用包装文件避免 webpack 静态分析问题
-    const { getPageBySlug } = await import('../../lib/content/pages-wrapper.js');
-    const { getPosts } = await import('../../lib/content/posts-wrapper.js');
+    // 使用动态导入（在运行时加载，文件在 prebuild 阶段已生成）
+    const pagesModule = await import('../../lib/content/generated/pages.js');
+    const postsModule = await import('../../lib/content/generated/posts.js');
     
-    const pageData = await getPageBySlug('blog');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
+    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
+    
+    const pageData = PAGES?.blog;
     
     // 检查是否有完整的HTML内容（包含导航和页脚）
     const hasFullHtml = pageData?.html && (pageData.html.includes('<nav') || pageData.html.includes('<footer'));
@@ -28,9 +31,6 @@ export async function getServerSideProps() {
         }
       };
     }
-    
-    // 否则加载文章列表用于自定义布局
-    const POSTS = await getPosts();
     
     const posts = POSTS ? Object.values(POSTS).sort((a, b) => {
       const dateA = new Date(a.date || 0);

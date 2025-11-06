@@ -1,0 +1,1 @@
+"use strict";exports.id=665,exports.ids=[665],exports.modules={3665:(t,e,n)=>{async function r(){try{let t=await n.e(265).then(n.bind(n,2265));return t.POSTS||t.default?.POSTS||t}catch(t){return console.error("[Content] Error loading posts:",t.message),null}}async function s(t){let e=await r();return e&&e[t]||null}n.d(e,{getPostBySlug:()=>s,getPosts:()=>r})}};

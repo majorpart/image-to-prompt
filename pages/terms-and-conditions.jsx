@@ -3,13 +3,15 @@ import Script from 'next/script';
 
 export async function getServerSideProps() {
   try {
-    // 使用包装文件避免 webpack 静态分析问题
-    const { getPageBySlug } = await import('../../lib/content/pages-wrapper.js');
-    const data = await getPageBySlug('terms-and-conditions');
+    // 使用动态导入（在运行时加载，文件在 prebuild 阶段已生成）
+    const pagesModule = await import('../../lib/content/generated/pages.js');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
-    if (!data) {
+    if (!PAGES || !PAGES['terms-and-conditions']) {
       throw new Error('Terms and Conditions page content not found');
     }
+    
+    const data = PAGES['terms-and-conditions'];
     
     return {
       props: {

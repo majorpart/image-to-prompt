@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -15,6 +17,7 @@ const nextConfig = {
   
   webpack: (config, { isServer }) => {
     // 确保 webpack 能够正确处理动态生成的内容文件
+    // 生成的文件在 prebuild 阶段已经存在，webpack 可以解析它们
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -22,6 +25,7 @@ const nextConfig = {
         path: false,
       };
     }
+    
     return config;
   },
   

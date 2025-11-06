@@ -1,15 +1,19 @@
 import SEOHead from '../components/SEOHead';
 import Script from 'next/script';
 
+// 直接导入生成的内容文件（prebuild 阶段已生成）
+// 注意：必须在 getServerSideProps 中动态导入，避免 webpack 静态分析问题
 export async function getServerSideProps() {
   try {
-    // 使用包装文件避免 webpack 静态分析问题
-    const { getPageBySlug } = await import('../lib/content/pages-wrapper.js');
-    const data = await getPageBySlug('home');
+    // 使用动态导入（在运行时加载，文件在 prebuild 阶段已生成）
+    const pagesModule = await import('../lib/content/generated/pages.js');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
-    if (!data) {
+    if (!PAGES || !PAGES.home) {
       throw new Error('Home page content not found in PAGES');
     }
+    
+    const data = PAGES.home;
     
     // 验证数据
     if (!data.html || data.html.trim().length === 0) {

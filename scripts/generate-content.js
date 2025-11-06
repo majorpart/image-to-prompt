@@ -209,6 +209,72 @@ export default { POSTS };
   return posts;
 }
 
+// 生成包装文件
+function generateWrapperFiles() {
+  const wrapperDir = path.join(__dirname, '..', 'lib', 'content');
+  
+  // 生成 pages-wrapper.js
+  const pagesWrapperPath = path.join(wrapperDir, 'pages-wrapper.js');
+  const pagesWrapperContent = `// 包装文件：动态导入生成的内容文件
+// 此文件由 scripts/generate-content.js 自动生成
+// DO NOT EDIT MANUALLY
+
+export async function getPages() {
+  try {
+    const pagesModule = await import('./generated/pages.js');
+    return pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
+  } catch (error) {
+    console.error('[Content] Error loading pages:', error.message);
+    return null;
+  }
+}
+
+export async function getPageBySlug(slug) {
+  const PAGES = await getPages();
+  if (!PAGES) {
+    return null;
+  }
+  return PAGES[slug] || null;
+}
+`;
+  
+  // 生成 posts-wrapper.js
+  const postsWrapperPath = path.join(wrapperDir, 'posts-wrapper.js');
+  const postsWrapperContent = `// 包装文件：动态导入生成的文章文件
+// 此文件由 scripts/generate-content.js 自动生成
+// DO NOT EDIT MANUALLY
+
+export async function getPosts() {
+  try {
+    const postsModule = await import('./generated/posts.js');
+    return postsModule.POSTS || postsModule.default?.POSTS || postsModule;
+  } catch (error) {
+    console.error('[Content] Error loading posts:', error.message);
+    return null;
+  }
+}
+
+export async function getPostBySlug(slug) {
+  const POSTS = await getPosts();
+  if (!POSTS) {
+    return null;
+  }
+  return POSTS[slug] || null;
+}
+`;
+  
+  try {
+    fs.writeFileSync(pagesWrapperPath, pagesWrapperContent, 'utf8');
+    console.log(`✓ Generated wrapper: ${pagesWrapperPath}`);
+    
+    fs.writeFileSync(postsWrapperPath, postsWrapperContent, 'utf8');
+    console.log(`✓ Generated wrapper: ${postsWrapperPath}`);
+  } catch (error) {
+    console.error('✗ Error generating wrapper files:', error.message);
+    throw error;
+  }
+}
+
 // 主函数
 function main() {
   console.log('Generating content modules...\n');
@@ -218,6 +284,7 @@ function main() {
   try {
     generatePagesModule();
     generatePostsModule();
+    // 不再生成包装文件，直接使用生成的文件
     console.log('\n✓ Content generation complete!');
   } catch (error) {
     console.error('\n✗ Error:', error.message);
