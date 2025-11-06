@@ -8,8 +8,45 @@ export async function getServerSideProps() {
     // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
     // 使用绝对路径确保在 Vercel serverless 环境中正确解析
     const path = require('path');
-    const pagesPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js');
-    const postsPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js');
+    const fs = require('fs');
+    
+    // 尝试多个可能的路径
+    const possiblePagesPaths = [
+      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js'),
+      path.join(process.cwd(), 'lib', 'content', 'generated', 'pages.js'),
+      path.resolve(__dirname, '..', '..', 'lib', 'content', 'generated', 'pages.js')
+    ];
+    
+    const possiblePostsPaths = [
+      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js'),
+      path.join(process.cwd(), 'lib', 'content', 'generated', 'posts.js'),
+      path.resolve(__dirname, '..', '..', 'lib', 'content', 'generated', 'posts.js')
+    ];
+    
+    let pagesPath = null;
+    let postsPath = null;
+    
+    for (const testPath of possiblePagesPaths) {
+      if (fs.existsSync(testPath)) {
+        pagesPath = testPath;
+        break;
+      }
+    }
+    
+    for (const testPath of possiblePostsPaths) {
+      if (fs.existsSync(testPath)) {
+        postsPath = testPath;
+        break;
+      }
+    }
+    
+    if (!pagesPath || !postsPath) {
+      console.error('[SSR] Content files not found. Pages path:', pagesPath, 'Posts path:', postsPath);
+      console.error('[SSR] process.cwd():', process.cwd());
+      console.error('[SSR] __dirname:', __dirname);
+      throw new Error('Content files not found');
+    }
+    
     const pagesModule = require(pagesPath);
     const postsModule = require(postsPath);
     

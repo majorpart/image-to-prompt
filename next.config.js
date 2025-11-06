@@ -15,10 +15,29 @@ const nextConfig = {
     unoptimized: false
   },
   
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
     // 确保 webpack 能够正确处理动态生成的内容文件
-    // 生成的文件在 prebuild 阶段已经存在，webpack 可以解析它们
     if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    } else {
+      // 在服务器端，确保生成的文件可以被 require
+      // 添加 alias 确保路径解析正确
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@content': path.resolve(__dirname, 'lib', 'content'),
+      };
+      
+      // 确保生成的目录在 webpack 的上下文中
+      config.resolve.modules = [
+        ...(config.resolve.modules || []),
+        path.resolve(__dirname, 'lib'),
+      ];
+      
+      // 确保文件系统模块在服务器端可用
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
