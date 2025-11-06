@@ -13,6 +13,18 @@ const nextConfig = {
     unoptimized: false
   },
   
+  webpack: (config, { isServer }) => {
+    // 确保 webpack 能够正确处理动态生成的内容文件
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    }
+    return config;
+  },
+  
   async headers() {
     return [
       {
