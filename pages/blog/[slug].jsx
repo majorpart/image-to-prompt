@@ -8,8 +8,8 @@ export async function getServerSideProps({ params }) {
   console.log('[SSR] Loading blog post:', params.slug);
   
   try {
-    // 使用动态导入（在运行时加载，文件在 prebuild 阶段已生成）
-    const postsModule = await import('../../lib/content/generated/posts.js');
+    // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
+    const postsModule = require('../../lib/content/generated/posts.js');
     const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
     
     if (!POSTS) {

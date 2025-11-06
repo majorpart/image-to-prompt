@@ -3,8 +3,8 @@ import Script from 'next/script';
 
 export async function getServerSideProps() {
   try {
-    // 使用动态导入（在运行时加载，文件在 prebuild 阶段已生成）
-    const pagesModule = await import('../../lib/content/generated/pages.js');
+    // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
+    const pagesModule = require('../../lib/content/generated/pages.js');
     const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
     if (!PAGES || !PAGES.about) {
