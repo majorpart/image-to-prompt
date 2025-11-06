@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "description": "Free AI Image to Prompt Generator - Convert images to detailed prompts for Stable Diffusion and Midjourney",
   "main": "index.html",
-  "scripts": {},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate-content": "node scripts/generate-content.js",
+    "convert-images": "node scripts/convert-images.js",
+    "copy-assets": "node scripts/copy-assets.js",
+    "postbuild": "npm run copy-assets"
+  },
   "keywords": [
     "ai",
     "image-to-prompt",
@@ -16,7 +25,17 @@
   ],
   "author": "Image to Prompt Generator Team",
   "license": "MIT",
-  "type": "module",
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/your-username/image-to-prompt-generator.git"
