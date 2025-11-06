@@ -6,8 +6,12 @@ import Image from 'next/image';
 export async function getServerSideProps() {
   try {
     // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
-    const pagesModule = require('../../lib/content/generated/pages.js');
-    const postsModule = require('../../lib/content/generated/posts.js');
+    // 使用绝对路径确保在 Vercel serverless 环境中正确解析
+    const path = require('path');
+    const pagesPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js');
+    const postsPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js');
+    const pagesModule = require(pagesPath);
+    const postsModule = require(postsPath);
     
     const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
