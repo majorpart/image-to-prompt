@@ -2,62 +2,16 @@ import SEOHead from '../components/SEOHead';
 import Script from 'next/script';
 
 export async function getServerSideProps() {
-  const path = require('path');
-  const fs = require('fs');
-  let genPath;
-  
   try {
-    const possiblePaths = [
-      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js'),
-      path.join(process.cwd(), 'lib', 'content', 'generated', 'pages.js')
-    ];
+    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
+    const pagesModule = await import('../../lib/content/generated/pages.js');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
-    genPath = null;
-    for (const testPath of possiblePaths) {
-      if (fs.existsSync(testPath)) {
-        genPath = testPath;
-        break;
-      }
-    }
-    
-    if (!genPath) {
-      throw new Error('Content file not found');
-    }
-    
-    const fileContent = fs.readFileSync(genPath, 'utf8');
-    const moduleExports = {};
-    const moduleObj = { exports: moduleExports };
-    
-    const vm = require('vm');
-    const context = vm.createContext({
-      module: moduleObj,
-      exports: moduleObj.exports,
-      require: require,
-      __dirname: path.dirname(genPath),
-      __filename: genPath,
-      console: console,
-      process: process,
-      Buffer: Buffer,
-      global: global
-    });
-    
-    try {
-      vm.runInContext(fileContent, context);
-    } catch (vmError) {
-      // eslint-disable-next-line no-eval
-      eval(`
-        (function(module, exports) {
-          ${fileContent}
-        })(moduleObj, moduleObj.exports)
-      `);
-    }
-    
-    const PAGES = moduleObj.exports.PAGES || moduleObj.exports.default?.PAGES;
-    const data = PAGES?.case;
-    
-    if (!data) {
+    if (!PAGES || !PAGES.case) {
       throw new Error('Case page content not found');
     }
+    
+    const data = PAGES.case;
     
     return {
       props: {

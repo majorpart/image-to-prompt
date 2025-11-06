@@ -2,114 +2,21 @@ import SEOHead from '../components/SEOHead';
 import Script from 'next/script';
 
 export async function getServerSideProps() {
-  // 在函数顶层定义变量，确保在catch中也能访问
-  const path = require('path');
-  const fs = require('fs');
-  let genPath;
-  
   try {
-    // 尝试多种路径解析方式，确保能找到文件
-    // 在 Next.js 中，__dirname 可能不可用，所以优先使用 process.cwd()
-    const possiblePaths = [
-      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js'),
-      path.join(process.cwd(), 'lib', 'content', 'generated', 'pages.js')
-    ];
-    
-    // 如果 __dirname 可用，也尝试
-    try {
-      if (typeof __dirname !== 'undefined') {
-        possiblePaths.push(
-          path.resolve(__dirname, '..', 'lib', 'content', 'generated', 'pages.js'),
-          path.join(__dirname, '..', 'lib', 'content', 'generated', 'pages.js')
-        );
-      }
-    } catch (e) {
-      // __dirname 不可用，忽略
-    }
-    
-    genPath = null;
-    for (const testPath of possiblePaths) {
-      if (fs.existsSync(testPath)) {
-        genPath = testPath;
-        break;
-      }
-    }
-    
-    console.log('[SSR] ========== START ==========');
-    console.log('[SSR] Working directory:', process.cwd());
-    console.log('[SSR] Content file path:', genPath);
-    console.log('[SSR] File exists:', genPath ? fs.existsSync(genPath) : false);
-    
-    if (!fs.existsSync(genPath)) {
-      throw new Error(`Content file not found: ${genPath}`);
-    }
-    
-    // 直接读取文件内容并解析，避免 webpack 动态 require 问题
-    let PAGES;
-    try {
-      const fileContent = fs.readFileSync(genPath, 'utf8');
-      console.log('[SSR] File read successfully, length:', fileContent.length);
-      
-      // 解析 CommonJS 模块格式: module.exports = { PAGES: {...} };
-      // 创建一个模拟的 module 对象来捕获导出
-      const moduleExports = {};
-      const moduleObj = { exports: moduleExports };
-      
-      // 执行文件内容（在服务器端，这是安全的）
-      // eslint-disable-next-line no-eval
-      const vm = require('vm');
-      const context = vm.createContext({
-        module: moduleObj,
-        exports: moduleObj.exports,
-        require: require,
-        __dirname: path.dirname(genPath),
-        __filename: genPath,
-        console: console,
-        process: process,
-        Buffer: Buffer,
-        global: global
-      });
-      
-      try {
-        // 使用 vm.runInContext 来执行文件内容
-        vm.runInContext(fileContent, context);
-        PAGES = moduleObj.exports.PAGES || moduleObj.exports.default?.PAGES;
-      } catch (vmError) {
-        // 如果 vm 执行失败，尝试简单的 eval（仅用于开发环境）
-        console.warn('[SSR] VM execution failed, trying eval:', vmError.message);
-        // eslint-disable-next-line no-eval
-        eval(`
-          (function(module, exports) {
-            ${fileContent}
-          })(moduleObj, moduleObj.exports)
-        `);
-        PAGES = moduleObj.exports.PAGES || moduleObj.exports.default?.PAGES;
-      }
-      
-      console.log('[SSR] PAGES extracted, exists:', !!PAGES);
-    } catch (readError) {
-      console.error('[SSR] File read error:', readError.message);
-      throw readError;
-    }
+    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
+    const pagesModule = await import('../lib/content/generated/pages.js');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
     if (!PAGES || !PAGES.home) {
-      console.error('[SSR] PAGES not found or PAGES.home not found');
       throw new Error('Home page content not found in PAGES');
     }
     
     const data = PAGES.home;
-    console.log('[SSR] Data loaded - Title:', data.title);
-    console.log('[SSR] Data loaded - HTML length:', data.html ? data.html.length : 0);
     
     // 验证数据
     if (!data.html || data.html.trim().length === 0) {
-      console.error('[SSR] HTML content is empty');
       throw new Error('Home page HTML content is empty');
     }
-    
-    console.log('[SSR] Successfully loaded homepage content');
-    console.log('[SSR] HTML length:', data.html.length);
-    console.log('[SSR] ========== SUCCESS ==========');
     
     return {
       props: {
@@ -123,16 +30,7 @@ export async function getServerSideProps() {
       }
     };
   } catch (error) {
-    console.error('[SSR] ========== ERROR START ==========');
     console.error('[SSR] Error loading homepage:', error.message);
-    console.error('[SSR] Error name:', error.name);
-    console.error('[SSR] Error stack:', error.stack);
-    if (genPath) {
-      console.error('[SSR] Working directory:', process.cwd());
-      console.error('[SSR] Content file path:', genPath);
-      console.error('[SSR] File exists:', fs.existsSync(genPath));
-    }
-    console.error('[SSR] ========== ERROR END ==========');
     return {
       props: {
         data: {

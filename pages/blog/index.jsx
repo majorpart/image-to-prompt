@@ -4,42 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export async function getServerSideProps() {
-  const path = require('path');
-  const fs = require('fs');
-  let genPath;
-  
   try {
-    // 加载页面内容
-    const pagesPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js');
-    const pagesContent = fs.readFileSync(pagesPath, 'utf8');
-    const pagesModuleExports = {};
-    const pagesModuleObj = { exports: pagesModuleExports };
-    
-    const vm = require('vm');
-    const pagesContext = vm.createContext({
-      module: pagesModuleObj,
-      exports: pagesModuleObj.exports,
-      require: require,
-      __dirname: path.dirname(pagesPath),
-      __filename: pagesPath,
-      console: console,
-      process: process,
-      Buffer: Buffer,
-      global: global
-    });
-    
-    try {
-      vm.runInContext(pagesContent, pagesContext);
-    } catch (vmError) {
-      // eslint-disable-next-line no-eval
-      eval(`
-        (function(module, exports) {
-          ${pagesContent}
-        })(pagesModuleObj, pagesModuleObj.exports)
-      `);
-    }
-    
-    const PAGES = pagesModuleObj.exports.PAGES || pagesModuleObj.exports.default?.PAGES;
+    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
+    const pagesModule = await import('../../lib/content/generated/pages.js');
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     const pageData = PAGES?.blog;
     
     // 检查是否有完整的HTML内容（包含导航和页脚）
@@ -61,35 +29,9 @@ export async function getServerSideProps() {
     }
     
     // 否则加载文章列表用于自定义布局
-    const postsPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js');
-    const postsContent = fs.readFileSync(postsPath, 'utf8');
-    const postsModuleExports = {};
-    const postsModuleObj = { exports: postsModuleExports };
+    const postsModule = await import('../../lib/content/generated/posts.js');
+    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
     
-    const postsContext = vm.createContext({
-      module: postsModuleObj,
-      exports: postsModuleObj.exports,
-      require: require,
-      __dirname: path.dirname(postsPath),
-      __filename: postsPath,
-      console: console,
-      process: process,
-      Buffer: Buffer,
-      global: global
-    });
-    
-    try {
-      vm.runInContext(postsContent, postsContext);
-    } catch (vmError) {
-      // eslint-disable-next-line no-eval
-      eval(`
-        (function(module, exports) {
-          ${postsContent}
-        })(postsModuleObj, postsModuleObj.exports)
-      `);
-    }
-    
-    const POSTS = postsModuleObj.exports.POSTS || postsModuleObj.exports.default?.POSTS;
     const posts = POSTS ? Object.values(POSTS).sort((a, b) => {
       const dateA = new Date(a.date || 0);
       const dateB = new Date(b.date || 0);

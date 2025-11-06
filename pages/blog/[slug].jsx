@@ -5,66 +5,12 @@ import Image from 'next/image';
 import Head from 'next/head';
 
 export async function getServerSideProps({ params }) {
-  const path = require('path');
-  const fs = require('fs');
-  
   console.log('[SSR] Loading blog post:', params.slug);
   
   try {
-    // 尝试多种路径解析方式
-    const possiblePaths = [
-      path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js'),
-      path.join(process.cwd(), 'lib', 'content', 'generated', 'posts.js')
-    ];
-    
-    let postsPath = null;
-    for (const testPath of possiblePaths) {
-      if (fs.existsSync(testPath)) {
-        postsPath = testPath;
-        break;
-      }
-    }
-    
-    if (!postsPath) {
-      console.error('[SSR] Posts file not found');
-      return {
-        notFound: true
-      };
-    }
-    
-    console.log('[SSR] Posts file found:', postsPath);
-    
-    // 加载文章内容
-    const postsContent = fs.readFileSync(postsPath, 'utf8');
-    const postsModuleExports = {};
-    const postsModuleObj = { exports: postsModuleExports };
-    
-    const vm = require('vm');
-    const postsContext = vm.createContext({
-      module: postsModuleObj,
-      exports: postsModuleObj.exports,
-      require: require,
-      __dirname: path.dirname(postsPath),
-      __filename: postsPath,
-      console: console,
-      process: process,
-      Buffer: Buffer,
-      global: global
-    });
-    
-    try {
-      vm.runInContext(postsContent, postsContext);
-    } catch (vmError) {
-      console.warn('[SSR] VM execution failed, trying eval:', vmError.message);
-      // eslint-disable-next-line no-eval
-      eval(`
-        (function(module, exports) {
-          ${postsContent}
-        })(postsModuleObj, postsModuleObj.exports)
-      `);
-    }
-    
-    const POSTS = postsModuleObj.exports.POSTS || postsModuleObj.exports.default?.POSTS;
+    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
+    const postsModule = await import('../../lib/content/generated/posts.js');
+    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
     
     if (!POSTS) {
       console.error('[SSR] POSTS not found in module');
