@@ -8,39 +8,45 @@ export async function getServerSideProps({ params }) {
   console.log('[SSR] Loading blog post:', params.slug);
   
   try {
-    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
-    const postsModule = await import('../../lib/content/generated/posts.js');
-    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
+    // 使用包装文件避免 webpack 静态分析问题
+    const { getPosts, getPostBySlug } = await import('../../lib/content/posts-wrapper.js');
     
-    if (!POSTS) {
-      console.error('[SSR] POSTS not found in module');
-      return {
-        notFound: true
-      };
-    }
+    // 尝试直接获取文章
+    let post = await getPostBySlug(params.slug);
     
-    console.log('[SSR] POSTS loaded, available slugs:', Object.keys(POSTS).slice(0, 5));
-    
-    // 尝试直接匹配，如果失败则尝试查找匹配的slug
-    let post = POSTS[params.slug];
-    
+    // 如果直接获取失败，尝试从所有文章中找到匹配的
     if (!post) {
-      // 尝试查找匹配的slug（处理可能的URL编码或大小写问题）
-      const slugs = Object.keys(POSTS);
-      const matchedSlug = slugs.find(s => 
-        s.toLowerCase() === params.slug.toLowerCase() ||
-        s.replace(/-/g, '') === params.slug.replace(/-/g, '')
-      );
+      const POSTS = await getPosts();
       
-      if (matchedSlug) {
-        console.log('[SSR] Found matching slug:', matchedSlug, 'for requested:', params.slug);
-        post = POSTS[matchedSlug];
+      if (!POSTS) {
+        console.error('[SSR] POSTS not found in module');
+        return {
+          notFound: true
+        };
+      }
+      
+      console.log('[SSR] POSTS loaded, available slugs:', Object.keys(POSTS).slice(0, 5));
+      
+      // 尝试直接匹配
+      post = POSTS[params.slug];
+      
+      // 如果直接匹配失败，尝试查找匹配的slug（处理可能的URL编码或大小写问题）
+      if (!post) {
+        const slugs = Object.keys(POSTS);
+        const matchedSlug = slugs.find(s => 
+          s.toLowerCase() === params.slug.toLowerCase() ||
+          s.replace(/-/g, '') === params.slug.replace(/-/g, '')
+        );
+        
+        if (matchedSlug) {
+          console.log('[SSR] Found matching slug:', matchedSlug, 'for requested:', params.slug);
+          post = POSTS[matchedSlug];
+        }
       }
     }
     
     if (!post) {
       console.error('[SSR] Post not found for slug:', params.slug);
-      console.error('[SSR] Available slugs:', Object.keys(POSTS).slice(0, 10));
       return {
         notFound: true
       };
@@ -51,7 +57,8 @@ export async function getServerSideProps({ params }) {
     console.log('[SSR] Post HTML length:', post.html ? post.html.length : 0);
     
     // 获取相关文章
-    const allPosts = Object.values(POSTS);
+    const POSTS = await getPosts();
+    const allPosts = POSTS ? Object.values(POSTS) : [];
     const currentTags = post.tags || [];
     const relatedPosts = allPosts
       .filter(p => p.slug !== params.slug)

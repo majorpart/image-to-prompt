@@ -3,15 +3,13 @@ import Script from 'next/script';
 
 export async function getServerSideProps() {
   try {
-    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
-    const pagesModule = await import('../lib/content/generated/pages.js');
-    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
+    // 使用包装文件避免 webpack 静态分析问题
+    const { getPageBySlug } = await import('../lib/content/pages-wrapper.js');
+    const data = await getPageBySlug('home');
     
-    if (!PAGES || !PAGES.home) {
+    if (!data) {
       throw new Error('Home page content not found in PAGES');
     }
-    
-    const data = PAGES.home;
     
     // 验证数据
     if (!data.html || data.html.trim().length === 0) {

@@ -5,10 +5,11 @@ import Image from 'next/image';
 
 export async function getServerSideProps() {
   try {
-    // 使用动态导入替代文件系统操作（Vercel serverless 环境要求）
-    const pagesModule = await import('../../lib/content/generated/pages.js');
-    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
-    const pageData = PAGES?.blog;
+    // 使用包装文件避免 webpack 静态分析问题
+    const { getPageBySlug } = await import('../../lib/content/pages-wrapper.js');
+    const { getPosts } = await import('../../lib/content/posts-wrapper.js');
+    
+    const pageData = await getPageBySlug('blog');
     
     // 检查是否有完整的HTML内容（包含导航和页脚）
     const hasFullHtml = pageData?.html && (pageData.html.includes('<nav') || pageData.html.includes('<footer'));
@@ -29,8 +30,7 @@ export async function getServerSideProps() {
     }
     
     // 否则加载文章列表用于自定义布局
-    const postsModule = await import('../../lib/content/generated/posts.js');
-    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
+    const POSTS = await getPosts();
     
     const posts = POSTS ? Object.values(POSTS).sort((a, b) => {
       const dateA = new Date(a.date || 0);
