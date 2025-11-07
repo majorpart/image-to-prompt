@@ -22,13 +22,20 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Image data is required' });
         }
 
-        // 从环境变量获取API密钥
-        const apiKey = process.env.API_KEY;
+        // 从环境变量获取 OpenRouter API 密钥
+        // 支持 OPENROUTER_API_KEY 或 API_KEY（向后兼容）
+        const apiKey = process.env.OPENROUTER_API_KEY || process.env.API_KEY;
         if (!apiKey) {
-            return res.status(500).json({ error: 'API key not configured' });
+            return res.status(500).json({ error: 'OpenRouter API key not configured. Please set OPENROUTER_API_KEY environment variable.' });
         }
 
-        const apiUrl = 'https://api.siliconflow.cn/v1/chat/completions';
+        // OpenRouter API 端点（统一接口，支持多个模型）
+        const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
+        
+        // 使用 Google Gemini 2.0 Flash Lite 模型
+        // 模型名称：google/gemini-2.0-flash-lite-001
+        // 优势：更快的响应时间，更低的延迟，支持多模态（图片理解）
+        const model = 'google/gemini-2.0-flash-lite-001';
 
         // 根据语言代码获取对应的语言名称
         const getPromptLanguage = (languageCode) => {
@@ -58,34 +65,46 @@ export default async function handler(req, res) {
             instruction = `你是一名专业AI绘画提示词工程师。请根据我的描述，直接生成一段高质量、精炼且可直接用于AI文生图的${promptLanguage}提示词。无需思考过程，无需段落标题或编号，只需生成一段连贯的、包含所有必要细节的纯文本提示词。内容必须按以下逻辑顺序组织，并确保包含所有方面：主体核心： 首先描述核心对象（人物、动物、物体等）的外观、动作、表情和服饰。场景氛围： 接着说明环境背景、光线和色彩氛围。风格技术： 最后指定艺术风格、参考艺术家（如适用）。请将所有以上元素无缝衔接为一段流畅的文字。`;
         }
 
+        // 准备图片 URL（确保格式正确）
+        const imageUrl = imageBase64.startsWith('data:') 
+            ? imageBase64 
+            : `data:image/jpeg;base64,${imageBase64}`;
+
+        // 构建请求体（OpenRouter 使用 OpenAI 兼容格式）
+        const requestBody = {
+            model: model,
+            messages: [
+                {
+                    role: 'user',
+                    content: [
+                        {
+                            type: 'text',
+                            text: instruction
+                        },
+                        {
+                            type: 'image_url',
+                            image_url: {
+                                url: imageUrl
+                            }
+                        }
+                    ]
+                }
+            ],
+            max_tokens: 2000,
+            temperature: 0.7
+        };
+
+        // 发送请求到 OpenRouter API
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Authorization': `Bearer ${apiKey}`,
+                // OpenRouter 可选头信息（用于排名和统计）
+                'HTTP-Referer': process.env.SITE_URL || 'https://imagetoprompt.app',
+                'X-Title': 'Image to Prompt Generator'
             },
-            body: JSON.stringify({
-                model: 'THUDM/GLM-4.1V-9B-Thinking',
-                messages: [
-                    {
-                        role: 'user',
-                        content: [
-                            {
-                                type: 'text',
-                                text: instruction
-                            },
-                            {
-                                type: 'image_url',
-                                image_url: {
-                                    url: imageBase64.startsWith('data:') ? imageBase64 : `data:image/jpeg;base64,${imageBase64}`
-                                }
-                            }
-                        ]
-                    }
-                ],
-                max_tokens: 2000,
-                temperature: 0.7
-            })
+            body: JSON.stringify(requestBody)
         });
 
         if (!response.ok) {
