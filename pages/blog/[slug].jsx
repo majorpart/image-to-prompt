@@ -8,11 +8,8 @@ export async function getServerSideProps({ params }) {
   console.log('[SSR] Loading blog post:', params.slug);
   
   try {
-    // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
-    // 使用绝对路径确保在 Vercel serverless 环境中正确解析
-    const path = require('path');
-    const postsPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'posts.js');
-    const postsModule = require(postsPath);
+    // 使用动态 import 确保 webpack 能够正确打包文件
+    const postsModule = await import('../../lib/content/generated/posts.js');
     const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
     
     if (!POSTS) {

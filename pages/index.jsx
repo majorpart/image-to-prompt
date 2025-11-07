@@ -5,11 +5,9 @@ import Script from 'next/script';
 // 注意：必须在 getServerSideProps 中动态导入，避免 webpack 静态分析问题
 export async function getServerSideProps() {
   try {
-    // 使用 require 在运行时加载（CommonJS），避免 webpack 静态分析问题
-    // 使用绝对路径确保在 Vercel serverless 环境中正确解析
-    const path = require('path');
-    const pagesPath = path.resolve(process.cwd(), 'lib', 'content', 'generated', 'pages.js');
-    const pagesModule = require(pagesPath);
+    // 使用动态 import 确保 webpack 能够正确打包文件
+    // 使用相对路径，webpack 可以静态分析并包含文件
+    const pagesModule = await import('../lib/content/generated/pages.js');
     const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
     
     if (!PAGES || !PAGES.home) {

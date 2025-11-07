@@ -5,13 +5,12 @@ import Image from 'next/image';
 
 export async function getServerSideProps() {
   try {
-    // 使用动态导入，在 getServerSideProps 中动态加载生成的内容
-    // 这样可以确保 webpack 在构建时能够找到这些文件
-    const { default: pagesModule } = await import('../../lib/content/generated/pages.js');
-    const { default: postsModule } = await import('../../lib/content/generated/posts.js');
+    // 使用动态 import 确保 webpack 能够正确打包文件
+    const pagesModule = await import('../../lib/content/generated/pages.js');
+    const postsModule = await import('../../lib/content/generated/posts.js');
     
-    const PAGES = pagesModule?.PAGES || pagesModule;
-    const POSTS = postsModule?.POSTS || postsModule;
+    const PAGES = pagesModule.PAGES || pagesModule.default?.PAGES || pagesModule;
+    const POSTS = postsModule.POSTS || postsModule.default?.POSTS || postsModule;
     
     const pageData = PAGES?.blog;
     
