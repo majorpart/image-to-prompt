@@ -65,7 +65,7 @@ export default async function handler(req, res) {
                 'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: 'deepseek-v3',
+                model: 'THUDM/GLM-4.1V-9B-Thinking',
                 messages: [
                     {
                         role: 'user',
@@ -77,7 +77,7 @@ export default async function handler(req, res) {
                             {
                                 type: 'image_url',
                                 image_url: {
-                                    url: `data:image/jpeg;base64,${imageBase64}`
+                                    url: imageBase64.startsWith('data:') ? imageBase64 : `data:image/jpeg;base64,${imageBase64}`
                                 }
                             }
                         ]
@@ -89,11 +89,20 @@ export default async function handler(req, res) {
         });
 
         if (!response.ok) {
-            const errorData = await response.text();
+            let errorData;
+            try {
+                errorData = await response.json();
+            } catch (e) {
+                errorData = await response.text();
+            }
             console.error('API Error:', errorData);
+            
+            // 提取错误信息
+            const errorMessage = errorData?.message || errorData?.error || (typeof errorData === 'string' ? errorData : 'Failed to generate prompt');
+            
             return res.status(response.status).json({ 
                 success: false,
-                error: 'Failed to generate prompt',
+                error: errorMessage,
                 details: errorData 
             });
         }
