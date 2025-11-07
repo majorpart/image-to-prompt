@@ -1,4 +1,13 @@
 // 从原 api/generate-prompt.js 迁移
+// 配置 bodyParser 以支持更大的请求体（用于 base64 图片）
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb', // 增加请求体大小限制到 10MB
+        },
+    },
+};
+
 export default async function handler(req, res) {
     // 只允许POST请求
     if (req.method !== 'POST') {
@@ -83,6 +92,7 @@ export default async function handler(req, res) {
             const errorData = await response.text();
             console.error('API Error:', errorData);
             return res.status(response.status).json({ 
+                success: false,
                 error: 'Failed to generate prompt',
                 details: errorData 
             });
@@ -91,10 +101,17 @@ export default async function handler(req, res) {
         const data = await response.json();
         const prompt = data.choices?.[0]?.message?.content || '';
 
-        return res.status(200).json({ prompt });
+        // 返回与前端期望的格式一致的响应
+        return res.status(200).json({ 
+            success: true,
+            prompt: prompt 
+        });
     } catch (error) {
         console.error('API Error:', error);
-        return res.status(500).json({ error: 'Internal server error' });
+        return res.status(500).json({ 
+            success: false,
+            error: error.message || 'Internal server error' 
+        });
     }
 }
 
