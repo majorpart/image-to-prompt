@@ -89,11 +89,28 @@ function extractContent(htmlFile) {
     .replace(/src=["']js\//g, 'src="/js/')
     .replace(/href=["']assets\//g, 'href="/assets/')
     // 替换图片路径为 WebP（如果存在）
+    // 注意：对于友情链接图片，需要检查文件是否存在
     .replace(/src=["']([^"']*\.(png|jpg|jpeg))["']/gi, (match, imgPath) => {
-      // 如果已经是 WebP，保持不变；否则替换为 .webp
+      // 如果已经是 WebP，保持不变
       if (imgPath.toLowerCase().endsWith('.webp')) {
         return match;
       }
+      
+      // 检查是否是友情链接图片，如果是，检查 .webp 文件是否存在
+      const isFriendshipLink = imgPath.includes('friendship-links');
+      if (isFriendshipLink) {
+        const webpPath = imgPath.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+        const publicWebpPath = path.join(__dirname, '..', 'public', webpPath);
+        // 如果 .webp 文件存在，使用 .webp；否则保持 .png
+        if (fs.existsSync(publicWebpPath)) {
+          return `src="${webpPath}"`;
+        } else {
+          // .webp 不存在，保持原始 .png 路径
+          return match;
+        }
+      }
+      
+      // 其他图片，直接替换为 .webp（假设存在）
       const webpPath = imgPath.replace(/\.(png|jpg|jpeg)$/i, '.webp');
       return `src="${webpPath}"`;
     });
