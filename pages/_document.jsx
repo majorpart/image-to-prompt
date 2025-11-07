@@ -20,6 +20,13 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400&display=swap"
           rel="stylesheet"
         />
+        
+        {/* Google AdSense - 所有页面都包含 */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5822504482860674"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body>
         <Main />

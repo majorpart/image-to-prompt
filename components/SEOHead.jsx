@@ -9,9 +9,37 @@ export default function SEOHead({
   noindex = false
 }) {
   const siteUrl = 'https://imagetoprompt.app';
-  const fullTitle = title ? `${title} | Image to Prompt Generator` : 'Image to Prompt Generator';
+  
+  // 优化title格式，突出"image to prompt"关键词，控制在60字符以内
+  // 如果title已经包含"image to prompt"相关关键词，则简化格式
+  const getOptimizedTitle = (pageTitle) => {
+    if (!pageTitle) {
+      return 'Image to Prompt Generator - Free AI Tool';
+    }
+    
+    // 检查title是否已经包含核心关键词
+    const hasImageToPrompt = /image.*to.*prompt|prompt.*from.*image/i.test(pageTitle);
+    
+    if (hasImageToPrompt) {
+      // 如果已经包含关键词，直接使用title，但确保不超过60字符
+      return pageTitle.length > 60 ? pageTitle.substring(0, 57) + '...' : pageTitle;
+    } else {
+      // 如果title较短，添加核心关键词
+      const shortTitle = pageTitle.length <= 30 
+        ? `${pageTitle} - Image to Prompt`
+        : pageTitle;
+      // 确保总长度不超过60字符
+      return shortTitle.length > 60 ? shortTitle.substring(0, 57) + '...' : shortTitle;
+    }
+  };
+  
+  const fullTitle = getOptimizedTitle(title);
   const fullImage = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/assets/images/imagetoprompt.webp`;
-  const fullCanonical = canonical || '';
+  
+  // 确保canonical URL指向非www版本
+  const fullCanonical = canonical 
+    ? canonical.replace(/^https?:\/\/(www\.)?/, 'https://')
+    : '';
   
   return (
     <Head>
