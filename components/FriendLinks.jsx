@@ -209,9 +209,9 @@ const friendLinks = [
     alt: 'Image-to-Prompt listed on code.market',
   },
   {
-    href: 'https://www.direct2app.com/item/meanings',
+    href: 'https://www.direct2app.com/item/image-to-prompt-generator',
     src: 'https://www.direct2app.com/featured-light.svg',
-    alt: 'Image-to-Prompt listed on Direct2App',
+    alt: 'Featured badge linking to your listing on Direct2App',
     height: 54,
   },
   {
