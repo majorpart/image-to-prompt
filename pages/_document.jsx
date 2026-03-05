@@ -27,6 +27,22 @@ export default function Document() {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5822504482860674"
           crossOrigin="anonymous"
         />
+
+        {/* Google Analytics 4 - G-ZS7EJJ95YX */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZS7EJJ95YX"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-ZS7EJJ95YX');
+            `,
+          }}
+        />
       </Head>
       <body>
         <Main />
