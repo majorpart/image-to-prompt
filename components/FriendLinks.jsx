@@ -122,9 +122,9 @@ const friendLinks = [
     width: 139,
   },
   {
-    href: 'https://verifieddr.com/website/meanings-live',
-    src: 'https://verifieddr.com/badge/meanings-live.svg',
-    alt: 'Image-to-Prompt verified on Verified DR',
+    href: 'https://verifieddr.com/website/imagetoprompt-app',
+    src: 'https://verifieddr.com/badge/imagetoprompt-app.svg',
+    alt: 'Verified DR - Verified Domain Rating for imagetoprompt.app',
     width: 220,
     height: 68,
   },
