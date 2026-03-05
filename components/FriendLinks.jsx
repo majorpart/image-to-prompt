@@ -61,6 +61,12 @@ const friendLinks = [
     height: 80,
   },
   {
+    href: 'https://domainrank.app',
+    type: 'text',
+    alt: 'imagetoprompt.app Domain Rating on DomainRank',
+    content: 'Domain Rating',
+  },
+  {
     href: 'https://startupfa.st',
     src: 'https://startupfa.st/images/badges/powered-by-light.svg',
     alt: 'Image-to-Prompt powered by Startup Fast',
