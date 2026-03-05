@@ -72,3 +72,47 @@ body {
   }
 }
 
+/* 友情链接滚动动画 - SEO友好（所有链接都在HTML中） */
+@keyframes friendLinksScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.friend-links-scroll-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.friend-links-scroll-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+  animation: friendLinksScroll 60s linear infinite;
+  will-change: transform;
+}
+
+.friend-links-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.friend-links-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .friend-links-scroll-track {
+    gap: 0.75rem;
+    animation-duration: 50s;
+  }
+}
+
+
