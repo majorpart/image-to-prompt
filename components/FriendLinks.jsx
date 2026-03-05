@@ -74,8 +74,8 @@ const friendLinks = [
     height: 44,
   },
   {
-    href: 'https://open-launch.com/projects/meanings',
-    src: 'https://open-launch.com/api/badge/036ca1cb-728a-4fd0-9de4-24f3a558e926/featured-light.svg',
+    href: 'https://open-launch.com/projects/image-to-prompt',
+    src: 'https://open-launch.com/api/badge/78c698e4-7f6b-4f73-8d16-4bbcb0a87dbe/featured-light.svg',
     alt: 'Image-to-Prompt featured on Open-Launch',
     width: 200,
     height: 50,
