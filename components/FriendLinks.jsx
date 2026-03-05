@@ -54,7 +54,7 @@ const friendLinks = [
     height: 54,
   },
   {
-    href: 'https://domainrank.app',
+    href: 'https://domainrank.app/dr/imagetoprompt.app',
     src: 'https://domainrank.app/api/badge/imagetoprompt.app?theme=dark',
     alt: 'imagetoprompt.app Domain Rating on DomainRank',
     width: 360,
