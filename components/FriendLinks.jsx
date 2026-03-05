@@ -54,9 +54,9 @@ const friendLinks = [
     height: 54,
   },
   {
-    href: 'https://domainrank.app/dr/meanings.live',
-    src: 'https://domainrank.app/api/badge/meanings.live?theme=dark',
-    alt: 'Image-to-Prompt domain rating on DomainRank',
+    href: 'https://domainrank.app',
+    src: 'https://domainrank.app/api/badge/imagetoprompt.app?theme=dark',
+    alt: 'imagetoprompt.app Domain Rating on DomainRank',
     width: 360,
     height: 80,
   },
