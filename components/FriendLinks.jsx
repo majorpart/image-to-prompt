@@ -181,7 +181,7 @@ const friendLinks = [
     height: 54,
   },
   {
-    href: 'https://toolrain.com/item/meanings',
+    href: 'https://toolrain.com/item/image-to-prompt-generator',
     src: 'https://toolrain.com/badges/badge-listed-light.svg',
     alt: 'Image-to-Prompt listed on ToolRain',
     height: 60,
