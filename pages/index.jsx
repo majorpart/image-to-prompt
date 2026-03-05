@@ -1,4 +1,5 @@
 import SEOHead from '../components/SEOHead';
+import FriendLinks from '../components/FriendLinks';
 import Script from 'next/script';
 
 // 直接导入生成的内容文件（prebuild 阶段已生成）
@@ -63,6 +64,8 @@ export default function Home({ data }) {
       {/* 原始HTML已经包含完整的导航和页脚，不需要Layout组件 */}
       {/* 渲染页面内容 */}
       <div dangerouslySetInnerHTML={{ __html: data.html }} />
+      {/* 友情链接模块 - 放在原始页脚之后，仅在首页显示 */}
+      <FriendLinks />
       {/* 加载原有 JavaScript - 必须在内容之后加载 */}
       <Script 
         src="/js/languages.js" 
