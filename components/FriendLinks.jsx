@@ -271,6 +271,12 @@ const friendLinks = [
     alt: 'Image-to-Prompt featured on Hicyou',
   },
   {
+    href: 'https://ufind.best/products/image-to-prompt?utm_source=ufind.best',
+    src: 'https://ufind.best/badges/ufind-best-badge-light.svg',
+    alt: 'Image-to-Prompt featured on ufind.best',
+    width: 150,
+  },
+  {
     href: 'https://ideakiln.com/ideas/image-to-image-ai-2',
     src: 'https://ideakiln.com/light.svg',
     alt: 'Image-to-Prompt featured on Idea Kiln',
