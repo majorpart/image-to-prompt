@@ -26,10 +26,11 @@ const friendLinks = [
     height: 60,
   },
   {
-    href: 'https://findly.tools/meanings?utm_source=meanings',
+    href: 'https://findly.tools/image-to-prompt-1?utm_source=image-to-prompt-1',
     src: 'https://findly.tools/badges/findly-tools-badge-light.svg',
-    alt: 'Image-to-Prompt featured on findly.tools',
-    width: 150,
+    alt: 'Image-to-Prompt featured on Findly.tools',
+    width: 175,
+    height: 55,
   },
   {
     href: 'https://dofollow.tools',
