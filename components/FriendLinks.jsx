@@ -102,6 +102,13 @@ const friendLinks = [
     height: 58,
   },
   {
+    href: 'https://earlyhunt.com/project/image-to-prompt-generator-free-ai-image-prompt-creator',
+    src: 'https://earlyhunt.com/badges/earlyhunt-badge-light.svg',
+    alt: 'Image-to-Prompt featured on EarlyHunt',
+    width: 265,
+    height: 58,
+  },
+  {
     href: 'https://uno.directory',
     src: 'https://uno.directory/uno-directory.svg',
     alt: 'Image-to-Prompt listed on Uno Directory',
