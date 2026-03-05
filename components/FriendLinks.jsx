@@ -340,29 +340,32 @@ const friendLinks = [
 function renderFriendLink(link, key) {
   const isTextLink = link.type === 'text';
 
+  // 文本类友情链接（如 Domain Rating）使用最简单的 <a> 结构，兼容验证工具
+  if (isTextLink) {
+    return (
+      <a key={key} href={link.href} target="_blank">
+        {link.content}
+      </a>
+    );
+  }
+
   return (
     <a
       key={key}
       href={link.href}
       target="_blank"
-      rel={isTextLink ? 'noopener' : 'noopener noreferrer'}
+      rel="noopener noreferrer"
       className="friend-links-item"
       title={link.alt}
     >
-      {isTextLink ? (
-        <span className="text-sm text-gray-300 hover:text-orange-400 transition-colors">
-          {link.content}
-        </span>
-      ) : (
-        <img
-          src={link.src}
-          alt={link.alt}
-          width={link.width}
-          height={link.height}
-          loading="lazy"
-          className="h-10 max-h-12 w-auto max-w-[160px] object-contain opacity-80 hover:opacity-100 transition-opacity"
-        />
-      )}
+      <img
+        src={link.src}
+        alt={link.alt}
+        width={link.width}
+        height={link.height}
+        loading="lazy"
+        className="h-10 max-h-12 w-auto max-w-[160px] object-contain opacity-80 hover:opacity-100 transition-opacity"
+      />
     </a>
   );
 }
