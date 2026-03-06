@@ -249,7 +249,9 @@ const friendLinks = [
   {
     href: 'https://findyouragent.ai',
     src: 'https://findyouragent.ai/embed-badge-gradient.svg',
-    alt: 'Image-to-Prompt listed on FindYourAgent',
+    alt: 'FindYourAgent Logo',
+    exactVerify: true,
+    imgStyle: { height: '10%', width: 'auto' },
   },
   {
     href: 'https://firstlook.tools',
@@ -358,6 +360,19 @@ function renderFriendLink(link, key) {
     return (
       <a key={key} href={link.href} target="_blank">
         {link.content}
+      </a>
+    );
+  }
+
+  // 部分站点（如 FindYourAgent）验证要求与官方代码完全一致，使用极简结构
+  if (link.exactVerify) {
+    return (
+      <a key={key} href={link.href} target="_blank" style={{ textDecoration: 'none' }}>
+        <img
+          src={link.src}
+          alt={link.alt}
+          style={link.imgStyle || undefined}
+        />
       </a>
     );
   }
