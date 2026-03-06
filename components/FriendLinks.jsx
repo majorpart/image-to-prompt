@@ -350,6 +350,12 @@ const friendLinks = [
     width: 240,
     height: 54,
   },
+  {
+    href: 'https://shipyardhq.dev/products/image-to-prompt-generator',
+    src: 'https://shipyardhq.dev/api/embed/products/image-to-prompt-generator?theme=light&type=featured&format=svg',
+    alt: 'Shipyard badge',
+    imgStyle: { maxWidth: '500px', width: '100%', height: 'auto' },
+  },
 ];
 
 function renderFriendLink(link, key) {
@@ -391,6 +397,7 @@ function renderFriendLink(link, key) {
         alt={link.alt}
         width={link.width}
         height={link.height}
+        style={link.imgStyle}
         loading="lazy"
         className="h-10 max-h-12 w-auto max-w-[160px] object-contain opacity-80 hover:opacity-100 transition-opacity"
       />
