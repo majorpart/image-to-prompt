@@ -356,6 +356,12 @@ const friendLinks = [
     alt: 'Shipyard badge',
     imgStyle: { maxWidth: '500px', width: '100%', height: 'auto' },
   },
+  {
+    href: 'https://submitmatic.com',
+    src: 'https://submitmatic.com/static/images/badge.png',
+    alt: 'Image-to-Prompt featured on SubmitMatic',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
