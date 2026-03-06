@@ -57,6 +57,26 @@ export default function Document() {
             `,
           }}
         />
+
+        {/* 代码展示广告 - EffectiveGate CPM */}
+        <script src="https://pl28855194.effectivegatecpm.com/d9/76/6f/d9766f3ba373c2f77764e508f5b49b69.js" />
+
+        {/* 代码展示广告 - EffectiveGate CPM (pl28855206) + HighPerformanceFormat iframe */}
+        <script src="https://pl28855206.effectivegatecpm.com/d4/95/4a/d4954a08d6ed703c04fcff52f1f16dcd.js" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              atOptions = {
+                'key' : '5151bb26009578e5e2c373353fda0578',
+                'format' : 'iframe',
+                'height' : 300,
+                'width' : 160,
+                'params' : {}
+              };
+            `,
+          }}
+        />
+        <script src="https://www.highperformanceformat.com/5151bb26009578e5e2c373353fda0578/invoke.js" />
       </Head>
       <body>
         <Main />
