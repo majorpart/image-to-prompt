@@ -374,6 +374,12 @@ const friendLinks = [
     alt: 'Featured on Webspot',
     height: 54,
   },
+  {
+    href: 'https://shipgrowth.dev/item/claude',
+    src: 'https://storage.shipgrowth.dev/badge-light.png',
+    alt: 'Featured on ShipGrowth',
+    height: 64,
+  },
 ];
 
 function renderFriendLink(link, key) {
