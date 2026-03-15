@@ -193,6 +193,12 @@ const friendLinks = [
     content: 'AiTop10 Tools Directory',
   },
   {
+    href: 'https://tap4ai.org/',
+    type: 'text',
+    alt: 'Tap4 AI Tools Directory',
+    content: 'Tap4 AI Tools Directory',
+  },
+  {
     href: 'https://aidirs.org/item/meanings',
     src: 'https://aidirs.org/badges/badge-listed-dark.svg',
     alt: 'Image-to-Prompt listed on AIDirs',
@@ -370,7 +376,7 @@ function renderFriendLink(link, key) {
   // 文本类友情链接（如 Domain Rating）使用最简单的 <a> 结构，兼容验证工具
   if (isTextLink) {
     return (
-      <a key={key} href={link.href} target="_blank">
+      <a key={key} href={link.href} target="_blank" title={link.alt || link.content} rel="noopener noreferrer">
         {link.content}
       </a>
     );
