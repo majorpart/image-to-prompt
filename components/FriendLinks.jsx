@@ -417,6 +417,12 @@ const friendLinks = [
     width: 120,
     height: 32,
   },
+  {
+    href: 'https://startuptostartup.com',
+    src: 'https://startuptostartup.com/badages-awards.svg',
+    alt: 'Featured on Startup To Startup',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
