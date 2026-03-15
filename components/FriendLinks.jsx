@@ -423,6 +423,18 @@ const friendLinks = [
     alt: 'Featured on Startup To Startup',
     height: 54,
   },
+  {
+    href: 'https://toolfame.com/item/image-to-prompt-generator',
+    src: 'https://toolfame.com/badge-light.svg',
+    alt: 'Featured on toolfame.com',
+    height: 54,
+  },
+  {
+    href: 'https://saasfame.com/item/image-to-prompt-generator',
+    src: 'https://saasfame.com/badge-light.svg',
+    alt: 'Featured on saasfame.com',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
