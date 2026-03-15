@@ -404,6 +404,12 @@ const friendLinks = [
     alt: 'Featured on AINewTool.site',
     height: 54,
   },
+  {
+    href: 'https://theonestartup.com',
+    src: 'https://theonestartup.com/badages-awards.svg',
+    alt: 'Featured on The One Startup',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
