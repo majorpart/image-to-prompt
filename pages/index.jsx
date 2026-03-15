@@ -66,6 +66,12 @@ export default function Home({ data }) {
       <div dangerouslySetInnerHTML={{ __html: data.html }} />
       {/* 友情链接模块 - 放在原始页脚之后，仅在首页显示 */}
       <FriendLinks />
+      {/* TrustViews 展示脚本（与友情链接同页） */}
+      <Script
+        src="https://trustviews.io/script.js"
+        data-token="f0c47256-8226-48a0-b0f4-945a9a7a465e"
+        strategy="lazyOnload"
+      />
       {/* 加载原有 JavaScript - 必须在内容之后加载 */}
       <Script 
         src="/js/languages.js" 
