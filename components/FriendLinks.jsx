@@ -380,6 +380,12 @@ const friendLinks = [
     alt: 'Featured on ShipGrowth',
     height: 64,
   },
+  {
+    href: 'https://dayslaunch.com',
+    src: 'https://dayslaunch.com/badages-awards.svg',
+    alt: 'Featured on Days Launch',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
