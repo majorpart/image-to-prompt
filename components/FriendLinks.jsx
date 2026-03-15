@@ -435,16 +435,71 @@ const friendLinks = [
     alt: 'Featured on saasfame.com',
     height: 54,
   },
+  {
+    href: 'https://aitoolfame.com/item/image-to-prompt-generator',
+    src: 'https://aitoolfame.com/badge-light.svg',
+    alt: 'Featured on aitoolfame.com',
+    height: 54,
+  },
+  {
+    href: 'https://www.agenthunter.io?utm_source=badge&utm_medium=embed&utm_campaign=Image%20to%20Prompt',
+    type: 'badgeWithText',
+    src: 'https://www.agenthunter.io/logo-light.svg',
+    alt: 'AgentHunter Badge',
+    line1: 'AgentHunter',
+    line2: 'Featured AI Agent',
+    imgSize: 40,
+  },
 ];
 
 function renderFriendLink(link, key) {
   const isTextLink = link.type === 'text';
+  const isBadgeWithText = link.type === 'badgeWithText';
 
   // 文本类友情链接（如 Domain Rating）使用最简单的 <a> 结构，兼容验证工具
   if (isTextLink) {
     return (
       <a key={key} href={link.href} target="_blank" title={link.alt || link.content} rel="noopener noreferrer">
         {link.content}
+      </a>
+    );
+  }
+
+  // 带文字徽章（如 AgentHunter）：图片 + 两行文案，使用官方提供的样式
+  if (isBadgeWithText) {
+    const size = link.imgSize ?? 40;
+    return (
+      <a
+        key={key}
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="friend-links-item"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e5e7eb',
+          padding: '0.5rem 0.75rem',
+          borderRadius: '0.5rem',
+          textDecoration: 'none',
+          fontFamily: 'sans-serif',
+          transition: 'all 0.2s',
+        }}
+      >
+        <img
+          src={link.src}
+          alt={link.alt}
+          width={size}
+          height={size}
+          style={{ height: `${size}px`, width: `${size}px` }}
+          loading="lazy"
+        />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <p style={{ margin: 0, fontSize: '0.75rem', color: '#6b7280' }}>{link.line1}</p>
+          <p style={{ margin: 0, fontSize: '0.875rem', color: '#111827', fontWeight: 600 }}>{link.line2}</p>
+        </div>
       </a>
     );
   }
