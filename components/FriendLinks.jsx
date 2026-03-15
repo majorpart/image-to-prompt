@@ -442,6 +442,18 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://launch-list.org/product/image-to-prompt',
+    src: 'https://launch-list.org/badges/svg/launch_list_badge_featured.svg',
+    alt: 'Launch List Badge',
+    height: 50,
+  },
+  {
+    href: 'https://mossai.org',
+    type: 'text',
+    alt: 'MossAI Tools',
+    content: 'MossAI Tools',
+  },
+  {
     href: 'https://www.agenthunter.io?utm_source=badge&utm_medium=embed&utm_campaign=Image%20to%20Prompt',
     type: 'badgeWithText',
     src: 'https://www.agenthunter.io/logo-light.svg',
