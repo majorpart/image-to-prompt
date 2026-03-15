@@ -368,6 +368,12 @@ const friendLinks = [
     alt: 'Image-to-Prompt featured on SubmitMatic',
     height: 54,
   },
+  {
+    href: 'https://webspot.app/item/image-to-image-ai',
+    src: 'https://webspot.app/featured-light.svg',
+    alt: 'Featured on Webspot',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
