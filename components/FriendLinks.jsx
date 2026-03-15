@@ -410,6 +410,13 @@ const friendLinks = [
     alt: 'Featured on The One Startup',
     height: 54,
   },
+  {
+    href: 'https://aiboom.tools',
+    src: 'https://aiboom.tools/badge/badge_light.svg',
+    alt: 'Featured on AIBoom.Tools',
+    width: 120,
+    height: 32,
+  },
 ];
 
 function renderFriendLink(link, key) {
