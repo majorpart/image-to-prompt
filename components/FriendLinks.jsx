@@ -392,6 +392,18 @@ const friendLinks = [
     alt: 'Featured on famed.tools',
     width: 150,
   },
+  {
+    href: 'https://starterbest.com',
+    src: 'https://starterbest.com/badages-awards.svg',
+    alt: 'Featured on Starter Best',
+    height: 54,
+  },
+  {
+    href: 'https://ainewtool.site/item/image-to-prompt-generator',
+    src: 'https://ainewtool.site/badges/AInewtool-light.svg',
+    alt: 'Featured on AINewTool.site',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
