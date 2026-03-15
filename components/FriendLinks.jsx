@@ -386,6 +386,12 @@ const friendLinks = [
     alt: 'Featured on Days Launch',
     height: 54,
   },
+  {
+    href: 'https://famed.tools/products/image-to-prompt?utm_source=famed.tools',
+    src: 'https://famed.tools/badges/famed-tools-badge-light.svg',
+    alt: 'Featured on famed.tools',
+    width: 150,
+  },
 ];
 
 function renderFriendLink(link, key) {
