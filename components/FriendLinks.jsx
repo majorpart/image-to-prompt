@@ -472,6 +472,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://twelve.tools',
+    src: 'https://twelve.tools/badge0-white.svg',
+    alt: 'Featured on Twelve Tools',
+    width: 200,
+    height: 54,
+  },
+  {
     href: 'https://launch-list.org/product/image-to-prompt',
     src: 'https://launch-list.org/badges/svg/launch_list_badge_featured.svg',
     alt: 'Launch List Badge',
