@@ -1,6 +1,36 @@
 // 友情链接数据配置（根据指南，数据驱动）
 const friendLinks = [
   {
+    href: 'https://aigc160.com',
+    src: 'https://aigc160.com/assets/images/badge.png',
+    alt: 'Image-to-Prompt featured on AIGC 160',
+    height: 54,
+  },
+  {
+    href: 'https://aixcollection.com',
+    src: 'https://aixcollection.com/assets/images/badge.png',
+    alt: 'Image-to-Prompt featured on AI X Collection',
+    height: 54,
+  },
+  {
+    href: 'https://trustiner.com',
+    src: 'https://trustiner.com/assets/images/badge.png',
+    alt: 'Image-to-Prompt featured on Trustiner',
+    height: 54,
+  },
+  {
+    href: 'https://startupaideas.com',
+    src: 'https://startupaideas.com/assets/images/badge.png',
+    alt: 'Image-to-Prompt featured on Startup AIdeas',
+    height: 54,
+  },
+  {
+    href: 'https://startupbenchmarks.com',
+    src: 'https://startupbenchmarks.com/assets/images/badge.png',
+    alt: 'Image-to-Prompt featured on Startup Benchmarks',
+    height: 54,
+  },
+  {
     href: 'https://aitechviral.com',
     src: 'https://aitechviral.com/assets/images/badge.png',
     alt: 'Image-to-Prompt featured on AI Tech Viral',
