@@ -479,6 +479,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://similarlabs.com',
+    src: 'https://similarlabs.com/similarlabs-embed-badge-light.svg',
+    alt: 'Featured on SimilarLabs',
+    width: 124,
+    height: 40,
+  },
+  {
     href: 'https://roozna.com/project/image-to-prompt',
     src: 'https://roozna.com/api/badge/image-to-prompt',
     alt: 'Featured on Roozna',
