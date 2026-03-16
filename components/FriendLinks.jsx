@@ -492,6 +492,12 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://turbo0.com/item/image-to-prompt-generator',
+    src: 'https://img.turbo0.com/badge-listed-light.svg',
+    alt: 'Image-to-Prompt listed on Turbo0',
+    height: 54,
+  },
+  {
     href: 'https://mossai.org',
     type: 'text',
     alt: 'MossAI Tools',
