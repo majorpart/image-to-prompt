@@ -478,6 +478,14 @@ const friendLinks = [
     height: 50,
   },
   {
+    // Fazier: use exact official embed HTML so their checker can match it
+    href: 'https://fazier.com/launches/imagetoprompt.app',
+    src: 'https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light',
+    alt: 'Fazier badge',
+    width: 120,
+    fazierExact: true,
+  },
+  {
     href: 'https://dang.ai/',
     src: 'https://cdn.prod.website-files.com/63d8afd87da01fb58ea3fbcb/6487e2868c6c8f93b4828827_dang-badge.png',
     alt: 'Image-to-Prompt featured on Dang.ai',
@@ -496,6 +504,13 @@ const friendLinks = [
     src: 'https://img.turbo0.com/badge-listed-light.svg',
     alt: 'Image-to-Prompt listed on Turbo0',
     height: 54,
+  },
+  {
+    href: 'https://www.foundrlist.com/product/imagetopromptgenerator',
+    src: 'https://www.foundrlist.com/api/badge/imagetopromptgenerator',
+    alt: 'Image-to-Prompt live on FoundrList',
+    width: 160,
+    height: 64,
   },
   {
     href: 'https://mossai.org',
@@ -517,6 +532,19 @@ const friendLinks = [
 function renderFriendLink(link, key) {
   const isTextLink = link.type === 'text';
   const isBadgeWithText = link.type === 'badgeWithText';
+
+  // Fazier 徽章：必须和官方 embed 代码完全一致，避免检测失败
+  if (link.fazierExact) {
+    return (
+      <a key={key} href={link.href} target="_blank">
+        <img
+          src={link.src}
+          width={link.width}
+          alt={link.alt}
+        />
+      </a>
+    );
+  }
 
   // 文本类友情链接（如 Domain Rating）使用最简单的 <a> 结构，兼容验证工具
   if (isTextLink) {
