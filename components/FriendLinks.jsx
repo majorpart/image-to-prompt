@@ -478,6 +478,13 @@ const friendLinks = [
     height: 50,
   },
   {
+    href: 'https://dang.ai/',
+    src: 'https://cdn.prod.website-files.com/63d8afd87da01fb58ea3fbcb/6487e2868c6c8f93b4828827_dang-badge.png',
+    alt: 'Image-to-Prompt featured on Dang.ai',
+    width: 150,
+    height: 54,
+  },
+  {
     href: 'https://mossai.org',
     type: 'text',
     alt: 'MossAI Tools',
