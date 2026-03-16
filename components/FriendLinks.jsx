@@ -479,6 +479,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://roozna.com/project/image-to-prompt',
+    src: 'https://roozna.com/api/badge/image-to-prompt',
+    alt: 'Featured on Roozna',
+    width: 200,
+    height: 50,
+  },
+  {
     href: 'https://wired.business',
     src: 'https://wired.business/badge0-white.svg',
     alt: 'Featured on Wired Business',
