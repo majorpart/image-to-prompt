@@ -485,6 +485,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://tinylaunch.com',
+    src: 'https://tinylaunch.com/tinylaunch_badge_launching_soon.svg',
+    alt: 'Image-to-Prompt featured on TinyLaunch',
+    width: 202,
+    height: 54,
+  },
+  {
     href: 'https://mossai.org',
     type: 'text',
     alt: 'MossAI Tools',
