@@ -479,6 +479,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://auraplusplus.com/projects/image-to-prompt-ai-generator',
+    src: 'https://auraplusplus.com/images/badges/featured-on-light.svg',
+    alt: 'Featured on Aura++',
+    width: 265,
+    height: 58,
+  },
+  {
     href: 'https://similarlabs.com',
     src: 'https://similarlabs.com/similarlabs-embed-badge-light.svg',
     alt: 'Featured on SimilarLabs',
