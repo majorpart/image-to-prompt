@@ -488,7 +488,7 @@ const friendLinks = [
     href: 'https://tinylaunch.com',
     src: 'https://tinylaunch.com/tinylaunch_badge_launching_soon.svg',
     alt: 'Image-to-Prompt featured on TinyLaunch',
-    width: 202,
+    width: 120,
     height: 54,
   },
   {
