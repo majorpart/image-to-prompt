@@ -625,6 +625,13 @@ const friendLinks = [
     height: 300,
   },
   {
+    href: 'https://www.superlaun.ch/products/1909',
+    src: 'https://www.superlaun.ch/badge.png',
+    alt: 'Featured on Super Launch',
+    width: 300,
+    height: 300,
+  },
+  {
     href: 'https://www.verifiedtools.info',
     src: 'https://www.verifiedtools.info/badge.png',
     alt: 'Verified on Verified Tools',
