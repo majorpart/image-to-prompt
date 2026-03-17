@@ -711,6 +711,41 @@ const friendLinks = [
     alt: 'AIToolsDirectory',
     content: 'AIToolsDirectory',
   },
+  {
+    href: 'https://www.seewhatnewai.com',
+    type: 'text',
+    alt: 'See What New AI',
+    content: 'See What New AI',
+  },
+  {
+    href: 'https://www.ontoplist.com/social-media-marketing-companies/',
+    src: 'https://www.ontoplist.com/images/ontoplist31.png?id=69737af74bccf',
+    alt: 'Best Social Media Marketing Companies - OnToplist.com',
+  },
+  {
+    href: 'https://viesearch.com/',
+    type: 'text',
+    alt: 'Viesearch - The Human-curated Search Engine',
+    content: 'Viesearch - The Human-curated Search Engine',
+  },
+  {
+    href: 'https://allinai.tools',
+    type: 'text',
+    alt: 'AllTheBestAITools',
+    content: 'AllinAITools',
+  },
+  {
+    href: 'https://toolsfine.com/',
+    type: 'text',
+    alt: 'ToolsFine',
+    content: 'ToolsFine',
+  },
+  {
+    href: 'https://openi.cn/',
+    type: 'text',
+    alt: 'OpenI AI时代',
+    content: 'OpenI AI时代',
+  },
 ];
 
 function renderFriendLink(link, key) {
