@@ -1033,6 +1033,12 @@ const friendLinks = [
     alt: 'AIVideoToolsPro',
     content: 'AIVideoToolsPro',
   },
+  {
+    href: 'https://z-image.net/',
+    type: 'text',
+    alt: 'Z-Image',
+    content: 'Z-Image',
+  },
 ];
 
 function renderFriendLink(link, key) {
