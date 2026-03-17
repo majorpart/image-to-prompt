@@ -907,6 +907,18 @@ const friendLinks = [
     width: 200,
     height: 54,
   },
+  {
+    href: 'https://geoly.net/item/image-to-prompt',
+    src: 'https://geoly.net/badge-light.svg',
+    alt: 'Featured on geoly.net',
+    height: 54,
+  },
+  {
+    href: 'https://alterbase.co/tool/image-to-prompt',
+    src: 'https://alterbase.co/api/badge?slug=image-to-prompt&theme=light',
+    alt: 'Featured on AlterBase',
+    width: 200,
+  },
 ];
 
 function renderFriendLink(link, key) {
