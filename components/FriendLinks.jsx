@@ -918,6 +918,13 @@ const friendLinks = [
     src: 'https://alterbase.co/api/badge?slug=image-to-prompt&theme=light',
     alt: 'Featured on AlterBase',
     width: 200,
+    alterBaseExact: true,
+  },
+  {
+    href: 'https://firsto.co/projects/image-to-prompt-generator',
+    src: 'https://firsto.co/images/badges/find-us-on-firsto.svg',
+    alt: 'Find us on Firsto',
+    width: 195,
   },
 ];
 
@@ -969,6 +976,19 @@ function renderFriendLink(link, key) {
         <span>
           Listé sur <strong>IA-Insights</strong>
         </span>
+      </a>
+    );
+  }
+
+  // AlterBase 验证要求与官方代码完全一致（无 rel，img 带 style）
+  if (link.alterBaseExact) {
+    return (
+      <a key={key} href={link.href} target="_blank">
+        <img
+          src={link.src}
+          alt={link.alt}
+          style={{ width: '200px', height: 'auto' }}
+        />
       </a>
     );
   }
