@@ -973,6 +973,66 @@ const friendLinks = [
     alt: 'Featured on submitdeck.com',
     height: 54,
   },
+  {
+    href: 'https://submito.net',
+    src: 'https://submito.net/badge/listed-dark.svg',
+    alt: 'Listed on Submito',
+    height: 48,
+  },
+  {
+    href: 'https://t0ai.com',
+    type: 'text',
+    alt: 'T0AI Tools Directory',
+    content: 'T0AIToolsDirectory',
+  },
+  {
+    href: 'https://describepicture.cc/',
+    type: 'text',
+    alt: 'AI Image Describer',
+    content: 'AI Image Describer',
+  },
+  {
+    href: 'https://top4ai.com',
+    type: 'text',
+    alt: 'TopAI Tools',
+    content: 'TopAITools',
+  },
+  {
+    href: 'https://www.vkmoai.com',
+    type: 'text',
+    alt: 'VKMOAI',
+    content: 'VKMOAI',
+  },
+  {
+    href: 'https://whatisaitools.com/',
+    type: 'text',
+    alt: 'What Is Ai Tools',
+    content: 'What Is Ai Tools',
+  },
+  {
+    href: 'https://ypforai.com/',
+    type: 'text',
+    alt: 'YP for AI',
+    content: 'YP for AI',
+  },
+  {
+    href: 'https://www.ecodir.net/',
+    type: 'text',
+    alt: 'Eco Dir.net',
+    content: 'Eco Dir.net',
+  },
+  {
+    href: 'https://ai-kit.cn',
+    type: 'text',
+    alt: 'AI工具箱官网',
+    content: 'AI工具箱官网',
+  },
+  {
+    href: 'https://www.aivideotoolspro.com',
+    type: 'text',
+    alt: 'AIVideoToolsPro',
+    content: 'AIVideoToolsPro',
+  },
 ];
 
 function renderFriendLink(link, key) {
