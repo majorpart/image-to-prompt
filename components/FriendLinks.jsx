@@ -926,6 +926,12 @@ const friendLinks = [
     alt: 'Find us on Firsto',
     width: 195,
   },
+  {
+    href: 'https://backlinkdirs.com/item/image-to-prompt-generator',
+    src: 'https://backlinkdirs.com/badges/badge-listed-dark.svg',
+    alt: 'Listed on Backlink Dirs',
+    backlinkDirsExact: true,
+  },
 ];
 
 function renderFriendLink(link, key) {
@@ -976,6 +982,15 @@ function renderFriendLink(link, key) {
         <span>
           Listé sur <strong>IA-Insights</strong>
         </span>
+      </a>
+    );
+  }
+
+  // Backlink Dirs 验证要求与官方代码完全一致
+  if (link.backlinkDirsExact) {
+    return (
+      <a key={key} href={link.href} target="_blank" rel="noopener noreferrer">
+        <img src={link.src} alt={link.alt} />
       </a>
     );
   }
