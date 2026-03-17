@@ -649,9 +649,9 @@ const friendLinks = [
     alt: 'AI Directories Badge',
   },
   {
-    href: 'https://aiagentsdirectory.com/agent/meanings?utm_source=badge&utm_medium=referral&utm_campaign=free_listing&utm_content=meanings',
+    href: 'https://aiagentsdirectory.com/agent/image-to-prompt-generator?utm_source=badge&utm_medium=referral&utm_campaign=free_listing&utm_content=image-to-prompt-generator',
     src: 'https://aiagentsdirectory.com/featured-badge.svg?v=2024',
-    alt: 'MEANINGS - Featured AI Agent on AI Agents Directory',
+    alt: 'Image to Prompt Generator - Featured AI Agent on AI Agents Directory',
     width: 200,
     height: 50,
   },
