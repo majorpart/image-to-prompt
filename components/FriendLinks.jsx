@@ -843,6 +843,63 @@ const friendLinks = [
     width: 200,
     height: 60,
   },
+  {
+    href: 'https://aitooltrek.com',
+    type: 'text',
+    alt: 'AIToolTrek',
+    content: 'AIToolTrek',
+  },
+  {
+    href: 'https://aitop-tools.com',
+    type: 'text',
+    alt: 'TopAITools',
+    content: 'TopAITools',
+  },
+  {
+    href: 'https://aiwget.com',
+    src: 'https://aiwget.com/aiwget_badge.png',
+    alt: 'Featured on AIWget',
+    width: 200,
+    height: 54,
+  },
+  {
+    href: 'https://artificin.com',
+    src: 'https://artificin.com/badges/Artificin-badge.png',
+    alt: 'Featured on Artificin',
+    width: 175,
+    height: 50,
+  },
+  {
+    href: 'https://www.basedtools.ai/',
+    type: 'text',
+    alt: 'BasedToolsAI',
+    content: 'BasedToolsAI',
+  },
+  {
+    href: 'https://best-ai-tools.org',
+    src: 'https://best-ai-tools.org/images/badge_Best-ai-toolsORG.png',
+    alt: 'Featured on Best AI Tools',
+    width: 88,
+    height: 31,
+  },
+  {
+    href: 'https://bestnsfw.io/',
+    type: 'text',
+    alt: 'bestnsfw.io',
+    content: 'bestnsfw.io',
+  },
+  {
+    href: 'https://bestsky.tools?utm_source=badge',
+    src: 'https://assets.bestsky.tools/badges/featured-light.svg',
+    alt: 'Featured on Bestsky Tools',
+    width: 150,
+  },
+  {
+    href: 'https://getaitools.app/',
+    type: 'text',
+    alt: 'GetAITools Tools Directory',
+    content: 'GetAIToolsToolsDirectory',
+  },
 ];
 
 function renderFriendLink(link, key) {
