@@ -852,8 +852,8 @@ const friendLinks = [
   {
     href: 'https://aitop-tools.com',
     type: 'text',
-    alt: 'TopAITools',
-    content: 'TopAITools',
+    alt: 'Top AI Tools',
+    content: 'Top AI Tools',
   },
   {
     href: 'https://aiwget.com',
