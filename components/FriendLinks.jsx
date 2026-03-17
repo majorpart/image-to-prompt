@@ -648,6 +648,38 @@ const friendLinks = [
     src: 'https://cdn.aidirectori.es/ai-tools/badges/dark-mode.png',
     alt: 'AI Directories Badge',
   },
+  {
+    href: 'https://aiagentsdirectory.com/agent/meanings?utm_source=badge&utm_medium=referral&utm_campaign=free_listing&utm_content=meanings',
+    src: 'https://aiagentsdirectory.com/featured-badge.svg?v=2024',
+    alt: 'MEANINGS - Featured AI Agent on AI Agents Directory',
+    width: 200,
+    height: 50,
+  },
+  {
+    href: 'https://walletpartydeals.com',
+    src: 'https://walletpartydeals.com/walletpartdeals.png',
+    alt: 'Featured on WalletPartyDeals.',
+    width: 200,
+    height: 60,
+  },
+  {
+    href: 'https://goodaitools.com',
+    src: 'https://goodaitools.com/assets/images/badge.png',
+    alt: 'Good AI Tools',
+    height: 54,
+  },
+  {
+    href: 'https://www.aiheron.com/',
+    type: 'text',
+    alt: '智鹭AI导航',
+    content: 'AiHeron',
+  },
+  {
+    href: 'https://dironix.com',
+    src: 'https://dironix.com/bage.png',
+    alt: 'Featured on dironix.com',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
