@@ -661,6 +661,7 @@ const friendLinks = [
     alt: 'Featured on WalletPartyDeals.',
     width: 200,
     height: 60,
+    walletPartyDealsExact: true,
   },
   {
     href: 'https://goodaitools.com',
@@ -730,6 +731,26 @@ function renderFriendLink(link, key) {
         <span>
           Listé sur <strong>IA-Insights</strong>
         </span>
+      </a>
+    );
+  }
+
+  // WalletPartyDeals 验证要求与官方代码完全一致（id、title、rel、img style）
+  if (link.walletPartyDealsExact) {
+    return (
+      <a
+        key={key}
+        href={link.href}
+        id="WalletPartyDeals-badge"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Featured on WalletPartyDeals"
+      >
+        <img
+          src={link.src}
+          alt={link.alt}
+          style={{ borderRadius: '10px', width: '200px', height: '60px' }}
+        />
       </a>
     );
   }
