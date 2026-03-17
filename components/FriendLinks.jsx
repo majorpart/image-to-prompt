@@ -782,6 +782,67 @@ const friendLinks = [
     alt: 'AI Findr Tools Directory',
     content: 'AI Findr Tools Directory',
   },
+  {
+    href: 'https://aifinder.site',
+    src: 'https://aifinder.site/light-badge.png',
+    alt: 'Discover more AI tools at aifinder.site',
+    width: 200,
+  },
+  {
+    href: 'https://www.aigotools.com',
+    type: 'text',
+    alt: 'AigoTools',
+    content: 'AigoTools',
+  },
+  {
+    href: 'https://aihunt.one',
+    type: 'text',
+    alt: 'AIHunt',
+    content: 'AIHunt',
+  },
+  {
+    href: 'https://aihustle.tools',
+    type: 'text',
+    alt: 'AIHustle',
+    content: 'AIHustle',
+  },
+  {
+    href: 'https://www.aimonstr.com',
+    type: 'text',
+    alt: 'AIMonstr',
+    content: 'AIMonstr',
+  },
+  {
+    href: 'https://aishenqi.net/',
+    type: 'text',
+    alt: 'AIShenqi',
+    content: 'AIShenqi',
+  },
+  {
+    href: 'https://www.aitoolgo.com',
+    type: 'text',
+    alt: 'AiToolGo',
+    content: 'AiToolGo',
+  },
+  {
+    href: 'https://aitooli.com/',
+    type: 'text',
+    alt: 'Aitooli AI Tools Directory',
+    content: 'Aitooli AI Tools Directory',
+  },
+  {
+    href: 'https://www.aitoolist.com/',
+    type: 'text',
+    alt: 'AITOOLIST',
+    content: 'AITOOLIST',
+  },
+  {
+    href: 'https://aitoolsss.com',
+    src: 'https://aitoolsss.com/badge/badge_light.svg',
+    alt: 'Featured on AIToolsss',
+    width: 200,
+    height: 60,
+  },
 ];
 
 function renderFriendLink(link, key) {
