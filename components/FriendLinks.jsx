@@ -1039,6 +1039,12 @@ const friendLinks = [
     alt: 'Z-Image',
     content: 'Z-Image',
   },
+  {
+    href: 'https://aiproductpick.com/',
+    type: 'text',
+    alt: 'AI Product Pick',
+    content: 'AI Product Pick',
+  },
 ];
 
 function renderFriendLink(link, key) {
