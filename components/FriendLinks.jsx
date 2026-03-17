@@ -900,6 +900,13 @@ const friendLinks = [
     alt: 'GetAITools Tools Directory',
     content: 'GetAIToolsToolsDirectory',
   },
+  {
+    href: 'https://gets.tools',
+    src: 'https://gets.tools/badge/badge_light.svg',
+    alt: 'Featured on Gets.Tools',
+    width: 200,
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
