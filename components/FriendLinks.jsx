@@ -751,6 +751,37 @@ const friendLinks = [
     alt: 'OpenI AI时代',
     content: 'OpenI AI时代',
   },
+  {
+    href: 'https://yo.directory/',
+    src: 'https://cdn.prod.website-files.com/65c1546fa73ea974db789e3d/65e1e171f89ebfa7bd0129ac_yodirectory-featured.png',
+    alt: 'yo.directory',
+    width: 150,
+    height: 54,
+  },
+  {
+    href: 'https://www.justsimple.tools',
+    src: 'https://www.justsimple.tools/badge.svg',
+    alt: 'Listed on JustSimple Tools',
+    width: 150,
+  },
+  {
+    href: 'https://www.1directory.org/',
+    type: 'text',
+    alt: '1Directory.org',
+    content: '1Directory.org',
+  },
+  {
+    href: 'https://www.2ai.cn/',
+    type: 'text',
+    alt: '2AI',
+    content: '2AI',
+  },
+  {
+    href: 'https://ai-findr.com/',
+    type: 'text',
+    alt: 'AI Findr Tools Directory',
+    content: 'AI Findr Tools Directory',
+  },
 ];
 
 function renderFriendLink(link, key) {
