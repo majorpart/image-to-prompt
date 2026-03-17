@@ -49,6 +49,8 @@ export default function SEOHead({
       <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
       <meta name="googlebot" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
       <meta name="bingbot" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
+      {/* Foundr 验证用 meta（根据官方要求添加在首页 <head> 中） */}
+      <meta name="_foundr" content="079be6a7d71c5ecfe53792268343145c" />
       
       {/* Canonical URL - 核心要求 */}
       {fullCanonical && (
