@@ -1045,6 +1045,19 @@ const friendLinks = [
     alt: 'AI Product Pick',
     content: 'AI Product Pick',
   },
+  {
+    href: 'https://aiforjobs.net/',
+    type: 'text',
+    alt: 'AI for Jobs',
+    content: 'AI for Jobs',
+  },
+  {
+    href: 'https://dododirectory.com',
+    src: 'https://dododirectory.com/badge-light.png',
+    alt: 'Featured on DodoDirectory',
+    width: 200,
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
