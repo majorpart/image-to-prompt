@@ -610,6 +610,38 @@ const friendLinks = [
     line2: 'Featured AI Agent',
     imgSize: 40,
   },
+  {
+    href: 'https://launchdirectories.com',
+    src: 'https://launchdirectories.com/api/badge/not-listed-yet?width=200&height=50&color=white&shape=rect&certificationText=FEATURED%20ON&textStyle=uppercase&badgeType=featured-on&linkType=home&v=1753169742175',
+    alt: 'Featured on LaunchDirectories',
+    width: 200,
+    height: 50,
+  },
+  {
+    href: 'https://www.superlaun.ch/products/1486',
+    src: 'https://www.superlaun.ch/badge.png',
+    alt: 'Featured on SuperLaunch',
+    width: 300,
+    height: 300,
+  },
+  {
+    href: 'https://www.verifiedtools.info',
+    src: 'https://www.verifiedtools.info/badge.png',
+    alt: 'Verified on Verified Tools',
+    width: 200,
+    height: 54,
+  },
+  {
+    href: 'https://www.ia-insights.fr/',
+    type: 'text',
+    alt: 'Listé sur IA-Insights',
+    content: 'Listé sur IA-Insights',
+  },
+  {
+    href: 'https://www.aidirectori.es',
+    src: 'https://cdn.aidirectori.es/ai-tools/badges/dark-mode.png',
+    alt: 'AIDirectories Badge',
+  },
 ];
 
 function renderFriendLink(link, key) {
