@@ -681,6 +681,36 @@ const friendLinks = [
     alt: 'Featured on dironix.com',
     height: 54,
   },
+  {
+    href: 'https://right-ai.com/',
+    type: 'text',
+    alt: 'RightAI Tools Directory',
+    content: 'RightAI Tools Directory',
+  },
+  {
+    href: 'https://aitoolcenter.com/',
+    type: 'text',
+    alt: 'AI Tool Center',
+    content: 'AI Tool Center',
+  },
+  {
+    href: 'https://SeekAIs.com/',
+    type: 'text',
+    alt: 'SeekAIs',
+    content: 'SeekAIs - AI Tools Directory',
+  },
+  {
+    href: 'https://www.aitoolzdir.com',
+    type: 'text',
+    alt: 'AIToolzDir',
+    content: 'AIToolzDir',
+  },
+  {
+    href: 'https://allyourtech.ai',
+    type: 'text',
+    alt: 'AIToolsDirectory',
+    content: 'AIToolsDirectory',
+  },
 ];
 
 function renderFriendLink(link, key) {
