@@ -723,6 +723,11 @@ const friendLinks = [
     alt: 'Best Social Media Marketing Companies - OnToplist.com',
   },
   {
+    href: 'https://www.ontoplist.com/web-design-companies/',
+    src: 'https://www.ontoplist.com/images/ontoplist31.png?id=69b8a6f08a5b3',
+    alt: 'Best Web Design Companies - OnToplist.com',
+  },
+  {
     href: 'https://viesearch.com/',
     type: 'text',
     alt: 'Viesearch - The Human-curated Search Engine',
