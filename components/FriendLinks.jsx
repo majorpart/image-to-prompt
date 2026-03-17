@@ -640,9 +640,8 @@ const friendLinks = [
   },
   {
     href: 'https://www.ia-insights.fr/',
-    type: 'text',
+    type: 'iaInsightsBadge',
     alt: 'Listé sur IA-Insights',
-    content: 'Listé sur IA-Insights',
   },
   {
     href: 'https://www.aidirectori.es',
@@ -654,6 +653,54 @@ const friendLinks = [
 function renderFriendLink(link, key) {
   const isTextLink = link.type === 'text';
   const isBadgeWithText = link.type === 'badgeWithText';
+  const isIaInsightsBadge = link.type === 'iaInsightsBadge';
+
+  // IA-Insights 官方徽章样式（白底、蓝色 IA 方块 + 文案）
+  if (isIaInsightsBadge) {
+    return (
+      <a
+        key={key}
+        href={link.href}
+        target="_blank"
+        rel="noopener"
+        title={link.alt}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '8px 14px',
+          background: '#ffffff',
+          border: '1.5px solid #e1e4e8',
+          borderRadius: '8px',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          fontSize: '13px',
+          color: '#24292e',
+          textDecoration: 'none',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+        }}
+      >
+        <span
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 20,
+            height: 20,
+            background: '#0066cc',
+            borderRadius: '4px',
+            color: '#fff',
+            fontSize: '11px',
+            fontWeight: 700,
+          }}
+        >
+          IA
+        </span>
+        <span>
+          Listé sur <strong>IA-Insights</strong>
+        </span>
+      </a>
+    );
+  }
 
   // Fazier 徽章：必须和官方 embed 代码完全一致，避免检测失败
   if (link.fazierExact) {
