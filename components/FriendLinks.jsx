@@ -534,6 +534,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://tinylaunchpad.com/projects/image-to-prompt',
+    src: 'https://tinylaunchpad.com/images/badges/featured-on-light-mode.png',
+    alt: 'Featured on TinyLaunchpad',
+    width: 150,
+    height: 54,
+  },
+  {
     href: 'https://roozna.com/project/image-to-prompt',
     src: 'https://roozna.com/api/badge/image-to-prompt',
     alt: 'Featured on Roozna',
