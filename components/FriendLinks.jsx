@@ -513,6 +513,13 @@ const friendLinks = [
     height: 60,
   },
   {
+    href: 'https://saaspa.ge/product/cmmtuietg003ljo04n0z68dli',
+    src: 'https://saaspa.ge/api/embed/product/cmmtuietg003ljo04n0z68dli/badge.png?theme=orange',
+    alt: 'Featured on Saaspa.ge',
+    width: 200,
+    height: 60,
+  },
+  {
     href: 'https://submithunt.com',
     src: 'https://submithunt.com/badge.png',
     alt: 'Featured on SubmitHunt',
