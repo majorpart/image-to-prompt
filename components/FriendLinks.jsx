@@ -646,7 +646,7 @@ const friendLinks = [
   {
     href: 'https://www.aidirectori.es',
     src: 'https://cdn.aidirectori.es/ai-tools/badges/dark-mode.png',
-    alt: 'AIDirectories Badge',
+    alt: 'AI Directories Badge',
   },
 ];
 
