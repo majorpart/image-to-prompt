@@ -938,6 +938,41 @@ const friendLinks = [
     alt: 'Featured on directoryfame.com',
     height: 54,
   },
+  {
+    href: 'https://lemondy.ai/',
+    type: 'text',
+    alt: 'Tap4 AI Tools Directory',
+    content: 'Tap4 AI Tools Directory',
+  },
+  {
+    href: 'https://nav-ai.net/',
+    type: 'text',
+    alt: 'Nav - AI',
+    content: 'Nav - AI',
+  },
+  {
+    href: 'https://navifyai.com/',
+    src: 'https://navifyai.com/static/img/badge-dark.svg',
+    alt: 'Featured on NavifyAI.com - AI Tools Directory',
+  },
+  {
+    href: 'https://okeiai.com/',
+    type: 'text',
+    alt: 'Okei AI Tools Directory',
+    content: 'Okei AI Tools',
+  },
+  {
+    href: 'https://onlinestool.com',
+    type: 'text',
+    alt: 'OnlineSTool',
+    content: 'OnlineSTool',
+  },
+  {
+    href: 'https://submitdeck.com',
+    src: 'https://submitdeck.com/bage.png',
+    alt: 'Featured on submitdeck.com',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
