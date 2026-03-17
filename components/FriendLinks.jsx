@@ -932,6 +932,12 @@ const friendLinks = [
     alt: 'Listed on Backlink Dirs',
     backlinkDirsExact: true,
   },
+  {
+    href: 'https://directoryfame.com/item/image-to-prompt-generator',
+    src: 'https://directoryfame.com/badge-light.svg',
+    alt: 'Featured on directoryfame.com',
+    height: 54,
+  },
 ];
 
 function renderFriendLink(link, key) {
