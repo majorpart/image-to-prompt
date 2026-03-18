@@ -1075,6 +1075,12 @@ const friendLinks = [
     src: 'https://huzzler.so/assets/images/embeddable-badges/featured.png',
     alt: 'Huzzler Embed Badge',
   },
+  {
+    href: 'https://www.siteswebdirectory.com/Health_Medical/Dentistry/',
+    type: 'text',
+    alt: 'Dentists Marketing',
+    content: 'Dentists Marketing',
+  },
 ];
 
 function renderFriendLink(link, key) {
