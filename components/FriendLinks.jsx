@@ -1095,12 +1095,18 @@ const friendLinks = [
     width: 120,
     height: 40,
   },
+  {
+    href: 'https://airanking.ai',
+    type: 'aiRankingBadge',
+    alt: 'Featured on AI Ranking',
+  },
 ];
 
 function renderFriendLink(link, key) {
   const isTextLink = link.type === 'text';
   const isBadgeWithText = link.type === 'badgeWithText';
   const isIaInsightsBadge = link.type === 'iaInsightsBadge';
+  const isAiRankingBadge = link.type === 'aiRankingBadge';
 
   // IA-Insights 官方徽章样式（白底、蓝色 IA 方块 + 文案）
   if (isIaInsightsBadge) {
@@ -1144,6 +1150,45 @@ function renderFriendLink(link, key) {
         </span>
         <span>
           Listé sur <strong>IA-Insights</strong>
+        </span>
+      </a>
+    );
+  }
+
+  // AI Ranking 官方徽章样式（圆角胶囊 + 图标 + 文案）
+  if (isAiRankingBadge) {
+    return (
+      <a
+        key={key}
+        href={link.href}
+        target="_blank"
+        style={{ textDecoration: 'none' }}
+      >
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            padding: '9px 14px',
+            borderRadius: '999px',
+            font: "600 13px/1.2 'Space Grotesk','Inter',system-ui,sans-serif",
+            letterSpacing: '0.02em',
+            color: '#0f172a',
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 1px 2px rgba(15,23,42,0.08)',
+          }}
+        >
+          <img
+            src="https://airanking.ai/logo.png"
+            alt="AI Ranking"
+            style={{
+              width: '18px',
+              height: '18px',
+              borderRadius: '6px',
+            }}
+          />
+          Featured on AI Ranking
         </span>
       </a>
     );
