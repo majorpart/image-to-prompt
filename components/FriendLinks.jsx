@@ -1058,6 +1058,12 @@ const friendLinks = [
     width: 200,
     height: 54,
   },
+  {
+    href: 'https://productburst.com/product/image-to-prompt',
+    src: 'https://3188a5210b07f4ad511bbcdc967bc67b.cdn.bubble.io/f1744886192867x526037143822301250/1.png',
+    alt: 'Featured on ProductBurst',
+    width: 160,
+  },
 ];
 
 function renderFriendLink(link, key) {
