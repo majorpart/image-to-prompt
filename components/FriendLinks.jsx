@@ -1070,6 +1070,11 @@ const friendLinks = [
     alt: 'AI生产力工具',
     content: 'AI生产力工具',
   },
+  {
+    href: 'https://huzzler.so/products/GwXds9YHam/image-to-prompt?utm_source=huzzler_product_website&utm_medium=badge&utm_campaign=badge',
+    src: 'https://huzzler.so/assets/images/embeddable-badges/featured.png',
+    alt: 'Huzzler Embed Badge',
+  },
 ];
 
 function renderFriendLink(link, key) {
