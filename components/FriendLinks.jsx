@@ -561,6 +561,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://www.rilna.net',
+    src: 'https://www.rilna.net/rilna-logo.svg',
+    alt: 'Rilna',
+    type: 'rilnaExact',
+    content: 'Listed on Rilna',
+  },
+  {
     href: 'https://roozna.com/project/image-to-prompt',
     src: 'https://roozna.com/api/badge/image-to-prompt',
     alt: 'Featured on Roozna',
@@ -1127,6 +1134,7 @@ function renderFriendLink(link, key) {
   const isBadgeWithText = link.type === 'badgeWithText';
   const isIaInsightsBadge = link.type === 'iaInsightsBadge';
   const isAiRankingBadge = link.type === 'aiRankingBadge';
+  const isRilnaExact = link.type === 'rilnaExact';
 
   // IA-Insights 官方徽章样式（白底、蓝色 IA 方块 + 文案）
   if (isIaInsightsBadge) {
@@ -1265,6 +1273,31 @@ function renderFriendLink(link, key) {
           width={link.width}
           alt={link.alt}
         />
+      </a>
+    );
+  }
+
+  // Rilna: 尽量使用你提供的 inline-flex 样式结构
+  if (isRilnaExact) {
+    return (
+      <a
+        key={key}
+        href={link.href}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '6px 12px',
+          border: '1px solid #e5e7eb',
+          borderRadius: '8px',
+          textDecoration: 'none',
+          color: '#1a1a1a',
+          fontFamily: 'sans-serif',
+          fontSize: '14px',
+        }}
+      >
+        <img src={link.src} alt={link.alt} width={20} height={20} />
+        {link.content}
       </a>
     );
   }
