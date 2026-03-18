@@ -1088,6 +1088,13 @@ const friendLinks = [
     width: 250,
     height: 60,
   },
+  {
+    href: 'https://aibesttop.com',
+    src: 'https://aibesttop.com/badges/light.svg',
+    alt: 'Listed on AIBestTop',
+    width: 120,
+    height: 40,
+  },
 ];
 
 function renderFriendLink(link, key) {
