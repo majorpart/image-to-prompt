@@ -554,6 +554,13 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://shipybara.com/projects/image-to-prompt',
+    src: 'https://shipybara.com/images/badges/shipybara-badge-light.svg',
+    alt: 'Featured on Shipybara',
+    width: 150,
+    height: 54,
+  },
+  {
     href: 'https://roozna.com/project/image-to-prompt',
     src: 'https://roozna.com/api/badge/image-to-prompt',
     alt: 'Featured on Roozna',
