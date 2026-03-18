@@ -229,6 +229,12 @@ const friendLinks = [
     content: 'Tap4 AI Tools Directory',
   },
   {
+    href: 'https://www.ailabhub.online',
+    type: 'text',
+    alt: 'AI Tools Hub - Comprehensive AI tools directory',
+    content: 'AI Tools Hub',
+  },
+  {
     href: 'https://aidirs.org/item/meanings',
     src: 'https://aidirs.org/badges/badge-listed-dark.svg',
     alt: 'Image-to-Prompt listed on AIDirs',
