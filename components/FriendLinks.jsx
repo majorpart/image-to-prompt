@@ -1064,6 +1064,12 @@ const friendLinks = [
     alt: 'Featured on ProductBurst',
     width: 160,
   },
+  {
+    href: 'https://www.kdjingpai.com',
+    type: 'text',
+    alt: 'AI生产力工具',
+    content: 'AI生产力工具',
+  },
 ];
 
 function renderFriendLink(link, key) {
