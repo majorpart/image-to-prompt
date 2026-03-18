@@ -235,6 +235,13 @@ const friendLinks = [
     content: 'AI Tools Hub',
   },
   {
+    href: 'https://aiextension.ai/image-to-prompt-generator',
+    src: 'https://aiextension.ai/badges/aiextension-light.svg',
+    alt: 'Featured on AIExtension.ai',
+    width: 200,
+    height: 54,
+  },
+  {
     href: 'https://aidirs.org/item/meanings',
     src: 'https://aidirs.org/badges/badge-listed-dark.svg',
     alt: 'Image-to-Prompt listed on AIDirs',
