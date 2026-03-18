@@ -1081,6 +1081,13 @@ const friendLinks = [
     alt: 'Dentists Marketing',
     content: 'Dentists Marketing',
   },
+  {
+    href: 'https://smollaunch.com',
+    src: 'https://smollaunch.com/badges/featured.svg',
+    alt: 'Featured on Smol Launch',
+    width: 250,
+    height: 60,
+  },
 ];
 
 function renderFriendLink(link, key) {
