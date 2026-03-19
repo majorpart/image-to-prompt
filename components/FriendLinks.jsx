@@ -241,6 +241,12 @@ const friendLinks = [
     content: 'AI Tools Hub',
   },
   {
+    href: 'https://toolsify.ai/',
+    type: 'text',
+    alt: 'Toolsify AI Tools Directory',
+    content: 'Toolsify AI Tools Directory',
+  },
+  {
     href: 'https://aiextension.ai/image-to-prompt-generator',
     src: 'https://aiextension.ai/badges/aiextension-light.svg',
     alt: 'Featured on AIExtension.ai',
