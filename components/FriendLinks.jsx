@@ -229,6 +229,12 @@ const friendLinks = [
     content: 'Tap4 AI Tools Directory',
   },
   {
+    href: 'https://curlship.com',
+    type: 'text',
+    alt: 'Curlship — submit your app via JSON API (POST https://curlship.com/api/submit)',
+    content: 'Curlship',
+  },
+  {
     href: 'https://www.ailabhub.online',
     type: 'text',
     alt: 'AI Tools Hub - Comprehensive AI tools directory',
