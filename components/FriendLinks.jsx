@@ -260,6 +260,14 @@ const friendLinks = [
     height: 54,
   },
   {
+    href: 'https://sumodir.com',
+    src: 'https://sumodir.com/badge.png',
+    alt: 'Featured on SumoDir',
+    width: 200,
+    height: 54,
+    rel: 'dofollow',
+  },
+  {
     href: 'https://aidirs.org/item/meanings',
     src: 'https://aidirs.org/badges/badge-listed-dark.svg',
     alt: 'Image-to-Prompt listed on AIDirs',
@@ -1386,7 +1394,7 @@ function renderFriendLink(link, key) {
       key={key}
       href={link.href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel={link.rel ?? 'noopener noreferrer'}
       className="friend-links-item"
       title={link.alt}
     >
