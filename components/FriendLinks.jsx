@@ -268,6 +268,14 @@ const friendLinks = [
     rel: 'dofollow',
   },
   {
+    href: 'https://web-review.com',
+    src: 'https://web-review.com/badge.png',
+    alt: 'Featured on Web Review',
+    width: 200,
+    height: 54,
+    rel: 'dofollow',
+  },
+  {
     href: 'https://aidirs.org/item/meanings',
     src: 'https://aidirs.org/badges/badge-listed-dark.svg',
     alt: 'Image-to-Prompt listed on AIDirs',
