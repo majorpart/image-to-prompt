@@ -247,6 +247,12 @@ const friendLinks = [
     content: 'Toolsify AI Tools Directory',
   },
   {
+    href: 'https://www.aijiaohuan.net/',
+    type: 'text',
+    alt: 'AI交换 - AI tools navigation (aijiaohuan.net)',
+    content: 'AI交换',
+  },
+  {
     href: 'https://aiextension.ai/image-to-prompt-generator',
     src: 'https://aiextension.ai/badges/aiextension-light.svg',
     alt: 'Featured on AIExtension.ai',
